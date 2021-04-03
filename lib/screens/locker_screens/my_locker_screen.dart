@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:transform_dot_io/components/action_button.dart';
+import 'package:transform_dot_io/screens/locker_screens/physique_screen.dart';
 
 class MyLockerScreen extends StatelessWidget {
-  String title = 'My Locker';
+  final String title = 'My Locker';
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -25,7 +26,7 @@ class MyLockerScreen extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            ActionButton('Test', 'Test'),
+            PhysiqueScreen(),
             ActionButton('Test', 'Test'),
             ActionButton('Test', 'Test'),
           ],
