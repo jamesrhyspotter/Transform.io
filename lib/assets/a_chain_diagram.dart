@@ -3,6 +3,69 @@ import 'package:flutter/material.dart';
 
 class AnteriorChainDiagram extends CustomPainter {
 
+  List<String> selectedMuscleList = [];
+  Color currentColor = Colors.black;
+  Color calfColor = Colors.black;
+  Color quadsColor = Colors.black;
+  Color absColor = Colors.black;
+  Color obliquesColor = Colors.black;
+  Color chestColor = Colors.black;
+  Color sideDeltsColor = Colors.black;
+  Color frontDeltsColor = Colors.black;
+  Color trapsColor = Colors.black;
+  Color bicepsColor = Colors.black;
+  Color forearmsColor = Colors.black;
+
+  AnteriorChainDiagram({List<String> highlightedMuscles}) {
+
+    selectedMuscleList = highlightedMuscles;
+
+    if(selectedMuscleList.contains('Calves')){
+      calfColor = Colors.amber[800];
+    }
+
+    if(selectedMuscleList.contains('Quads')){
+      quadsColor = Colors.amber[800];
+    }
+
+    if(selectedMuscleList.contains('Abs')){
+      absColor = Colors.amber[800];
+    }
+
+    if(selectedMuscleList.contains('Obliques')){
+      obliquesColor = Colors.amber[800];
+    }
+
+    if(selectedMuscleList.contains('Chest')){
+      chestColor = Colors.amber[800];
+    }
+
+    if(selectedMuscleList.contains('Side Delts')){
+      sideDeltsColor = Colors.amber[800];
+    }
+
+    if(selectedMuscleList.contains('Front Delts')){
+      frontDeltsColor = Colors.amber[800];
+    }
+
+    if(selectedMuscleList.contains('Traps')){
+      trapsColor = Colors.amber[800];
+    }
+
+    if(selectedMuscleList.contains('Biceps')){
+      bicepsColor = Colors.amber[800];
+    }
+
+    if(selectedMuscleList.contains('Forearms')){
+      forearmsColor = Colors.amber[800];
+    }
+
+  }
+
+
+
+
+
   @override
   void paint(Canvas canvas, Size size) {
 
@@ -30,7 +93,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_0.close();
 
     Paint paint_0_fill = Paint()..style=PaintingStyle.fill;
-    paint_0_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_0_fill.color = calfColor.withOpacity(1.0);
     canvas.drawPath(path_0,paint_0_fill);
 
     Path path_1 = Path();
@@ -50,7 +113,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_1.close();
 
     Paint paint_1_fill = Paint()..style=PaintingStyle.fill;
-    paint_1_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_1_fill.color = calfColor.withOpacity(0.4);
     canvas.drawPath(path_1,paint_1_fill);
 
     Path path_2 = Path();
@@ -78,7 +141,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_2.close();
 
     Paint paint_2_fill = Paint()..style=PaintingStyle.fill;
-    paint_2_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_2_fill.color = calfColor.withOpacity(1.0);
     canvas.drawPath(path_2,paint_2_fill);
 
     Path path_3 = Path();
@@ -97,7 +160,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_3.close();
 
     Paint paint_3_fill = Paint()..style=PaintingStyle.fill;
-    paint_3_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_3_fill.color = calfColor.withOpacity(1.0);
     canvas.drawPath(path_3,paint_3_fill);
 
     Path path_4 = Path();
@@ -157,7 +220,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_4.close();
 
     Paint paint_4_fill = Paint()..style=PaintingStyle.fill;
-    paint_4_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_4_fill.color = quadsColor.withOpacity(1.0);
     canvas.drawPath(path_4,paint_4_fill);
 
     Path path_5 = Path();
@@ -214,7 +277,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_5.close();
 
     Paint paint_5_fill = Paint()..style=PaintingStyle.fill;
-    paint_5_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_5_fill.color = quadsColor.withOpacity(1.0);
     canvas.drawPath(path_5,paint_5_fill);
 
     Path path_6 = Path();
@@ -246,7 +309,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_7.close();
 
     Paint paint_7_fill = Paint()..style=PaintingStyle.fill;
-    paint_7_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_7_fill.color = quadsColor.withOpacity(1.0);
     canvas.drawPath(path_7,paint_7_fill);
 
     Path path_8 = Path();
@@ -263,7 +326,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_8.close();
 
     Paint paint_8_fill = Paint()..style=PaintingStyle.fill;
-    paint_8_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_8_fill.color = quadsColor.withOpacity(1.0);
     canvas.drawPath(path_8,paint_8_fill);
 
     Path path_9 = Path();
@@ -392,7 +455,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_12.close();
 
     Paint paint_12_fill = Paint()..style=PaintingStyle.fill;
-    paint_12_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_12_fill.color = obliquesColor.withOpacity(1.0);
     canvas.drawPath(path_12,paint_12_fill);
 
     Path path_13 = Path();
@@ -446,7 +509,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_13.close();
 
     Paint paint_13_fill = Paint()..style=PaintingStyle.fill;
-    paint_13_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_13_fill.color = obliquesColor.withOpacity(1.0);
     canvas.drawPath(path_13,paint_13_fill);
 
     Path path_14 = Path();
@@ -484,7 +547,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_14.close();
 
     Paint paint_14_fill = Paint()..style=PaintingStyle.fill;
-    paint_14_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_14_fill.color = bicepsColor.withOpacity(1.0);
     canvas.drawPath(path_14,paint_14_fill);
 
     Path path_15 = Path();
@@ -522,7 +585,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_15.close();
 
     Paint paint_15_fill = Paint()..style=PaintingStyle.fill;
-    paint_15_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_15_fill.color = bicepsColor.withOpacity(1.0);
     canvas.drawPath(path_15,paint_15_fill);
 
     Path path_16 = Path();
@@ -559,7 +622,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_16.close();
 
     Paint paint_16_fill = Paint()..style=PaintingStyle.fill;
-    paint_16_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_16_fill.color = frontDeltsColor.withOpacity(1.0);
     canvas.drawPath(path_16,paint_16_fill);
 
     Path path_17 = Path();
@@ -594,7 +657,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_17.close();
 
     Paint paint_17_fill = Paint()..style=PaintingStyle.fill;
-    paint_17_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_17_fill.color = frontDeltsColor.withOpacity(1.0);
     canvas.drawPath(path_17,paint_17_fill);
 
     Path path_18 = Path();
@@ -628,7 +691,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_18.close();
 
     Paint paint_18_fill = Paint()..style=PaintingStyle.fill;
-    paint_18_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_18_fill.color = sideDeltsColor.withOpacity(1.0);
     canvas.drawPath(path_18,paint_18_fill);
 
     Path path_19 = Path();
@@ -662,7 +725,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_19.close();
 
     Paint paint_19_fill = Paint()..style=PaintingStyle.fill;
-    paint_19_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_19_fill.color = sideDeltsColor.withOpacity(1.0);
     canvas.drawPath(path_19,paint_19_fill);
 
     Path path_20 = Path();
@@ -695,7 +758,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_20.close();
 
     Paint paint_20_fill = Paint()..style=PaintingStyle.fill;
-    paint_20_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_20_fill.color = trapsColor.withOpacity(1.0);
     canvas.drawPath(path_20,paint_20_fill);
 
     Path path_21 = Path();
@@ -730,7 +793,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_21.close();
 
     Paint paint_21_fill = Paint()..style=PaintingStyle.fill;
-    paint_21_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_21_fill.color = trapsColor.withOpacity(1.0);
     canvas.drawPath(path_21,paint_21_fill);
 
     Path path_22 = Path();
@@ -785,7 +848,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_22.close();
 
     Paint paint_22_fill = Paint()..style=PaintingStyle.fill;
-    paint_22_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_22_fill.color = chestColor.withOpacity(1.0);
     canvas.drawPath(path_22,paint_22_fill);
 
     Path path_23 = Path();
@@ -839,7 +902,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_23.close();
 
     Paint paint_23_fill = Paint()..style=PaintingStyle.fill;
-    paint_23_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_23_fill.color = chestColor.withOpacity(1.0);
     canvas.drawPath(path_23,paint_23_fill);
 
     Path path_24 = Path();
@@ -883,7 +946,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_24.close();
 
     Paint paint_24_fill = Paint()..style=PaintingStyle.fill;
-    paint_24_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_24_fill.color = absColor.withOpacity(1.0);
     canvas.drawPath(path_24,paint_24_fill);
 
     Path path_25 = Path();
@@ -919,7 +982,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_25.close();
 
     Paint paint_25_fill = Paint()..style=PaintingStyle.fill;
-    paint_25_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_25_fill.color = absColor.withOpacity(1.0);
     canvas.drawPath(path_25,paint_25_fill);
 
     Path path_26 = Path();
@@ -952,7 +1015,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_26.close();
 
     Paint paint_26_fill = Paint()..style=PaintingStyle.fill;
-    paint_26_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_26_fill.color = absColor.withOpacity(1.0);
     canvas.drawPath(path_26,paint_26_fill);
 
     Path path_27 = Path();
@@ -989,7 +1052,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_27.close();
 
     Paint paint_27_fill = Paint()..style=PaintingStyle.fill;
-    paint_27_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_27_fill.color = absColor.withOpacity(1.0);
     canvas.drawPath(path_27,paint_27_fill);
 
     Path path_28 = Path();
@@ -1025,7 +1088,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_28.close();
 
     Paint paint_28_fill = Paint()..style=PaintingStyle.fill;
-    paint_28_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_28_fill.color = absColor.withOpacity(1.0);
     canvas.drawPath(path_28,paint_28_fill);
 
     Path path_29 = Path();
@@ -1060,7 +1123,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_29.close();
 
     Paint paint_29_fill = Paint()..style=PaintingStyle.fill;
-    paint_29_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_29_fill.color = absColor.withOpacity(1.0);
     canvas.drawPath(path_29,paint_29_fill);
 
     Path path_30 = Path();
@@ -1099,7 +1162,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_30.close();
 
     Paint paint_30_fill = Paint()..style=PaintingStyle.fill;
-    paint_30_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_30_fill.color = absColor.withOpacity(1.0);
     canvas.drawPath(path_30,paint_30_fill);
 
     Path path_31 = Path();
@@ -1146,7 +1209,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_31.close();
 
     Paint paint_31_fill = Paint()..style=PaintingStyle.fill;
-    paint_31_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_31_fill.color = absColor.withOpacity(1.0);
     canvas.drawPath(path_31,paint_31_fill);
 
     Path path_32 = Path();
@@ -1227,7 +1290,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_32.close();
 
     Paint paint_32_fill = Paint()..style=PaintingStyle.fill;
-    paint_32_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_32_fill.color = forearmsColor.withOpacity(1.0);
     canvas.drawPath(path_32,paint_32_fill);
 
     Path path_33 = Path();
@@ -1304,7 +1367,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_33.close();
 
     Paint paint_33_fill = Paint()..style=PaintingStyle.fill;
-    paint_33_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_33_fill.color = forearmsColor.withOpacity(1.0);
     canvas.drawPath(path_33,paint_33_fill);
 
     Path path_34 = Path();
@@ -1315,9 +1378,9 @@ class AnteriorChainDiagram extends CustomPainter {
     path_34.cubicTo(size.width*0.5624979,size.height*0.0007767232,size.width*0.6160580,size.height*0.03485934,size.width*0.6160580,size.height*0.07689559);
     path_34.close();
 
-    Paint paint_34_stroke = Paint()..style=PaintingStyle.stroke..strokeWidth=size.width*0.003347504;
-    paint_34_stroke.color=Color(0xff000000).withOpacity(1.0);
-    canvas.drawPath(path_34,paint_34_stroke);
+    // Paint paint_34_stroke = Paint()..style=PaintingStyle.stroke..strokeWidth=size.width*0.003347504;
+    // paint_34_stroke.color=Colors.black.withOpacity(1.0);
+    // canvas.drawPath(path_34,paint_34_stroke);
 
   }
 
@@ -1325,4 +1388,6 @@ class AnteriorChainDiagram extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return true;
   }
+
+
 }

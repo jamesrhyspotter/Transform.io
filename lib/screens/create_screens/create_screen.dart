@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:transform_dot_io/components/action_button.dart';
 import 'package:transform_dot_io/screens/create_screens/workout_generator/workout_now_screen.dart';
+import 'package:transform_dot_io/screens/locker_screens/physique_screen.dart';
 
 class CreateScreen extends StatelessWidget {
   String title = 'Create';
@@ -27,7 +28,7 @@ class CreateScreen extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            WorkoutNowScreen(),
+            PhysiqueScreen(),
             ActionButton('Create A Workout Plan', 'Use AI and your own goals to \n generate a workout plan instantly!'),
             ActionButton('Generate A Meal', 'Use AI and your desired Macronutrients to \n generate a Meal instantly!'),
             ActionButton('Generate A Meal Plan', 'Use AI and your own goals to \n generate a meal plan instantly!'),

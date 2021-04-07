@@ -69,6 +69,7 @@ class Workout {
   }
 
 
+
   List<Exercise> getContenderExercises(List<String> targetMuscles) {
 
     ExerciseDataBase exerciseDb = new ExerciseDataBase();

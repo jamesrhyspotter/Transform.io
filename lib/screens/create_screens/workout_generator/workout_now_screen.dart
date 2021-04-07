@@ -28,9 +28,9 @@ class WorkoutNowScreen  extends StatelessWidget {
               Divider(
                 thickness: 1.0,
               ),
-              Heading2('Workout Now'),
-              Heading3('Select Muscle Groups'),
-              PillButtonRow(workoutProvider.muscleGroupList),
+              Heading2('Workout Preferences'),
+              // Heading3('Select Muscle Groups'),
+              // PillButtonRow(workoutProvider.muscleGroupList),
               Heading3('Select Discipline'),
               PillButtonRow(workoutProvider.disciplinesList),
               Heading3('Select Equipment'),
@@ -53,31 +53,33 @@ class WorkoutNowScreen  extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.only(right: 16.0, bottom: 24),
                         child: RaisedButton(
-                          child: Text('Generate Workout', style: GoogleFonts.montserrat(fontSize: 14)),
+                          child: Text('Save Preferences', style: GoogleFonts.montserrat(fontSize: 14)),
                           color: Colors.amber[800],
                           onPressed: (){
-                          if(workoutProvider.selectedMuscleList.isNotEmpty || workoutProvider.disciplinesList.isNotEmpty || workoutProvider.equipmentList.isNotEmpty){
-                            workoutProvider.createWorkout();
-                            Navigator.push(context, PageRouteBuilder(
-                              pageBuilder: (context, animation, secondaryAnimation) => PreviewWorkoutScreen(workoutProvider.generatedWorkout),
-                              transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                                var begin = Offset(0.0, 1.0);
-                                var end = Offset.zero;
-                                var curve = Curves.easeInBack;
+                          // if(workoutProvider.selectedMuscleList.isNotEmpty || workoutProvider.disciplinesList.isNotEmpty || workoutProvider.equipmentList.isNotEmpty){
+                          //   workoutProvider.createWorkout();
+                          //   Navigator.push(context, PageRouteBuilder(
+                          //     pageBuilder: (context, animation, secondaryAnimation) => PreviewWorkoutScreen(workoutProvider.generatedWorkout),
+                          //     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                          //       var begin = Offset(0.0, 1.0);
+                          //       var end = Offset.zero;
+                          //       var curve = Curves.easeInBack;
+                          //
+                          //       var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                          //
+                          //       return SlideTransition(
+                          //         position: animation.drive(tween),
+                          //         child: child,
+                          //       );
+                          //     },
+                          //     //
+                          //   )
+                          //   );
 
-                                var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-                                return SlideTransition(
-                                  position: animation.drive(tween),
-                                  child: child,
-                                );
-                              },
-                              //
-                            )
-                            );
-                          }
+                          // }
+                            Navigator.of(context).pop();
                         },
                         ),
                   ),
