@@ -3,10 +3,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:transform_dot_io/assets/p_chain_diagram.dart';
 import 'package:transform_dot_io/assets/a_chain_diagram.dart';
+import 'package:transform_dot_io/components/heading2.dart';
+import 'package:transform_dot_io/components/heading3.dart';
 import 'package:transform_dot_io/components/pillButtonRow.dart';
 import 'package:transform_dot_io/providers/physique_screen_provider.dart';
 import 'package:speed_dial/speed_dial.dart';
-import 'package:transform_dot_io/screens/create_screens/workout_generator/workout_now_screen.dart';
+import 'package:transform_dot_io/screens/create_screens/workout_generator/workout_preference_screen.dart';
 
 class PhysiqueScreen extends StatelessWidget {
 
@@ -100,46 +102,55 @@ class PhysiqueScreen extends StatelessWidget {
               ],
             ),
             floatingActionButton: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 24.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      // ignore: deprecated_member_use
-                      FlatButton(
-                        color: Colors.amber[800].withOpacity(0.8),
-                        minWidth: 100,
-                        onPressed: (){
-                          physiqueScreenProvider.toggleView();
-                        }, child: Row(
-                          children: [
-                            Text('Toggle View', style: GoogleFonts.montserrat(),),
-                            Icon(Icons.refresh),
-                          ],
-                        )),
-                      FlatButton(
-                          color: Colors.amber[800].withOpacity(0.8),
-                          onPressed: (){
-                            showModalBottomSheet(context: context, builder: (BuildContext context){
-                              return WorkoutNowScreen();
-                            });
-                          }, child: Text('Set Preferences', style: GoogleFonts.montserrat(),)),],
-                  ),
-                ),
+              SizedBox(width: 10,),
+                FlatButton(
+                    color: Colors.amber[800].withOpacity(0.8),
+                    minWidth: 100,
+                    onPressed: (){
+                      physiqueScreenProvider.toggleView();
+                    }, child: Row(
+                  children: [
+                    Text('Toggle View', style: GoogleFonts.montserrat(),),
+                    Icon(Icons.refresh),
+                  ],
+                )),
                 SizedBox(width: 10,),
-
-                Padding(
-                  padding: const EdgeInsets.only(right: 8.0, bottom: 8.0),
-                  child: FlatButton(
-                    height: 80,
-                      color: Colors.amber[800].withOpacity(0.8),
-                      onPressed: (){
-                    physiqueScreenProvider.toggleView();
-                  }, child: Text('Generate Workout', style: GoogleFonts.montserrat(),)),
+                FlatButton(
+                    color: Colors.amber[800].withOpacity(0.8),
+                    onPressed: (){
+                      showModalBottomSheet(isDismissible: true, context: context, builder: (BuildContext context){
+                        if(physiqueScreenProvider.selectedMuscleList.length > 0){
+                          return WorkoutPreferenceScreen();
+                        }
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 100,
+                                width: 100,
+                                child: Center(
+                                    child: RaisedButton(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(18.0),
+                                            side: BorderSide(color: Colors.amber[800])),
+                                        child: Text('!', style: GoogleFonts.montserrat(fontSize: 32, color: Colors.white)))),
+                              ),
+                            ),
+                            Text('Please choose your muscle groups!', style: GoogleFonts.montserrat(),),
+                          ],
+                        );
+                      }
+                      );
+                    }, child: Text('Generate Workout', style: GoogleFonts.montserrat(),)
                 ),
+
+
+
               ],
             ),
           );

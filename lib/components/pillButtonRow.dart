@@ -2,7 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:transform_dot_io/providers/create_workout_provider.dart';
+import 'package:transform_dot_io/providers/workout_preferences_provider.dart';
+import 'package:transform_dot_io/providers/physique_screen_provider.dart';
 
 // ignore: must_be_immutable
 class PillButtonRow extends StatelessWidget {
@@ -17,7 +18,7 @@ class PillButtonRow extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
 
-    return Consumer<WorkoutScreenProvider>(
+    return Consumer<PhysiqueScreenProvider>(
       builder: (context, workoutProvider, child){
         return Container(
           margin: EdgeInsets.symmetric(vertical: 20.0),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:transform_dot_io/models/WorkoutModel.dart';
 
-class WorkoutScreenProvider with ChangeNotifier {
+class WorkoutPreferencesProvider with ChangeNotifier {
 
 
   //WORKOUT OBJECT

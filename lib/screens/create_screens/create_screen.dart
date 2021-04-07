@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:transform_dot_io/components/action_button.dart';
-import 'package:transform_dot_io/screens/create_screens/workout_generator/workout_now_screen.dart';
-import 'package:transform_dot_io/screens/locker_screens/physique_screen.dart';
+import 'package:transform_dot_io/screens/create_screens/workout_generator/workout_preference_screen.dart';
+import 'package:transform_dot_io/screens/create_screens/workout_generator/physique_screen.dart';
 
 class CreateScreen extends StatelessWidget {
   String title = 'Create';

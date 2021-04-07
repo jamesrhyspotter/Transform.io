@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:transform_dot_io/assets/a_chain_diagram.dart';
 import 'package:transform_dot_io/assets/p_chain_diagram.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class PhysiqueScreenProvider with ChangeNotifier {
 
   //FEATURES -------------------------------------------------------------------
 
+  //Variables for Physique Screen
   List<String> selectedMuscleList = [];
   CustomPainter pChainDiagram = PosteriorChainDiagram(highlightedMuscles: []);
   CustomPainter aChainDiagram = AnteriorChainDiagram(highlightedMuscles: []);
@@ -17,12 +20,44 @@ class PhysiqueScreenProvider with ChangeNotifier {
   bool frontFacing = true;
   bool switched = false;
 
+  //Variables for Preference Screen
+  final List<String> disciplinesList = [
+    'Strength',
+    'Hypertrophy',
+    'Endurance',
+  ];
+
+  final List<String> equipmentList = [
+    'Bodyweight',
+    'Dumbbell',
+    'Barbell',
+    'Resistance Bands',
+    'Machines',
+  ];
+
+  double sliderValue = 3;
+
+  //MUTABLE LISTS
+  List<String> _selectedButtons = [];
+
+  //COLORS
+  List<Color> unselectedButtonColors = [
+    Colors.blue.withOpacity(0.05),
+    Colors.black.withOpacity(0.05),
+    Colors.white10
+  ];
+  List<Color> selectedButtonColors = [
+    Colors.amber[800],
+    Colors.black12,
+    Colors.white
+  ];
+
 
   //GETTERS AND SETTERS -------------------------------------------------------
   double get xDimension => _xDimension;
   double get yDimension => _yDimension;
 
-  //METHODS -------------------------------------------------------------------
+  //METHODS FOR VIEWING DIAGRAM -------------------------------------------------------------------
 
   toggleView(){
     if(switched){
@@ -42,8 +77,6 @@ class PhysiqueScreenProvider with ChangeNotifier {
 
     notifyListeners();
   }
-
-
 
   selectMuscle(double xCoord, double yCoord){
 
@@ -130,6 +163,49 @@ class PhysiqueScreenProvider with ChangeNotifier {
     else{
       return PosteriorChainDiagram(highlightedMuscles: selectedMuscles);
     }
+  }
+
+  //METHODS FOR PREFERENCES
+  void setSlider(double value) {
+    sliderValue = value;
+    notifyListeners();
+  }
+
+  void handleButtonTap(String value) {
+
+    if (_selectedButtons.contains(value)) {
+      _selectedButtons.remove(value);
+    } else {
+      _selectedButtons.add(value);
+    }
+    print(_selectedButtons);
+    notifyListeners();
+  }
+
+  List<Color> getColor(String value) {
+    if (!_selectedButtons.contains(value)) {
+      return unselectedButtonColors;
+    } else {
+      return selectedButtonColors;
+    }
+
+  }
+
+  List<String> preferences = [];
+
+  void savePreferences(){
+    print('Saving preferences');
+    print(_selectedButtons);
+    preferences.addAll(_selectedButtons);
+    print(preferences);
+  }
+
+  //METHODS FOR GENERATING WORKOUT
+
+  void generateWorkout(){
+    print('Generating workout');
+    print(_selectedButtons.toString());
+    print(selectedMuscleList.toString());
   }
 
 }
