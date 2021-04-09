@@ -25,7 +25,6 @@ dependencies:
   slide_to_act: ^2.0.1
   flutter_svg: ^0.19.3
   speed_dial: ^0.0.1
-  shared_preferences: ^2.0.5
 
 
 dev_dependencies:

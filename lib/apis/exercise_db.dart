@@ -73,44 +73,130 @@ class ExerciseDataBase {
 
 
   ];
-  List<Exercise> shoulderExerciseList=[
+  // List<Exercise> shoulderExerciseList=[
+  //
+  //   //Barbell
+  //   Exercise('Barbell Shoulder Press', ['Shoulders', 'Triceps'], ['Barbell']),
+  //   Exercise('Barbell Shoulder Cleans', ['Shoulders', 'Triceps'], ['Barbell']),
+  //   Exercise('Barbell Upright Rows', ['Shoulders'], ['Barbell']),
+  //   Exercise('Barbell Front Raises', ['Shoulders'], ['Barbell']),
+  //
+  //   //Dumbbell
+  //   Exercise('Dumbbell Shoulder Press', ['Shoulders', 'Triceps'], ['Dumbbell']),
+  //   Exercise('Arnold Press', ['Shoulders', 'Triceps'], ['Dumbbell']),
+  //   Exercise('Dumbbell Side Raises', ['Shoulders'], ['Dumbbell']),
+  //   Exercise('Dumbbell Front Raises', ['Shoulders'], ['Dumbbell']),
+  //   Exercise('Dumbbell Hammer Curls to Side Raises', ['Shoulders', 'Biceps'], ['Dumbbell']),
+  //
+  //   //Bodyweight
+  //   Exercise('Pike Push Ups', ['Shoulders', 'Triceps', 'Chest'], ['Bodyweight']),
+  //   Exercise('Feet Raised Pike Push Ups', ['Shoulders', 'Triceps', 'Chest'], ['Bodyweight']),
+  //   Exercise('Pike Holds', ['Shoulders', 'Triceps', 'Chest'], ['Bodyweight']),
+  //   Exercise('Straight Arm Plank', ['Shoulders', 'Abs', 'Triceps', 'Chest'], ['Bodyweight']),
+  //   Exercise('Handstands', ['Shoulders', 'Triceps', 'Abs'], ['Bodyweight']),
+  //
+  //   //Resistance Bands
+  //   Exercise('Banded Shoulder Press', ['Shoulders', 'Triceps'], ['Resistance Bands']),
+  //   Exercise('Seated Banded Shoulder Press', ['Shoulders', 'Triceps'], ['Resistance Bands']),
+  //   Exercise('Single Arm Banded Shoulder Press', ['Shoulders', 'Triceps'], ['Resistance Bands']),
+  //   Exercise('Banded Arnold Press', ['Shoulders', 'Triceps'], ['Resistance Bands']),
+  //   Exercise('Banded Side Raises', ['Shoulders'], ['Resistance Bands']),
+  //   Exercise('Banded Front Raises', ['Shoulders'], ['Resistance Bands']),
+  //
+  //   //Machines
+  //   Exercise('Shoulder Press Machine', ['Shoulders', 'Triceps'], ['Machines']),
+  //   Exercise('Smith Machine Shoulder Press', ['Shoulders', 'Triceps'], ['Machines']),
+  //   Exercise('Shoulder Press Machine', ['Shoulders', 'Triceps'], ['Machines']),
+  //   Exercise('Cable Side Raises', ['Shoulders'], ['Machines']),
+  //   Exercise('Cable Front Raises', ['Shoulders'], ['Machines']),
+  //   Exercise('Cable Reverse Flies', ['Shoulders'], ['Machines']),
+  // ];
 
+  List<Exercise> frontDeltsExerciseList = [
     //Barbell
-    Exercise('Barbell Shoulder Press', ['Shoulders', 'Triceps'], ['Barbell']),
-    Exercise('Barbell Shoulder Cleans', ['Shoulders', 'Triceps'], ['Barbell']),
-    Exercise('Barbell Upright Rows', ['Shoulders'], ['Barbell']),
-    Exercise('Barbell Front Raises', ['Shoulders'], ['Barbell']),
+    Exercise('Barbell Shoulder Press', ['Anterior Deltoids', 'Triceps'], ['Barbell']),
+    Exercise('Barbell Front Raises', ['Anterior Deltoids'], ['Barbell']),
 
     //Dumbbell
-    Exercise('Dumbbell Shoulder Press', ['Shoulders', 'Triceps'], ['Dumbbell']),
-    Exercise('Arnold Press', ['Shoulders', 'Triceps'], ['Dumbbell']),
-    Exercise('Dumbbell Side Raises', ['Shoulders'], ['Dumbbell']),
-    Exercise('Dumbbell Front Raises', ['Shoulders'], ['Dumbbell']),
-    Exercise('Dumbbell Hammer Curls to Side Raises', ['Shoulders', 'Biceps'], ['Dumbbell']),
+    Exercise('Dumbbell Shoulder Press', ['Anterior Deltoids', 'Triceps'], ['Dumbbell']),
+    Exercise('Arnold Press', ['Anterior Deltoids', 'Triceps'], ['Dumbbell']),
+    Exercise('Dumbbell Front Raises', ['Anterior Deltoids'], ['Dumbbell']),
 
     //Bodyweight
-    Exercise('Pike Push Ups', ['Shoulders', 'Triceps', 'Chest'], ['Bodyweight']),
-    Exercise('Feet Raised Pike Push Ups', ['Shoulders', 'Triceps', 'Chest'], ['Bodyweight']),
-    Exercise('Pike Holds', ['Shoulders', 'Triceps', 'Chest'], ['Bodyweight']),
-    Exercise('Straight Arm Plank', ['Shoulders', 'Abs', 'Triceps', 'Chest'], ['Bodyweight']),
-    Exercise('Handstands', ['Shoulders', 'Triceps', 'Abs'], ['Bodyweight']),
+    Exercise('Pike Push Ups', ['Anterior Deltoids', 'Triceps', 'Chest'], ['Bodyweight']),
+    Exercise('Feet Raised Pike Push Ups', ['Anterior Deltoids', 'Triceps', 'Chest'], ['Bodyweight']),
+    Exercise('Pike Holds', ['Anterior Deltoids', 'Triceps', 'Chest'], ['Bodyweight']),
+    Exercise('Straight Arm Plank', ['Anterior Deltoids', 'Abs', 'Triceps', 'Chest'], ['Bodyweight']),
+    Exercise('Handstands', ['Anterior Deltoids', 'Triceps', 'Abs'], ['Bodyweight']),
 
-    //Resistance Bands
-    Exercise('Banded Shoulder Press', ['Shoulders', 'Triceps'], ['Resistance Bands']),
-    Exercise('Seated Banded Shoulder Press', ['Shoulders', 'Triceps'], ['Resistance Bands']),
-    Exercise('Single Arm Banded Shoulder Press', ['Shoulders', 'Triceps'], ['Resistance Bands']),
-    Exercise('Banded Arnold Press', ['Shoulders', 'Triceps'], ['Resistance Bands']),
-    Exercise('Banded Side Raises', ['Shoulders'], ['Resistance Bands']),
-    Exercise('Banded Front Raises', ['Shoulders'], ['Resistance Bands']),
+  //Resistance Bands
+    Exercise('Banded Shoulder Press', ['Anterior Deltoids', 'Triceps'], ['Resistance Bands']),
+    Exercise('Seated Banded Shoulder Press', ['Anterior Deltoids', 'Triceps'], ['Resistance Bands']),
+    Exercise('Single Arm Banded Shoulder Press', ['Anterior Deltoids', 'Triceps'], ['Resistance Bands']),
+    Exercise('Banded Arnold Press', ['Anterior Deltoids', 'Triceps'], ['Resistance Bands']),
+    Exercise('Banded Front Raises', ['Anterior Deltoids'], ['Resistance Bands']),
 
     //Machines
-    Exercise('Shoulder Press Machine', ['Shoulders', 'Triceps'], ['Machines']),
-    Exercise('Smith Machine Shoulder Press', ['Shoulders', 'Triceps'], ['Machines']),
-    Exercise('Shoulder Press Machine', ['Shoulders', 'Triceps'], ['Machines']),
-    Exercise('Cable Side Raises', ['Shoulders'], ['Machines']),
-    Exercise('Cable Front Raises', ['Shoulders'], ['Machines']),
+    Exercise('Shoulder Press Machine', ['Anterior Deltoids', 'Triceps'], ['Machines']),
+    Exercise('Smith Machine Shoulder Press', ['Anterior Deltoids', 'Triceps'], ['Machines']),
+    Exercise('Shoulder Press Machine', ['Anterior Deltoids', 'Triceps'], ['Machines']),
+    Exercise('Cable Front Raises', ['Anterior Deltoids'], ['Machines']),
+  ];
+
+  List<Exercise> sideDeltsExerciseList = [
+    //Barbell
+    Exercise('Barbell Shoulder Cleans', ['Lateral Deltoids', 'Triceps'], ['Barbell']),
+    Exercise('Barbell Upright Rows', ['Lateral Deltoids'], ['Barbell']),
+    Exercise('Barbell Side Raises', ['Lateral Deltoids'], ['Barbell']),
+
+    //Dumbbell
+    Exercise('Dumbbell Side Raises', ['Lateral Deltoids'], ['Dumbbell']),
+    Exercise('Dumbbell Hammer Curls to Side Raises', ['Lateral Deltoids', 'Biceps'], ['Dumbbell']),
+    Exercise('Seated Side Raises', ['Lateral Deltoids'], ['Dumbbell']),
+    Exercise('Laying Around the Worlds', ['Lateral Deltoids'], ['Dumbbell']),
+
+    //Bodyweight
+    Exercise('Plank to Side Plank', ['Lateral Deltoids', 'Abs'], ['Bodyweight']),
+    Exercise('Side Plank', ['Lateral Deltoids', 'Abs'], ['Bodyweight']),
+
+
+    //Resistance Bands
+    Exercise('Banded Side Raises', ['Lateral Deltoids'], ['Resistance Bands']),
+    Exercise('Banded Hammer Curls to Side Raises', ['Lateral Deltoids', 'Biceps'], ['Resistance Bands']),
+
+    //Machines
+    Exercise('Cable Side Raises', ['Lateral Deltoids'], ['Machines']),
+    Exercise('Single Cable Side Raises', ['Lateral Deltoids'], ['Machines']),
+    Exercise('Single Cable Hammer Curl to Side Raise Negative', ['Lateral Deltoids'], ['Machines']),
+  ];
+
+  List<Exercise> rearDeltsExerciseList = [
+
+    //Barbell
+    Exercise('Barbell Reverse Raises', ['Rear Deltoids'], ['Barbell']),
+
+    //Dumbbell
+
+    //Bodyweight
+
+    //Resistance Bands
+
+    //Machines
     Exercise('Cable Reverse Flies', ['Shoulders'], ['Machines']),
   ];
+
+
+
+
+
+
+
+
+
+
+
+
+
   List<Exercise> tricepsExerciseList=[
 
     //Barbell

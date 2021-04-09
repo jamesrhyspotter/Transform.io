@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:transform_dot_io/assets/a_chain_diagram.dart';
 import 'package:transform_dot_io/assets/p_chain_diagram.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 
 class PhysiqueScreenProvider with ChangeNotifier {
@@ -10,7 +9,7 @@ class PhysiqueScreenProvider with ChangeNotifier {
   //FEATURES -------------------------------------------------------------------
 
   //Variables for Physique Screen
-  List<String> selectedMuscleList = [];
+  List<String> _selectedMuscleList = [];
   CustomPainter pChainDiagram = PosteriorChainDiagram(highlightedMuscles: []);
   CustomPainter aChainDiagram = AnteriorChainDiagram(highlightedMuscles: []);
   CustomPainter currentView = AnteriorChainDiagram(highlightedMuscles: []);
@@ -56,6 +55,8 @@ class PhysiqueScreenProvider with ChangeNotifier {
   //GETTERS AND SETTERS -------------------------------------------------------
   double get xDimension => _xDimension;
   double get yDimension => _yDimension;
+
+  List<String> get selectedMuscleList => _selectedMuscleList;
 
   //METHODS FOR VIEWING DIAGRAM -------------------------------------------------------------------
 
@@ -108,7 +109,6 @@ class PhysiqueScreenProvider with ChangeNotifier {
       else if(((xCoord >=105) & (xCoord <= 165)  || ((xCoord >=95) & (xCoord <= 155))) & (yCoord >= 300) & (yCoord <=335)){
         selectedMuscle = 'Rear Delts and Rhomboids';
       }
-
     }
 
     else{
@@ -144,11 +144,16 @@ class PhysiqueScreenProvider with ChangeNotifier {
       }
     }
 
+
+    print(selectedMuscle);
+
     if(selectedMuscleList.contains(selectedMuscle)){
       selectedMuscleList.remove(selectedMuscle);
-    }else if(selectedMuscle != null){
+    }else if(selectedMuscleList != null){
       selectedMuscleList.add(selectedMuscle);
     }
+
+    print(selectedMuscleList);
 
     currentView = drawDiagram(selectedMuscleList, frontFacing);
 
@@ -202,10 +207,29 @@ class PhysiqueScreenProvider with ChangeNotifier {
 
   //METHODS FOR GENERATING WORKOUT
 
-  void generateWorkout(){
+  void generateWorkout(List<String> muscleList){
     print('Generating workout');
-    print(_selectedButtons.toString());
-    print(selectedMuscleList.toString());
+
+    List<String> bufferEquipmentList = [];
+    List<String> bufferDisciplineList = [];
+
+    for(int i=0; i < _selectedButtons.length; i++){
+      if(this.equipmentList.contains(_selectedButtons[i])){
+        bufferEquipmentList.add(_selectedButtons[i]);
+      }
+
+      if(this.disciplinesList.contains(_selectedButtons[i])){
+        bufferDisciplineList.add(_selectedButtons[i]);
+      }
+    }
+
+    print(muscleList);
+    print(bufferDisciplineList);
+    print(bufferEquipmentList);
+
+
+
   }
+
 
 }

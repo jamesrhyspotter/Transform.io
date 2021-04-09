@@ -29,7 +29,7 @@ class PhysiqueScreen extends StatelessWidget {
               children: [
                 Container(
                   height: 50,
-                  child: Container(
+                  child: physiqueScreenProvider.selectedMuscleList.length == 0 ? SizedBox(): Container(
                     margin: EdgeInsets.symmetric(vertical: 10.0),
                     height: height /20,
                     child: ListView.builder(
@@ -123,7 +123,8 @@ class PhysiqueScreen extends StatelessWidget {
                     onPressed: (){
                       showModalBottomSheet(isDismissible: true, context: context, builder: (BuildContext context){
                         if(physiqueScreenProvider.selectedMuscleList.length > 0){
-                          return WorkoutPreferenceScreen();
+
+                          return WorkoutPreferenceScreen(physiqueScreenProvider.selectedMuscleList);
                         }
                         return Column(
                           mainAxisAlignment: MainAxisAlignment.start,
