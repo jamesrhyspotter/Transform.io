@@ -70,10 +70,10 @@ class WorkoutPreferenceScreen extends StatelessWidget {
                             onPressed: (){
                               Navigator.of(context).pop();
                               screenProvider.generateWorkout(this.muscleList);
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) => PreviewWorkoutScreen()));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => PreviewWorkoutScreen(screenProvider.generatedWorkout)));
                             },
                           ),
                         ),

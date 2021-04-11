@@ -24,7 +24,7 @@ class PosteriorChainDiagram extends CustomPainter {
     if(selectedMuscleList.contains('Lats')){
       latsColor = Colors.amber[800];
     }
-    if(selectedMuscleList.contains('rearDeltColor')){
+    if(selectedMuscleList.contains('Rear Delts and Rhomboids')){
       rearDeltColor = Colors.amber[800];
     }
     if(selectedMuscleList.contains('Lower Back')){
@@ -531,7 +531,7 @@ class PosteriorChainDiagram extends CustomPainter {
     path_14.close();
 
     Paint paint_14_fill = Paint()..style=PaintingStyle.fill;
-    paint_14_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_14_fill.color = rearDeltColor.withOpacity(1.0);
     canvas.drawPath(path_14,paint_14_fill);
 
     Path path_15 = Path();
@@ -565,7 +565,7 @@ class PosteriorChainDiagram extends CustomPainter {
     path_15.close();
 
     Paint paint_15_fill = Paint()..style=PaintingStyle.fill;
-    paint_15_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_15_fill.color = rearDeltColor.withOpacity(1.0);
     canvas.drawPath(path_15,paint_15_fill);
 
     Path path_16 = Path();

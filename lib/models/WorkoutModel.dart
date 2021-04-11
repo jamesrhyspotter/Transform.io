@@ -82,8 +82,12 @@ class Workout {
         contenderExercises.addAll(exerciseDb.chestExerciseList);
       } else if (ex == 'back') {
         contenderExercises.addAll(exerciseDb.backExerciseList);
-      } else if (ex == 'shoulders') {
-        contenderExercises.addAll(exerciseDb.shoulderExerciseList);
+      } else if (ex == 'front delts') {
+        contenderExercises.addAll(exerciseDb.frontDeltsExerciseList);
+      } else if (ex == 'side delts') {
+        contenderExercises.addAll(exerciseDb.sideDeltsExerciseList);
+      } else if (ex == 'rear delts and rhomboids') {
+        contenderExercises.addAll(exerciseDb.rearDeltsExerciseList);
       } else if (ex == 'biceps') {
         contenderExercises.addAll(exerciseDb.bicepExerciseList);
       } else if (ex == 'triceps') {

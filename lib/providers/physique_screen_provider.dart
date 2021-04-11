@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:transform_dot_io/assets/a_chain_diagram.dart';
 import 'package:transform_dot_io/assets/p_chain_diagram.dart';
+import 'package:transform_dot_io/models/WorkoutModel.dart';
 
 
 class PhysiqueScreenProvider with ChangeNotifier {
@@ -18,6 +19,9 @@ class PhysiqueScreenProvider with ChangeNotifier {
   double sizedBoxedHeight = 50;
   bool frontFacing = true;
   bool switched = false;
+  List<String> preferences = [];
+  Workout generatedWorkout;
+
 
   //Variables for Preference Screen
   final List<String> disciplinesList = [
@@ -106,7 +110,7 @@ class PhysiqueScreenProvider with ChangeNotifier {
       else if(((xCoord >=295) & (xCoord <= 340)  || ((xCoord >=95) & (xCoord <= 140))) & (yCoord >= 335) & (yCoord <=375)) {
         selectedMuscle = 'Triceps';
       }
-      else if(((xCoord >=105) & (xCoord <= 165)  || ((xCoord >=95) & (xCoord <= 155))) & (yCoord >= 300) & (yCoord <=335)){
+      else if(((xCoord >=120) & (xCoord <= 170)  || ((xCoord >=295) & (xCoord <= 340))) & (yCoord >= 290) & (yCoord <=330)){
         selectedMuscle = 'Rear Delts and Rhomboids';
       }
     }
@@ -196,7 +200,6 @@ class PhysiqueScreenProvider with ChangeNotifier {
 
   }
 
-  List<String> preferences = [];
 
   void savePreferences(){
     print('Saving preferences');
@@ -226,6 +229,8 @@ class PhysiqueScreenProvider with ChangeNotifier {
     print(muscleList);
     print(bufferDisciplineList);
     print(bufferEquipmentList);
+
+    generatedWorkout = new Workout(muscleList, bufferDisciplineList, bufferEquipmentList, sliderValue);
 
 
 

@@ -75,14 +75,14 @@ class PhysiqueScreen extends StatelessWidget {
                             onTapDown: (details) {
                               coordsXList.add(details.globalPosition.dx);
                               coordsYList.add(details.globalPosition.dy);
-                              // print(coordsXList.length);
-                              // if(coordsXList.length == 4){
-                              //   print(coordsXList);
-                              //   print(coordsYList);
-                              //
-                              //   coordsXList = [];
-                              //   coordsYList = [];
-                              // }
+                              print(coordsXList.length);
+                              if(coordsXList.length == 4){
+                                print(coordsXList);
+                                print(coordsYList);
+
+                                coordsXList = [];
+                                coordsYList = [];
+                              }
                               physiqueScreenProvider.selectMuscle(details.globalPosition.dx, details.globalPosition.dy);
                             },
                             child: CustomPaint(
