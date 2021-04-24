@@ -153,7 +153,7 @@ class PhysiqueScreenProvider with ChangeNotifier {
 
     if(selectedMuscleList.contains(selectedMuscle)){
       selectedMuscleList.remove(selectedMuscle);
-    }else if(selectedMuscleList != null){
+    }else if(selectedMuscle != null){
       selectedMuscleList.add(selectedMuscle);
     }
 

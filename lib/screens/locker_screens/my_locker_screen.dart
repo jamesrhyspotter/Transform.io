@@ -26,7 +26,7 @@ class MyLockerScreen extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            PhysiqueScreen(),
+            ActionButton('Test', 'Test'),
             ActionButton('Test', 'Test'),
             ActionButton('Test', 'Test'),
           ],

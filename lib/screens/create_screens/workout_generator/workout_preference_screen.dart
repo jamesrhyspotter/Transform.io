@@ -68,7 +68,6 @@ class WorkoutPreferenceScreen extends StatelessWidget {
                             child: Text('Go', style: GoogleFonts.montserrat(fontSize: 14)),
                             color: Colors.amber[800],
                             onPressed: (){
-                              Navigator.of(context).pop();
                               screenProvider.generateWorkout(this.muscleList);
                               Navigator.push(
                                   context,

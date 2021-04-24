@@ -42,6 +42,9 @@ class PhysiqueScreen extends StatelessWidget {
                         Color backgroundColor = Colors.black45;
                         Color fontColor = Colors.white;
 
+                        if(value == null){
+                          return SizedBox();
+                        }
                         return Padding(
                           padding: const EdgeInsets.only(left:8.0, right: 8.0),
                           child: RaisedButton(
