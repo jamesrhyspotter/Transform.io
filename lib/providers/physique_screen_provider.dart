@@ -211,7 +211,7 @@ class PhysiqueScreenProvider with ChangeNotifier {
   //METHODS FOR GENERATING WORKOUT
 
   void generateWorkout(List<String> muscleList){
-    print('Generating workout');
+
 
     List<String> bufferEquipmentList = [];
     List<String> bufferDisciplineList = [];
@@ -226,12 +226,21 @@ class PhysiqueScreenProvider with ChangeNotifier {
       }
     }
 
+    print('Generating workout');
+    print('Muscles: ');
     print(muscleList);
+    print('Disciplines: ');
     print(bufferDisciplineList);
+    print('Equipment: ');
     print(bufferEquipmentList);
 
-    generatedWorkout = new Workout(muscleList, bufferDisciplineList, bufferEquipmentList, sliderValue);
+      generatedWorkout = new Workout(muscleList, bufferDisciplineList, bufferEquipmentList, sliderValue);
 
+    //determine workout structure
+
+    //determine number of exercises
+
+    //determine which equipment to use
 
 
   }

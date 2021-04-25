@@ -59,59 +59,7 @@ class PreviewWorkoutScreen extends StatelessWidget {
                      showModalBottomSheet(
                          context: context,
                          builder: (BuildContext context){
-                           // return Scaffold(
-                           //   body: Padding(
-                           //     padding: const EdgeInsets.all(8.0),
-                           //     child: Container(
-                           //       height: 500,
-                           //       child: Column(
-                           //         mainAxisAlignment: MainAxisAlignment.start,
-                           //         children: [
-                           //           Padding(
-                           //             padding: const EdgeInsets.all(16.0),
-                           //             child: Row(
-                           //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                           //               children: [
-                           //                 Text(this.workoutExercises[index].name, style: GoogleFonts.montserrat(),),
-                           //                 Container(
-                           //                   height: 100,
-                           //                   width: 100,
-                           //                   decoration: BoxDecoration(
-                           //                     color: Colors.black45,
-                           //                     borderRadius: BorderRadius.circular(20),
-                           //                   ),
-                           //                   child: Center(child: Text('Image')),
-                           //                 )
-                           //               ],
-                           //             ),
-                           //           ),
-                           //           Divider(thickness: 1,),
-                           //           Row(
-                           //             children: [
-                           //               Container(
-                           //                 height: 315,
-                           //                 width: 395,
-                           //                 child: ListView.builder(
-                           //                      itemCount: this.workout.sets[index],
-                           //                     itemBuilder: (BuildContext context, int index){
-                           //                        return Container(
-                           //                          child: ListTile(
-                           //                            title: Text('Set ' + (index+1).toString(),  style: GoogleFonts.montserrat()),
-                           //                            subtitle: Text('Exercise description',  style: GoogleFonts.montserrat()),
-                           //                            trailing: Checkbox(value: false),
-                           //                          ),
-                           //                        );
-                           //                     }
-                           //                 ),
-                           //               )
-                           //             ],
-                           //           ),
-                           //           Divider(thickness: 1,)
-                           //         ],
-                           //       ),
-                           //     ),
-                           //   ),
-                           // );
+
                            return InformationModal(workout, index);
                          }
 
@@ -146,10 +94,10 @@ class PreviewWorkoutScreen extends StatelessWidget {
             FlatButton(
               child: Text('START', style: TextStyle(color: Colors.amber[800])),
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => MyWorkoutScreen()));
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => MyWorkoutScreen()));
               },
             )
           ],
