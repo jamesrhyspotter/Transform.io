@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinbox/flutter_spinbox.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:transform_dot_io/components/ScreenTitle.dart';
 import 'package:transform_dot_io/components/information_modal.dart';
@@ -42,38 +43,95 @@ class PreviewWorkoutScreen extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            height: height*.78,
+            height: height*0.728,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                color: Colors.black45,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                    side: BorderSide(color: Colors.amber[800], width: 2)),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text('Exercise Name', style: GoogleFonts.montserrat(fontSize: 34)),
+                        ),
+
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text('Exercise Level: ', style: GoogleFonts.montserrat(fontSize: 14)),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                      child: Container(
+                        height: height*.3,
+
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+                      child: Container(
+                        height: height*.23,
+                        child: ListView.builder(
+                          itemCount: 1,
+                            itemBuilder: (BuildContext context, int index){
+                            return RaisedButton(
+                              onPressed: (){},
+                              child: Row(
+                                children: [
+                                  Icon(Icons.add),
+                                  Text('Add Set'),
+                                ],
+                              ),
+                              color: Colors.black45,
+                              textColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                  side: BorderSide(color: Colors.amber[800])),
+                            );
+                            }
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+          Container(
+            height: height*.06,
             decoration: new BoxDecoration(
               color: Colors.black12,
             ),
-            child:
-
-        ListView.builder(
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
               itemCount: this.workoutExercises.length,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: ListTile(
-                    tileColor: Colors.black12,
-                    onTap: (){
-                     showModalBottomSheet(
-                         context: context,
-                         builder: (BuildContext context){
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                        side: BorderSide(color: Colors.amber[800])),
+                    onPressed: () {
 
-                           return InformationModal(workout, index);
-                         }
-
-                     );
                     },
-                    title: Text(
-                      this.workoutExercises[index].name,
-                      style: TextStyle(color: Colors.amber[800]),
-                    ),
-                    trailing: Text(
-                        this.workout.sets[index].toString() +
-                            ' x ' +
-                            this.workout.reps[index].toString(),
-                        style: TextStyle(color: Colors.amber[800])),
+                    color: Colors.black26,
+                    textColor: Colors.white,
+                    child: Text(this.workoutExercises[index].name.toUpperCase(),
+                        style: GoogleFonts.montserrat(fontSize: 12)),
                   ),
                 );
               },

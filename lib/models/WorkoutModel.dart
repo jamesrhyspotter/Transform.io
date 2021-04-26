@@ -31,51 +31,8 @@ class Workout {
   List<Exercise> getExercises(){
     //Filter Exercises by muscle group
     ExerciseDataBase exerciseDb = new ExerciseDataBase();
-    List<Exercise> contenderExercises = [];
 
-    for (int i = 0; i < targetMuscles.length; i++) {
-      String ex = targetMuscles[i].toLowerCase();
-
-      if (ex == 'chest') {
-        contenderExercises.addAll(exerciseDb.chestExerciseList);
-      } else if (ex == 'back') {
-        contenderExercises.addAll(exerciseDb.backExerciseList);
-      } else if (ex == 'front delts') {
-        contenderExercises.addAll(exerciseDb.frontDeltsExerciseList);
-      } else if (ex == 'side delts') {
-        contenderExercises.addAll(exerciseDb.sideDeltsExerciseList);
-      } else if (ex == 'rear delts and rhomboids') {
-        contenderExercises.addAll(exerciseDb.rearDeltsExerciseList);
-      } else if (ex == 'biceps') {
-        contenderExercises.addAll(exerciseDb.bicepExerciseList);
-      } else if (ex == 'triceps') {
-        contenderExercises.addAll(exerciseDb.tricepsExerciseList);
-      } else if (ex == 'forearms') {
-        contenderExercises.addAll(exerciseDb.forearmExerciseList);
-      } else if (ex == 'abs') {
-        contenderExercises.addAll(exerciseDb.absExerciseList);
-      } else if (ex == 'quads') {
-        contenderExercises.addAll(exerciseDb.quadsExerciseList);
-      } else if (ex == 'hamstrings') {
-        contenderExercises.addAll(exerciseDb.hamstringsExerciseList);
-      } else if (ex == 'glutes') {
-        contenderExercises.addAll(exerciseDb.glutesExerciseList);
-      } else if (ex == 'calves') {
-        contenderExercises.addAll(exerciseDb.calvesExerciseList);
-      }
-    }
-
-    List<Exercise> filterList = [];
-
-    for(int i = 0; i < contenderExercises.length; i++){
-      print(contenderExercises[i].name);
-      print(contenderExercises[i].equipment);
-
-    }
-
-
-
-
+    outputExerciseList = exerciseDb.getExercises(this.intensity.round(), this.targetMuscles, this.equipment);
 
 
   }

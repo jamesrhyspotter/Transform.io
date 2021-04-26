@@ -1,4 +1,5 @@
 import 'package:transform_dot_io/models/ExerciseModel.dart';
+import 'dart:math';
 
 class ExerciseDataBase {
 
@@ -7,7 +8,7 @@ class ExerciseDataBase {
     //Barbell
     Exercise('Bench Press', ['Chest', 'Shoulders', 'Triceps'], ['Barbell']),
     Exercise('Incline Bench Press', ['Chest', 'Shoulders', 'Triceps'], ['Barbell']),
-    Exercise('Decline', ['Chest', 'Shoulders', 'Triceps'], ['Barbell']),
+    Exercise('Decline Bench Press', ['Chest', 'Shoulders', 'Triceps'], ['Barbell']),
     Exercise('Landmine Press', ['Chest', 'Shoulders', 'Triceps'], ['Barbell']),
 
     //Dumbbell
@@ -424,6 +425,68 @@ class ExerciseDataBase {
     Exercise('Reverse Cable Crunches', ['Abs'], ['Machines']),
     Exercise('Cable Wood Choppers', ['Abs'], ['Machines']),
   ];
+
+
+
+  //METHODS --------------------------------------------------------------------
+
+  List<Exercise> getExercises(int amount, List<String> muscleGroup, List<String> equipment){
+
+    List<Exercise> outputList = [];
+
+    for (int i = 0; i < muscleGroup.length; i++){
+
+      List<Exercise> contenderExercises = [];
+      List<Exercise> selectedExerciseList = [];
+      String ex = muscleGroup[i].toLowerCase();
+
+      if (ex == 'chest') {
+        selectedExerciseList = chestExerciseList;
+      } else if (ex == 'back') {
+        selectedExerciseList = backExerciseList;
+      } else if (ex == 'front delts') {
+        selectedExerciseList = frontDeltsExerciseList;
+      } else if (ex == 'side delts') {
+        selectedExerciseList = sideDeltsExerciseList;
+      } else if (ex == 'rear delts and rhomboids') {
+        selectedExerciseList = rearDeltsExerciseList;
+      } else if (ex == 'biceps') {
+        selectedExerciseList = bicepExerciseList;
+      } else if (ex == 'triceps') {
+        selectedExerciseList = tricepsExerciseList;
+      } else if (ex == 'forearms') {
+        selectedExerciseList = forearmExerciseList;
+      } else if (ex == 'abs') {
+        selectedExerciseList = absExerciseList;
+      } else if (ex == 'quads') {
+        selectedExerciseList = quadsExerciseList;
+      } else if (ex == 'hamstrings') {
+        selectedExerciseList = hamstringsExerciseList;
+      } else if (ex == 'glutes') {
+        selectedExerciseList = glutesExerciseList;
+      } else if (ex == 'calves') {
+        selectedExerciseList = calvesExerciseList;
+      }
+
+      //Filter through selected exercises by equipment
+      for(int j = 0; j < selectedExerciseList.length; j++){
+        if(equipment.contains(selectedExerciseList[j].equipment[0])){
+          contenderExercises.add(selectedExerciseList[j]);
+        }
+      }
+
+      //Select N Amount of Exercises from contender exercises
+      for(int k = 0; k < amount; k++){
+        Random random = new Random();
+        int randomIndex = random.nextInt(contenderExercises.length);
+        outputList.add(selectedExerciseList[randomIndex]);
+      }
+    }
+
+    return outputList;
+  }
+
+
 
 }
 

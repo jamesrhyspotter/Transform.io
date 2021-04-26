@@ -50,12 +50,12 @@ class PhysiqueScreen extends StatelessWidget {
                           child: RaisedButton(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(18.0),
-                                side: BorderSide(color: borderColor)),
+                                side: BorderSide(color: Colors.amber[800])),
                             onPressed: () {
 
                             },
-                            color: backgroundColor,
-                            textColor: fontColor,
+                            color: Colors.black26,
+                            textColor: Colors.white,
                             child: Text(value.toUpperCase(),
                                 style: TextStyle(fontSize: 12)),
                           ),
