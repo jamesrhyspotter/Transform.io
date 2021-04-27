@@ -479,7 +479,15 @@ class ExerciseDataBase {
       for(int k = 0; k < amount; k++){
         Random random = new Random();
         int randomIndex = random.nextInt(contenderExercises.length);
-        outputList.add(selectedExerciseList[randomIndex]);
+        Exercise inputExercise = contenderExercises[randomIndex];
+
+        while(outputList.contains(inputExercise)){
+          Random random = new Random();
+          int randomIndex = random.nextInt(contenderExercises.length);
+          inputExercise = contenderExercises[randomIndex];
+        }
+
+        outputList.add(inputExercise);
       }
     }
 

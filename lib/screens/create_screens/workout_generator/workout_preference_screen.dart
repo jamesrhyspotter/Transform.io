@@ -8,7 +8,7 @@ import 'package:transform_dot_io/components/heading3.dart';
 import 'package:transform_dot_io/components/pillButtonRow.dart';
 import 'package:transform_dot_io/providers/workout_preferences_provider.dart';
 import 'package:transform_dot_io/providers/physique_screen_provider.dart';
-import 'package:transform_dot_io/screens/create_screens/workout_generator/preview_workout_screen.dart';
+import 'package:transform_dot_io/screens/create_screens/workout_generator/exercise_card_screen.dart';
 
 
 
@@ -73,7 +73,7 @@ class WorkoutPreferenceScreen extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => PreviewWorkoutScreen(screenProvider.generatedWorkout)));
+                                      builder: (context) => ExerciseCardScreen(screenProvider.generatedWorkout)));
                             },
                           ),
                         ),

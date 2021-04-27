@@ -38,9 +38,6 @@ class PhysiqueScreen extends StatelessWidget {
                       itemBuilder: (context, index){
 
                         String value = physiqueScreenProvider.selectedMuscleList[index];//workoutProvider.disciplinesList[index];
-                        Color borderColor = Colors.amber[800];
-                        Color backgroundColor = Colors.black45;
-                        Color fontColor = Colors.white;
 
                         if(value == null){
                           return SizedBox();
@@ -78,14 +75,14 @@ class PhysiqueScreen extends StatelessWidget {
                             onTapDown: (details) {
                               coordsXList.add(details.globalPosition.dx);
                               coordsYList.add(details.globalPosition.dy);
-                              print(coordsXList.length);
-                              if(coordsXList.length == 4){
-                                print(coordsXList);
-                                print(coordsYList);
-
-                                coordsXList = [];
-                                coordsYList = [];
-                              }
+                              // print(coordsXList.length);
+                              // if(coordsXList.length == 4){
+                              //   print(coordsXList);
+                              //   print(coordsYList);
+                              //
+                              //   coordsXList = [];
+                              //   coordsYList = [];
+                              // }
                               physiqueScreenProvider.selectMuscle(details.globalPosition.dx, details.globalPosition.dy);
                             },
                             child: CustomPaint(
@@ -152,9 +149,6 @@ class PhysiqueScreen extends StatelessWidget {
                       );
                     }, child: Text('Generate Workout', style: GoogleFonts.montserrat(),)
                 ),
-
-
-
               ],
             ),
           );
