@@ -45,6 +45,7 @@ class ExerciseCardScreen extends StatelessWidget {
         builder: (context, exerciseScreenProvider, child){
           return Scaffold(
             appBar: AppBar(
+              title: Text('00:00'),
               actions: [
                 FlatButton(child: Icon(Icons.timer), onPressed: (){}),
               ],
@@ -56,7 +57,7 @@ class ExerciseCardScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Card(
-                      color: Colors.black45,
+                      color: Colors.black12,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18.0),
                           side: BorderSide(color: Colors.amber[800], width: 2)),
@@ -87,7 +88,7 @@ class ExerciseCardScreen extends StatelessWidget {
                             child: Container(
                               height: height*.27,
                               child: Center(
-                                child: Text('Image'),
+                                child: Text(exerciseScreenProvider.currentExercise + ' Image'),
                               ),
                             ),
                           ),
@@ -97,18 +98,85 @@ class ExerciseCardScreen extends StatelessWidget {
                             child: Container(
                               height: height*.23,
                               child: ListView.builder(
-                                  itemCount: 1,
+                                  itemCount: exerciseScreenProvider.setList[exerciseScreenProvider.exercises.indexOf(exerciseScreenProvider.currentExercise)] + 1,
                                   itemBuilder: (BuildContext context, int index){
+
+                                    if(index == 0){
+                                      return RaisedButton(
+                                        onPressed: (){
+                                          exerciseScreenProvider.addSet(exerciseScreenProvider.currentExercise);
+                                        },
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Icon(Icons.add),
+                                            Text('Add Set'),
+                                          ],
+                                        ),
+                                        color: Colors.black45,
+                                        textColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(18.0),
+                                            side: BorderSide(color: Colors.amber[800])),
+                                      );
+                                    }
+
                                     return RaisedButton(
-                                      onPressed: (){},
+                                      onPressed: (){
+                                        showModalBottomSheet(context: context, builder: (BuildContext context){
+                                          return Container(
+                                            height: 500,
+                                            color: Colors.black12,
+                                            child: Center(
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: <Widget>[
+                                                  Scrollbar(
+                                                    child: Center(
+                                                      child: ListView(
+                                                        shrinkWrap: true,
+                                                        children: [
+                                                          Center(
+                                                            child: Container(
+                                                              width: 128,
+                                                              child: SpinBox(
+                                                                min: -50,
+                                                                max: 50,
+                                                                value: 15,
+                                                                spacing: 24,
+                                                                direction: Axis.vertical,
+                                                                textStyle: TextStyle(fontSize: 48),
+                                                                incrementIcon: Icon(Icons.keyboard_arrow_up, size: 64),
+                                                                decrementIcon: Icon(Icons.keyboard_arrow_down, size: 64),
+                                                                decoration: InputDecoration(
+                                                                  border: OutlineInputBorder(),
+                                                                  contentPadding: const EdgeInsets.all(24),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  ElevatedButton(
+                                                    child: const Text('Close BottomSheet'),
+                                                    onPressed: () => Navigator.pop(context),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          );
+                                        });
+                                      },
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
-                                          Icon(Icons.add),
-                                          Text('Add Set'),
+                                          Text(index.toString()),
                                         ],
                                       ),
-                                      color: Colors.black45,
+                                      color: Colors.amber[800],
                                       textColor: Colors.white,
                                       shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(18.0),
