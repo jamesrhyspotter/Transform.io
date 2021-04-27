@@ -4,6 +4,8 @@ import 'package:flutter_spinbox/flutter_spinbox.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:transform_dot_io/components/ScreenTitle.dart';
+import 'package:transform_dot_io/components/heading2.dart';
+import 'package:transform_dot_io/components/heading3.dart';
 import 'package:transform_dot_io/components/information_modal.dart';
 import 'package:transform_dot_io/models/ExerciseModel.dart';
 import 'package:transform_dot_io/models/WorkoutModel.dart';
@@ -45,7 +47,7 @@ class ExerciseCardScreen extends StatelessWidget {
         builder: (context, exerciseScreenProvider, child){
           return Scaffold(
             appBar: AppBar(
-              title: Text('00:00'),
+              title: Text('00:00    00:00'),
               actions: [
                 FlatButton(child: Icon(Icons.timer), onPressed: (){}),
               ],
@@ -68,7 +70,7 @@ class ExerciseCardScreen extends StatelessWidget {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.all(16.0),
-                                child: Text(exerciseScreenProvider.currentExercise, style: GoogleFonts.montserrat(fontSize: 34)),
+                                child: Text(exerciseScreenProvider.currentExercise, style: GoogleFonts.montserrat(fontSize: 18)),
                               ),
 
                             ],
@@ -127,45 +129,152 @@ class ExerciseCardScreen extends StatelessWidget {
                                           return Container(
                                             height: 500,
                                             color: Colors.black12,
-                                            child: Center(
-                                              child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: <Widget>[
-                                                  Scrollbar(
-                                                    child: Center(
-                                                      child: ListView(
-                                                        shrinkWrap: true,
-                                                        children: [
-                                                          Center(
-                                                            child: Container(
-                                                              width: 128,
-                                                              child: SpinBox(
-                                                                min: -50,
-                                                                max: 50,
-                                                                value: 15,
-                                                                spacing: 24,
-                                                                direction: Axis.vertical,
-                                                                textStyle: TextStyle(fontSize: 48),
-                                                                incrementIcon: Icon(Icons.keyboard_arrow_up, size: 64),
-                                                                decrementIcon: Icon(Icons.keyboard_arrow_down, size: 64),
-                                                                decoration: InputDecoration(
-                                                                  border: OutlineInputBorder(),
-                                                                  contentPadding: const EdgeInsets.all(24),
-                                                                ),
-                                                              ),
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Padding(
+                                                  padding: const EdgeInsets.all(16.0),
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    children: [
+                                                      Heading3(exerciseScreenProvider.currentExercise),
+                                                      Heading3('Set ' + index.toString()),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                  children: [
+                                                    SizedBox(width: 20),
+                                                    Heading3('Reps'),
+                                                    SizedBox(width: 100),
+                                                    Heading3('Weight'),
+                                                  ],
+                                                ),
+                                                Divider(thickness: 1.0,),
+
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                  children: [
+                                                    Column(
+                                                      mainAxisAlignment: MainAxisAlignment.start,
+                                                      children: [
+                                                        Container(
+                                                          width: 100,
+                                                          child: SpinBox(
+                                                            min: 0,
+                                                            max: 50,
+                                                            value: 8,
+                                                            spacing: 24,
+                                                            direction: Axis.vertical,
+                                                            textStyle: TextStyle(fontSize: 24),
+                                                            incrementIcon: Icon(Icons.keyboard_arrow_up, size: 64),
+                                                            decrementIcon: Icon(Icons.keyboard_arrow_down, size: 64),
+                                                            decoration: InputDecoration(
+                                                              border: OutlineInputBorder(),
+                                                              contentPadding: const EdgeInsets.all(24),
                                                             ),
                                                           ),
-                                                        ],
-                                                      ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                  ),
-                                                  ElevatedButton(
-                                                    child: const Text('Close BottomSheet'),
-                                                    onPressed: () => Navigator.pop(context),
-                                                  )
-                                                ],
-                                              ),
+                                                    Column(
+                                                      mainAxisAlignment: MainAxisAlignment.start,
+                                                      children: [
+                                                        Container(
+                                                          width: 100,
+                                                          child: SpinBox(
+                                                            min: 0,
+                                                            max: 300,
+                                                            value: 50,
+                                                            spacing: 24,
+                                                            direction: Axis.vertical,
+                                                            textStyle: TextStyle(fontSize: 24),
+                                                            incrementIcon: Icon(Icons.keyboard_arrow_up, size: 64),
+                                                            decrementIcon: Icon(Icons.keyboard_arrow_down, size: 64),
+                                                            decoration: InputDecoration(
+                                                              border: OutlineInputBorder(),
+                                                              contentPadding: const EdgeInsets.all(24),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                                Divider(thickness: 1.0,),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                  children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets.all(16.0),
+                                                      child: FlatButton( color: Colors.amber[800], onPressed: (){
+                                                        Navigator.of(context).pop();
+                                                      }, child: Text('Delete Set', style: GoogleFonts.montserrat(fontSize: 14))),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets.all(16.0),
+                                                      child: FlatButton( color: Colors.amber[800], onPressed: (){
+                                                        Navigator.of(context).pop();
+                                                      }, child: Text('Save Entry', style: GoogleFonts.montserrat(fontSize: 14))),
+                                                    ),
+
+                                                  ],
+                                                ),
+                                                // Scrollbar(
+                                                //   child: Center(
+                                                //     child: ListView(
+                                                //       shrinkWrap: true,
+                                                //       children: [
+                                                //         Center(
+                                                //           child: Container(
+                                                //             width: 128,
+                                                //             child: SpinBox(
+                                                //               min: -50,
+                                                //               max: 50,
+                                                //               value: 15,
+                                                //               spacing: 24,
+                                                //               direction: Axis.vertical,
+                                                //               textStyle: TextStyle(fontSize: 48),
+                                                //               incrementIcon: Icon(Icons.keyboard_arrow_up, size: 64),
+                                                //               decrementIcon: Icon(Icons.keyboard_arrow_down, size: 64),
+                                                //               decoration: InputDecoration(
+                                                //                 border: OutlineInputBorder(),
+                                                //                 contentPadding: const EdgeInsets.all(24),
+                                                //               ),
+                                                //             ),
+                                                //           ),
+                                                //         ),
+                                                //         Center(
+                                                //           child: Container(
+                                                //             width: 128,
+                                                //             child: SpinBox(
+                                                //               min: -50,
+                                                //               max: 50,
+                                                //               value: 15,
+                                                //               spacing: 24,
+                                                //               direction: Axis.vertical,
+                                                //               textStyle: TextStyle(fontSize: 48),
+                                                //               incrementIcon: Icon(Icons.keyboard_arrow_up, size: 64),
+                                                //               decrementIcon: Icon(Icons.keyboard_arrow_down, size: 64),
+                                                //               decoration: InputDecoration(
+                                                //                 border: OutlineInputBorder(),
+                                                //                 contentPadding: const EdgeInsets.all(24),
+                                                //               ),
+                                                //             ),
+                                                //           ),
+                                                //         ),
+                                                //       ],
+                                                //     ),
+                                                //   ),
+                                                // ),
+                                                // ElevatedButton(
+                                                //   child: const Text('Close BottomSheet'),
+                                                //   onPressed: () => Navigator.pop(context),
+                                                // )
+                                              ],
                                             ),
                                           );
                                         });
