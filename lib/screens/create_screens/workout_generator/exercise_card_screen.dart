@@ -39,6 +39,37 @@ class ExerciseCardScreen extends StatelessWidget {
 
     double height = MediaQuery.of(context).size.height;
 
+
+    Future<void> showInformationDialog(BuildContext context) async{
+      return await showDialog(
+          context: context,
+          builder: (context){
+            return AlertDialog(
+              content: Text('Please input your reps and wait'),
+              actions: [
+                TextButton(
+                  child: Text('Ok'),
+                  onPressed: (){
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+      });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     return ChangeNotifierProvider<ExerciseCardScreenProvider>(
       create: (_){
         return ExerciseCardScreenProvider(this.exerciseNames);
@@ -70,7 +101,7 @@ class ExerciseCardScreen extends StatelessWidget {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.all(16.0),
-                                child: Text(exerciseScreenProvider.currentExercise, style: GoogleFonts.montserrat(fontSize: 18)),
+                                child: Text(exerciseScreenProvider.currentExercise, style: GoogleFonts.montserrat(fontSize: 32)),
                               ),
 
                             ],
@@ -104,180 +135,155 @@ class ExerciseCardScreen extends StatelessWidget {
                                   itemBuilder: (BuildContext context, int index){
 
                                     if(index == 0){
-                                      return RaisedButton(
-                                        onPressed: (){
-                                          exerciseScreenProvider.addSet(exerciseScreenProvider.currentExercise);
-                                        },
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Icon(Icons.add),
-                                            Text('Add Set'),
-                                          ],
-                                        ),
-                                        color: Colors.black45,
-                                        textColor: Colors.white,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(18.0),
-                                            side: BorderSide(color: Colors.amber[800])),
+                                      return Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          RaisedButton(
+                                            onPressed: (){
+                                              showModalBottomSheet(context: context, builder: (BuildContext context){
+                                                return Container(
+                                                  height: 450,
+                                                  color: Colors.black12,
+                                                  child: Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    mainAxisSize: MainAxisSize.min,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: <Widget>[
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                                                        child: Row(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                          children: [
+                                                            Heading2(exerciseScreenProvider.currentExercise),
+                                                            Heading3('Set ' + (1 + exerciseScreenProvider.setList[exerciseScreenProvider.exercises.indexOf(exerciseScreenProvider.currentExercise)]).toString()),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Divider(),
+                                                      Row(
+                                                        mainAxisAlignment: MainAxisAlignment.start,
+                                                        children: [
+                                                          SizedBox(width: 20),
+                                                          Heading3('Reps'),
+                                                          SizedBox(width: 100),
+                                                          Heading3('Weight'),
+                                                        ],
+                                                      ),
+                                                      Divider(thickness: 1.0,),
+
+                                                      Row(
+                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                        children: [
+                                                          Column(
+                                                            mainAxisAlignment: MainAxisAlignment.start,
+                                                            children: [
+                                                              Container(
+                                                                width: 100,
+                                                                child: SpinBox(
+                                                                  min: 0,
+                                                                  max: 50,
+                                                                  value: 8,
+                                                                  spacing: 24,
+                                                                  direction: Axis.vertical,
+                                                                  textStyle: TextStyle(fontSize: 24),
+                                                                  incrementIcon: Icon(Icons.keyboard_arrow_up, size: 32),
+                                                                  decrementIcon: Icon(Icons.keyboard_arrow_down, size: 32),
+                                                                  decoration: InputDecoration(
+                                                                    border: OutlineInputBorder(),
+                                                                    contentPadding: const EdgeInsets.all(24),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Column(
+                                                            mainAxisAlignment: MainAxisAlignment.start,
+                                                            children: [
+                                                              Container(
+                                                                width: 100,
+                                                                child: SpinBox(
+                                                                  min: 0,
+                                                                  max: 300,
+                                                                  value: 50,
+                                                                  spacing: 24,
+                                                                  direction: Axis.vertical,
+                                                                  textStyle: TextStyle(fontSize: 24),
+                                                                  incrementIcon: Icon(Icons.keyboard_arrow_up, size: 32),
+                                                                  decrementIcon: Icon(Icons.keyboard_arrow_down, size: 32),
+                                                                  decoration: InputDecoration(
+                                                                    border: OutlineInputBorder(),
+                                                                    contentPadding: const EdgeInsets.all(24),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Divider(thickness: 1.0,),
+                                                      Row(
+                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                        children: [
+                                                          Padding(
+                                                            padding: const EdgeInsets.all(16.0),
+                                                            child: FlatButton( color: Colors.amber[800], onPressed: (){
+                                                              Navigator.of(context).pop();
+                                                            }, child: Text('Close', style: GoogleFonts.montserrat(fontSize: 14))),
+                                                          ),
+                                                          Padding(
+                                                            padding: const EdgeInsets.all(16.0),
+                                                            child: FlatButton( color: Colors.amber[800], onPressed: (){
+                                                              Navigator.of(context).pop();
+                                                              exerciseScreenProvider.addSet(exerciseScreenProvider.currentExercise);
+                                                            }, child: Text('Save Entry', style: GoogleFonts.montserrat(fontSize: 14))),
+                                                          ),
+
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              });
+                                            },
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                Icon(Icons.add),
+                                                Text('Add Standard Set'),
+                                              ],
+                                            ),
+                                            color: Colors.black45,
+                                            textColor: Colors.white,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(18.0),
+                                                side: BorderSide(color: Colors.amber[800])),
+                                          ),
+                                          RaisedButton(
+                                            onPressed: () async {
+                                              await showInformationDialog(context);
+
+
+                                            },
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                Icon(Icons.add),
+                                                Text('Add Advanced Set'),
+                                              ],
+                                            ),
+                                            color: Colors.black45,
+                                            textColor: Colors.white,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(18.0),
+                                                side: BorderSide(color: Colors.amber[800])),
+                                          ),
+                                        ],
                                       );
                                     }
 
                                     return RaisedButton(
                                       onPressed: (){
-                                        showModalBottomSheet(context: context, builder: (BuildContext context){
-                                          return Container(
-                                            height: 500,
-                                            color: Colors.black12,
-                                            child: Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              mainAxisSize: MainAxisSize.min,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                Padding(
-                                                  padding: const EdgeInsets.all(16.0),
-                                                  child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                    children: [
-                                                      Heading3(exerciseScreenProvider.currentExercise),
-                                                      Heading3('Set ' + index.toString()),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.start,
-                                                  children: [
-                                                    SizedBox(width: 20),
-                                                    Heading3('Reps'),
-                                                    SizedBox(width: 100),
-                                                    Heading3('Weight'),
-                                                  ],
-                                                ),
-                                                Divider(thickness: 1.0,),
-
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                  children: [
-                                                    Column(
-                                                      mainAxisAlignment: MainAxisAlignment.start,
-                                                      children: [
-                                                        Container(
-                                                          width: 100,
-                                                          child: SpinBox(
-                                                            min: 0,
-                                                            max: 50,
-                                                            value: 8,
-                                                            spacing: 24,
-                                                            direction: Axis.vertical,
-                                                            textStyle: TextStyle(fontSize: 24),
-                                                            incrementIcon: Icon(Icons.keyboard_arrow_up, size: 64),
-                                                            decrementIcon: Icon(Icons.keyboard_arrow_down, size: 64),
-                                                            decoration: InputDecoration(
-                                                              border: OutlineInputBorder(),
-                                                              contentPadding: const EdgeInsets.all(24),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Column(
-                                                      mainAxisAlignment: MainAxisAlignment.start,
-                                                      children: [
-                                                        Container(
-                                                          width: 100,
-                                                          child: SpinBox(
-                                                            min: 0,
-                                                            max: 300,
-                                                            value: 50,
-                                                            spacing: 24,
-                                                            direction: Axis.vertical,
-                                                            textStyle: TextStyle(fontSize: 24),
-                                                            incrementIcon: Icon(Icons.keyboard_arrow_up, size: 64),
-                                                            decrementIcon: Icon(Icons.keyboard_arrow_down, size: 64),
-                                                            decoration: InputDecoration(
-                                                              border: OutlineInputBorder(),
-                                                              contentPadding: const EdgeInsets.all(24),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                                Divider(thickness: 1.0,),
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                  children: [
-                                                    Padding(
-                                                      padding: const EdgeInsets.all(16.0),
-                                                      child: FlatButton( color: Colors.amber[800], onPressed: (){
-                                                        Navigator.of(context).pop();
-                                                      }, child: Text('Delete Set', style: GoogleFonts.montserrat(fontSize: 14))),
-                                                    ),
-                                                    Padding(
-                                                      padding: const EdgeInsets.all(16.0),
-                                                      child: FlatButton( color: Colors.amber[800], onPressed: (){
-                                                        Navigator.of(context).pop();
-                                                      }, child: Text('Save Entry', style: GoogleFonts.montserrat(fontSize: 14))),
-                                                    ),
-
-                                                  ],
-                                                ),
-                                                // Scrollbar(
-                                                //   child: Center(
-                                                //     child: ListView(
-                                                //       shrinkWrap: true,
-                                                //       children: [
-                                                //         Center(
-                                                //           child: Container(
-                                                //             width: 128,
-                                                //             child: SpinBox(
-                                                //               min: -50,
-                                                //               max: 50,
-                                                //               value: 15,
-                                                //               spacing: 24,
-                                                //               direction: Axis.vertical,
-                                                //               textStyle: TextStyle(fontSize: 48),
-                                                //               incrementIcon: Icon(Icons.keyboard_arrow_up, size: 64),
-                                                //               decrementIcon: Icon(Icons.keyboard_arrow_down, size: 64),
-                                                //               decoration: InputDecoration(
-                                                //                 border: OutlineInputBorder(),
-                                                //                 contentPadding: const EdgeInsets.all(24),
-                                                //               ),
-                                                //             ),
-                                                //           ),
-                                                //         ),
-                                                //         Center(
-                                                //           child: Container(
-                                                //             width: 128,
-                                                //             child: SpinBox(
-                                                //               min: -50,
-                                                //               max: 50,
-                                                //               value: 15,
-                                                //               spacing: 24,
-                                                //               direction: Axis.vertical,
-                                                //               textStyle: TextStyle(fontSize: 48),
-                                                //               incrementIcon: Icon(Icons.keyboard_arrow_up, size: 64),
-                                                //               decrementIcon: Icon(Icons.keyboard_arrow_down, size: 64),
-                                                //               decoration: InputDecoration(
-                                                //                 border: OutlineInputBorder(),
-                                                //                 contentPadding: const EdgeInsets.all(24),
-                                                //               ),
-                                                //             ),
-                                                //           ),
-                                                //         ),
-                                                //       ],
-                                                //     ),
-                                                //   ),
-                                                // ),
-                                                // ElevatedButton(
-                                                //   child: const Text('Close BottomSheet'),
-                                                //   onPressed: () => Navigator.pop(context),
-                                                // )
-                                              ],
-                                            ),
-                                          );
-                                        });
+                                        //exerciseScreenProvider.addSet(exerciseScreenProvider.currentExercise);
                                       },
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.start,

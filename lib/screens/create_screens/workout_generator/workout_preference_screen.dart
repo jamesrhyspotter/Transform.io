@@ -35,10 +35,13 @@ class WorkoutPreferenceScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: Heading2('Workout Preferences'),
+                ),
                 Divider(
                   thickness: 1.0,
                 ),
-                Heading2('Workout Preferences'),
                 // Heading3('Select Muscle Groups'),
                 // PillButtonRow(workoutProvider.muscleGroupList),
                 Heading3('Select Discipline'),

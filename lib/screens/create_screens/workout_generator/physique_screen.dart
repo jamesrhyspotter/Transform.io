@@ -15,6 +15,28 @@ class PhysiqueScreen extends StatelessWidget {
   List<double> coordsXList = [];
   List<double> coordsYList = [];
 
+  Future<void> showInformationDialog(BuildContext context) async{
+    return await showDialog(
+        context: context,
+        builder: (context){
+          return AlertDialog(
+            title: Text('Hold your horses!', style: GoogleFonts.montserrat()),
+            content: Text('What do you want to train?', style: GoogleFonts.montserrat()),
+            actions: [
+              TextButton(
+                child: Text('Choose now!', style: TextStyle(color: Colors.amber[800])),
+                onPressed: (){
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+
+          );
+        });
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -120,33 +142,18 @@ class PhysiqueScreen extends StatelessWidget {
                 SizedBox(width: 10,),
                 FlatButton(
                     color: Colors.amber[800].withOpacity(0.8),
-                    onPressed: (){
-                      showModalBottomSheet(isDismissible: true, context: context, builder: (BuildContext context){
-                        if(physiqueScreenProvider.selectedMuscleList.length > 0){
+                    onPressed: () async {
 
-                          return WorkoutPreferenceScreen(physiqueScreenProvider.selectedMuscleList);
+                      if(physiqueScreenProvider.selectedMuscleList.length > 0){
+                        showModalBottomSheet(isDismissible: true, context: context, builder: (BuildContext context){
+                            return WorkoutPreferenceScreen(physiqueScreenProvider.selectedMuscleList);
+
                         }
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                height: 100,
-                                width: 100,
-                                child: Center(
-                                    child: RaisedButton(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(18.0),
-                                            side: BorderSide(color: Colors.amber[800])),
-                                        child: Text('!', style: GoogleFonts.montserrat(fontSize: 32, color: Colors.white)))),
-                              ),
-                            ),
-                            Text('Please choose your muscle groups!', style: GoogleFonts.montserrat(),),
-                          ],
                         );
+                      }else{
+                        await showInformationDialog(context);
                       }
-                      );
+
                     }, child: Text('Generate Workout', style: GoogleFonts.montserrat(),)
                 ),
               ],
