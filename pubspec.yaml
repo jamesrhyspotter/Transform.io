@@ -26,6 +26,7 @@ dependencies:
   flutter_svg: ^0.19.3
   speed_dial: ^0.0.1
   flutter_spinbox: ^0.4.1
+  tuple: ^2.0.0
 
 dev_dependencies:
   flutter_test:

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_spinbox/flutter_spinbox.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:transform_dot_io/apis/training_principle_db.dart';
 import 'package:transform_dot_io/components/ScreenTitle.dart';
 import 'package:transform_dot_io/components/heading2.dart';
 import 'package:transform_dot_io/components/heading3.dart';
@@ -19,6 +20,7 @@ class ExerciseCardScreen extends StatelessWidget {
   Workout workout;
   List<Exercise> workoutExercises = [];
   List<String> exerciseNames;
+  List<TrainingPrinciple> trainingPrincipleList;
 
   ExerciseCardScreen(this.workout){
     final List<Exercise> workoutExercises = this.workout.outputExerciseList;
@@ -26,48 +28,23 @@ class ExerciseCardScreen extends StatelessWidget {
 
     this.exerciseNames = new List(this.workoutExercises.length);
 
-    for (int i = 0; i < this.workoutExercises.length; i++){
+    for (int i = 0; i < this.workoutExercises.length; i++) {
       this.exerciseNames[i] = this.workoutExercises[i].name;
       print(this.exerciseNames[i]);
     }
 
+    TrainingPrincipleDB tpDb = new TrainingPrincipleDB();
+    trainingPrincipleList = tpDb.trainingPrincipleList;
+
   }
+
+
 
 
   @override
   Widget build(BuildContext context) {
 
     double height = MediaQuery.of(context).size.height;
-
-
-    Future<void> showInformationDialog(BuildContext context) async{
-      return await showDialog(
-          context: context,
-          builder: (context){
-            return AlertDialog(
-              content: Text('Please input your reps and wait'),
-              actions: [
-                TextButton(
-                  child: Text('Ok'),
-                  onPressed: (){
-                    Navigator.of(context).pop();
-                  },
-                )
-              ],
-            );
-      });
-    }
-
-
-
-
-
-
-
-
-
-
-
 
 
     return ChangeNotifierProvider<ExerciseCardScreenProvider>(
@@ -131,7 +108,7 @@ class ExerciseCardScreen extends StatelessWidget {
                             child: Container(
                               height: height*.23,
                               child: ListView.builder(
-                                  itemCount: exerciseScreenProvider.setList[exerciseScreenProvider.exercises.indexOf(exerciseScreenProvider.currentExercise)] + 1,
+                                  itemCount: exerciseScreenProvider.setCountPerExerciseList[exerciseScreenProvider.exercises.indexOf(exerciseScreenProvider.currentExercise)] + 1,
                                   itemBuilder: (BuildContext context, int index){
 
                                     if(index == 0){
@@ -155,11 +132,10 @@ class ExerciseCardScreen extends StatelessWidget {
                                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                           children: [
                                                             Heading2(exerciseScreenProvider.currentExercise),
-                                                            Heading3('Set ' + (1 + exerciseScreenProvider.setList[exerciseScreenProvider.exercises.indexOf(exerciseScreenProvider.currentExercise)]).toString()),
+                                                            Heading3('Set ' + (1 + exerciseScreenProvider.setCountPerExerciseList[exerciseScreenProvider.exercises.indexOf(exerciseScreenProvider.currentExercise)]).toString()),
                                                           ],
                                                         ),
                                                       ),
-                                                      Divider(),
                                                       Row(
                                                         mainAxisAlignment: MainAxisAlignment.start,
                                                         children: [
@@ -181,8 +157,8 @@ class ExerciseCardScreen extends StatelessWidget {
                                                                 width: 100,
                                                                 child: SpinBox(
                                                                   min: 0,
-                                                                  max: 50,
-                                                                  value: 8,
+                                                                  max: 20,
+                                                                  value: exerciseScreenProvider.repsStartingValue,
                                                                   spacing: 24,
                                                                   direction: Axis.vertical,
                                                                   textStyle: TextStyle(fontSize: 24),
@@ -192,6 +168,9 @@ class ExerciseCardScreen extends StatelessWidget {
                                                                     border: OutlineInputBorder(),
                                                                     contentPadding: const EdgeInsets.all(24),
                                                                   ),
+                                                                  onChanged: (value){
+                                                                    exerciseScreenProvider.setRepsStartingValue(value);
+                                                                  },
                                                                 ),
                                                               ),
                                                             ],
@@ -202,9 +181,12 @@ class ExerciseCardScreen extends StatelessWidget {
                                                               Container(
                                                                 width: 100,
                                                                 child: SpinBox(
+                                                                  onChanged: (value){
+                                                                    exerciseScreenProvider.setWeightStartingValue(value);
+                                                                  },
                                                                   min: 0,
                                                                   max: 300,
-                                                                  value: 50,
+                                                                  value: exerciseScreenProvider.weightStartingValue,
                                                                   spacing: 24,
                                                                   direction: Axis.vertical,
                                                                   textStyle: TextStyle(fontSize: 24),
@@ -234,7 +216,7 @@ class ExerciseCardScreen extends StatelessWidget {
                                                             padding: const EdgeInsets.all(16.0),
                                                             child: FlatButton( color: Colors.amber[800], onPressed: (){
                                                               Navigator.of(context).pop();
-                                                              exerciseScreenProvider.addSet(exerciseScreenProvider.currentExercise);
+                                                              exerciseScreenProvider.incrementSetCounter(exerciseScreenProvider.currentExercise);
                                                             }, child: Text('Save Entry', style: GoogleFonts.montserrat(fontSize: 14))),
                                                           ),
 
@@ -259,10 +241,76 @@ class ExerciseCardScreen extends StatelessWidget {
                                                 side: BorderSide(color: Colors.amber[800])),
                                           ),
                                           RaisedButton(
-                                            onPressed: () async {
-                                              await showInformationDialog(context);
+                                            onPressed: () {
+                                              showModalBottomSheet(context: context, builder: (BuildContext context){
+                                                 return Container(
+                                                      height: 450,
+                                                      color: Colors.black12,
+                                                      child: Column(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      mainAxisSize: MainAxisSize.min,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: <Widget>[
+                                              Padding(
+                                              padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                                              child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                              Heading2(exerciseScreenProvider.currentExercise),
+                                              Heading3('Set ' + (1 + exerciseScreenProvider.setCountPerExerciseList[exerciseScreenProvider.exercises.indexOf(exerciseScreenProvider.currentExercise)]).toString()),
+                                              ],
+                                              ),
+                                              ),
+                                              Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                              SizedBox(width: 20),
+                                              Heading3('Please select your training principle'),
+                                              ],
+                                              ),
+                                              Divider(thickness: 1.0,),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(left: 32.0, right: 32),
+                                                  child: Container(
+                                                    height: 200,
+                                                    child: ListView.builder(
+                                                      itemCount: trainingPrincipleList.length,
+                                                      itemBuilder: (BuildContext context, int index){
+                                                        return ListTile(
+                                                          leading: Text(trainingPrincipleList[index].name),
+                                                          subtitle: Text(trainingPrincipleList[index].description),
+                                                          trailing: Checkbox(
+                                                            value: true,
+                                                          ),
+                                                        );
+                                                      },
+                                                    ),
+                                                  ),
+                                                ),
+                                                Divider(thickness: 1.0,),
+                                                Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                children: [
+                                                Padding(
+                                                padding: const EdgeInsets.all(16.0),
+                                                child: FlatButton( color: Colors.amber[800], onPressed: (){
+                                                Navigator.of(context).pop();
+                                                }, child: Text('Close', style: GoogleFonts.montserrat(fontSize: 14))),
+                                                ),
+                                                Padding(
+                                                padding: const EdgeInsets.all(16.0),
+                                                child: FlatButton( color: Colors.amber[800], onPressed: (){
+                                                Navigator.of(context).pop();
+                                                exerciseScreenProvider.incrementSetCounter(exerciseScreenProvider.currentExercise, );
+                                                }, child: Text('Save Entry', style: GoogleFonts.montserrat(fontSize: 14))),
+                                                ),
 
-
+                                                ],
+                                                ),
+                                                ],
+                                                ),
+                                                );
+                                              });
                                             },
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.start,
@@ -349,10 +397,7 @@ class ExerciseCardScreen extends StatelessWidget {
                   FlatButton(
                     child: Text('START', style: TextStyle(color: Colors.amber[800])),
                     onPressed: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => MyWorkoutScreen()));
+
                     },
                   )
                 ],
