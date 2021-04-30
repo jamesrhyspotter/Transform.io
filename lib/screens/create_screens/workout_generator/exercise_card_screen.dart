@@ -127,7 +127,7 @@ class ExerciseCardScreen extends StatelessWidget {
                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: <Widget>[
                                                       Padding(
-                                                        padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                                                        padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 12.0),
                                                         child: Row(
                                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                           children: [
@@ -136,6 +136,7 @@ class ExerciseCardScreen extends StatelessWidget {
                                                           ],
                                                         ),
                                                       ),
+                                                      Divider(thickness: 1.0,),
                                                       Row(
                                                         mainAxisAlignment: MainAxisAlignment.start,
                                                         children: [
@@ -145,8 +146,6 @@ class ExerciseCardScreen extends StatelessWidget {
                                                           Heading3('Weight'),
                                                         ],
                                                       ),
-                                                      Divider(thickness: 1.0,),
-
                                                       Row(
                                                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                         children: [
@@ -217,6 +216,7 @@ class ExerciseCardScreen extends StatelessWidget {
                                                             child: FlatButton( color: Colors.amber[800], onPressed: (){
                                                               Navigator.of(context).pop();
                                                               exerciseScreenProvider.incrementSetCounter(exerciseScreenProvider.currentExercise);
+                                                              exerciseScreenProvider.setSetRepsAndWeight(exerciseScreenProvider.currentExercise, exerciseScreenProvider.setCountPerExerciseList[exerciseScreenProvider.exercises.indexOf(exerciseScreenProvider.currentExercise)], exerciseScreenProvider.repsStartingValue.toString(), exerciseScreenProvider.weightStartingValue.toInt());
                                                             }, child: Text('Save Entry', style: GoogleFonts.montserrat(fontSize: 14))),
                                                           ),
 
@@ -252,15 +252,16 @@ class ExerciseCardScreen extends StatelessWidget {
                                                       crossAxisAlignment: CrossAxisAlignment.start,
                                                       children: <Widget>[
                                               Padding(
-                                              padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-                                              child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                              Heading2(exerciseScreenProvider.currentExercise),
-                                              Heading3('Set ' + (1 + exerciseScreenProvider.setCountPerExerciseList[exerciseScreenProvider.exercises.indexOf(exerciseScreenProvider.currentExercise)]).toString()),
-                                              ],
+                                                padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 12.0),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                            Heading2(exerciseScreenProvider.currentExercise),
+                                                            Heading3('Set ' + (1 + exerciseScreenProvider.setCountPerExerciseList[exerciseScreenProvider.exercises.indexOf(exerciseScreenProvider.currentExercise)]).toString()),
+                                                           ],
+                                                         ),
                                               ),
-                                              ),
+                                                        Divider(thickness: 1.0,),
                                               Row(
                                               mainAxisAlignment: MainAxisAlignment.start,
                                               children: [
@@ -268,7 +269,6 @@ class ExerciseCardScreen extends StatelessWidget {
                                               Heading3('Please select your training principle'),
                                               ],
                                               ),
-                                              Divider(thickness: 1.0,),
                                                 Padding(
                                                   padding: const EdgeInsets.only(left: 32.0, right: 32),
                                                   child: Container(
@@ -280,7 +280,10 @@ class ExerciseCardScreen extends StatelessWidget {
                                                           leading: Text(trainingPrincipleList[index].name),
                                                           subtitle: Text(trainingPrincipleList[index].description),
                                                           trailing: Checkbox(
-                                                            value: true,
+                                                            value: exerciseScreenProvider.isChecked(trainingPrincipleList[index]),
+                                                            onChanged: (value){
+                                                              exerciseScreenProvider.changeTrainingPrinciple(trainingPrincipleList[index]);
+                                                            },
                                                           ),
                                                         );
                                                       },

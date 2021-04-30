@@ -427,6 +427,30 @@ class ExerciseDataBase {
   ];
 
 
+  List<Exercise> trapsExerciseList = [
+    //Barbell
+    Exercise('Barbell Shrugs', ['Traps'], ['Barbell']),
+    Exercise('Reverse Barbell Shrugs', ['Traps'], ['Barbell']),
+
+
+    //Dumbbell
+    Exercise('Dumbbell Shrugs', ['Traps'], ['Dumbbell']),
+    Exercise('Farmer walks', ['Traps'], ['Dumbbell']),
+
+    //Bodyweight
+    Exercise('Hanging Shrugs', ['Traps'], ['Bodyweight']),
+
+    //Resistance Bands
+    Exercise('Resistance Band Face Pulls', ['Traps'], ['Resistance Bands']),
+
+    //Machines
+    Exercise('Smith Machine Shrugs', ['Traps'], ['Machines']),
+    Exercise('Cable Shrugs', ['Traps'], ['Machines']),
+    Exercise('Cable Face Pulls', ['Traps'], ['Machines']),
+
+  ];
+
+
 
   //METHODS --------------------------------------------------------------------
 
@@ -442,7 +466,7 @@ class ExerciseDataBase {
 
       if (ex == 'chest') {
         selectedExerciseList = chestExerciseList;
-      } else if (ex == 'back') {
+      } else if (ex == 'lats') {
         selectedExerciseList = backExerciseList;
       } else if (ex == 'front delts') {
         selectedExerciseList = frontDeltsExerciseList;
@@ -466,6 +490,8 @@ class ExerciseDataBase {
         selectedExerciseList = glutesExerciseList;
       } else if (ex == 'calves') {
         selectedExerciseList = calvesExerciseList;
+      } else if (ex == 'traps'){
+        selectedExerciseList = trapsExerciseList;
       }
 
       //Filter through selected exercises by equipment

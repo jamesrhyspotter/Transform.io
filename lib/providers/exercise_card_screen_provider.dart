@@ -18,16 +18,19 @@ class ExerciseCardScreenProvider with ChangeNotifier {
   List<String> exercises = [];
   String currentExercise;
   List<int> setCountPerExerciseList;
-
+  List<List<Tuple2<String, int>>> workoutSetlist;
   List<TrainingPrinciple> trainingPrincipleList;
+  TrainingPrinciple selectedPrinciple;
   double repsStartingValue = 8;
   double weightStartingValue = 50;
+
 
   ExerciseCardScreenProvider(this.exercises){
     this.currentExercise = exercises[0];
     this.setCountPerExerciseList = List.filled(this.exercises.length, 0);
     TrainingPrincipleDB tpDb = new TrainingPrincipleDB();
     this.trainingPrincipleList = tpDb.trainingPrincipleList;
+    this.selectedPrinciple = this.trainingPrincipleList[0];
 
   }
 
@@ -53,7 +56,32 @@ class ExerciseCardScreenProvider with ChangeNotifier {
   setWeightStartingValue(double value){
     this.weightStartingValue = value;
     notifyListeners();
+  }
 
+  setSetRepsAndWeight(String exerciseName, int setNumber, String reps, int weight){
+    print(exerciseName);
+    print(setNumber.toString());
+    print(reps);
+    print(weight.toString());
+  }
+
+  isChecked(TrainingPrinciple inputPrinciple){
+    if(this.selectedPrinciple.name == inputPrinciple.name){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  changeTrainingPrinciple(TrainingPrinciple inputPrinciple){
+    if(this.selectedPrinciple != inputPrinciple){
+      this.selectedPrinciple = inputPrinciple;
+    }
+
+    print('Current Principle is: ');
+    print(this.selectedPrinciple.name);
+
+    notifyListeners();
   }
 
 
