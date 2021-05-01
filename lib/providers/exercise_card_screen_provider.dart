@@ -10,15 +10,13 @@ import 'package:tuple/tuple.dart';
 
 class ExerciseCardScreenProvider with ChangeNotifier {
 
-  //Tuple for exercise name / rep # + weight
-  Tuple2 currentSet = Tuple2<String, int>('a', 10);
-  //List of tuples for each exercise
 
+  var workoutSetList = new Map();
   Workout workout;
   List<String> exercises = [];
   String currentExercise;
   List<int> setCountPerExerciseList;
-  List<List<Tuple2<String, int>>> workoutSetlist;
+
   List<TrainingPrinciple> trainingPrincipleList;
   TrainingPrinciple selectedPrinciple;
   double repsStartingValue = 8;
@@ -31,6 +29,10 @@ class ExerciseCardScreenProvider with ChangeNotifier {
     TrainingPrincipleDB tpDb = new TrainingPrincipleDB();
     this.trainingPrincipleList = tpDb.trainingPrincipleList;
     this.selectedPrinciple = this.trainingPrincipleList[0];
+
+    for(int i = 0; i < this.exercises.length; i++){
+      workoutSetList[this.exercises[i]] = [];
+    }
 
   }
 
@@ -58,11 +60,17 @@ class ExerciseCardScreenProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  setSetRepsAndWeight(String exerciseName, int setNumber, String reps, int weight){
+  setSetRepsAndWeight(String exerciseName, String reps, int weight){
     print(exerciseName);
-    print(setNumber.toString());
+    print(this.exercises.indexOf(exerciseName));
     print(reps);
     print(weight.toString());
+
+    this.workoutSetList[exerciseName].add([reps, weight]);
+
+    print(this.workoutSetList[exerciseName]);
+
+
   }
 
   isChecked(TrainingPrinciple inputPrinciple){

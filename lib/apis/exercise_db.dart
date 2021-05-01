@@ -383,6 +383,10 @@ class ExerciseDataBase {
   List<Exercise> absExerciseList=[
 
     //Barbell
+    Exercise('Barbell Sit Ups', ['Abs'], ['Barbell']),
+    Exercise('Barbell Roll Outs', ['Abs'], ['Barbell']),
+    Exercise('Barbell Rowers', ['Abs'], ['Barbell']),
+
 
     //Dumbbell
     Exercise('Dumbbell Russian Twists', ['Abs'], ['Dumbbell']),

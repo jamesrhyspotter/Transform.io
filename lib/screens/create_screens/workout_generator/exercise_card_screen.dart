@@ -15,14 +15,12 @@ import 'my_workout_screen.dart';
 
 // ignore: must_be_immutable
 class ExerciseCardScreen extends StatelessWidget {
-
-
   Workout workout;
   List<Exercise> workoutExercises = [];
   List<String> exerciseNames;
   List<TrainingPrinciple> trainingPrincipleList;
 
-  ExerciseCardScreen(this.workout){
+  ExerciseCardScreen(this.workout) {
     final List<Exercise> workoutExercises = this.workout.outputExerciseList;
     this.workoutExercises = workoutExercises;
 
@@ -35,35 +33,30 @@ class ExerciseCardScreen extends StatelessWidget {
 
     TrainingPrincipleDB tpDb = new TrainingPrincipleDB();
     trainingPrincipleList = tpDb.trainingPrincipleList;
-
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
-
     double height = MediaQuery.of(context).size.height;
 
-
     return ChangeNotifierProvider<ExerciseCardScreenProvider>(
-      create: (_){
+      create: (_) {
         return ExerciseCardScreenProvider(this.exerciseNames);
       },
       child: Consumer<ExerciseCardScreenProvider>(
-        builder: (context, exerciseScreenProvider, child){
+        builder: (context, exerciseScreenProvider, child) {
           return Scaffold(
             appBar: AppBar(
-              title: Text('00:00    00:00'),
+              title: Text('Workout Time: 00:00    Rest: 00:00',
+                  style: GoogleFonts.montserrat(fontSize: 14)),
               actions: [
-                FlatButton(child: Icon(Icons.timer), onPressed: (){}),
+                FlatButton(child: Icon(Icons.timer), onPressed: () {}),
               ],
             ),
             body: Column(
               children: [
                 Container(
-                  height: height*0.728,
+                  height: height * 0.728,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Card(
@@ -78,9 +71,11 @@ class ExerciseCardScreen extends StatelessWidget {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.all(16.0),
-                                child: Text(exerciseScreenProvider.currentExercise, style: GoogleFonts.montserrat(fontSize: 32)),
+                                child: Text(
+                                    exerciseScreenProvider.currentExercise,
+                                    style:
+                                        GoogleFonts.montserrat(fontSize: 32)),
                               ),
-
                             ],
                           ),
                           Row(
@@ -88,147 +83,264 @@ class ExerciseCardScreen extends StatelessWidget {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.all(16.0),
-                                child: Text('Exercise Level: ', style: GoogleFonts.montserrat(fontSize: 14)),
+                                child: Text('Exercise Level: ',
+                                    style:
+                                        GoogleFonts.montserrat(fontSize: 14)),
                               ),
                             ],
                           ),
                           Divider(),
                           Padding(
-                            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                            padding:
+                                const EdgeInsets.only(left: 16.0, right: 16.0),
                             child: Container(
-                              height: height*.27,
+                              height: height * .27,
                               child: Center(
-                                child: Text(exerciseScreenProvider.currentExercise + ' Image'),
+                                child: Text(
+                                    exerciseScreenProvider.currentExercise +
+                                        ' Image'),
                               ),
                             ),
                           ),
                           Divider(),
                           Padding(
-                            padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+                            padding: const EdgeInsets.only(
+                                left: 16.0, right: 16.0, top: 16.0),
                             child: Container(
-                              height: height*.23,
+                              height: height * .23,
                               child: ListView.builder(
-                                  itemCount: exerciseScreenProvider.setCountPerExerciseList[exerciseScreenProvider.exercises.indexOf(exerciseScreenProvider.currentExercise)] + 1,
-                                  itemBuilder: (BuildContext context, int index){
-
-                                    if(index == 0){
+                                  itemCount: exerciseScreenProvider
+                                              .setCountPerExerciseList[
+                                          exerciseScreenProvider.exercises
+                                              .indexOf(exerciseScreenProvider
+                                                  .currentExercise)] +
+                                      1,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    if (index == 0) {
                                       return Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           RaisedButton(
-                                            onPressed: (){
-                                              showModalBottomSheet(context: context, builder: (BuildContext context){
-                                                return Container(
-                                                  height: 450,
-                                                  color: Colors.black12,
-                                                  child: Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                    mainAxisSize: MainAxisSize.min,
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                    children: <Widget>[
-                                                      Padding(
-                                                        padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 12.0),
-                                                        child: Row(
-                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                          children: [
-                                                            Heading2(exerciseScreenProvider.currentExercise),
-                                                            Heading3('Set ' + (1 + exerciseScreenProvider.setCountPerExerciseList[exerciseScreenProvider.exercises.indexOf(exerciseScreenProvider.currentExercise)]).toString()),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      Divider(thickness: 1.0,),
-                                                      Row(
-                                                        mainAxisAlignment: MainAxisAlignment.start,
-                                                        children: [
-                                                          SizedBox(width: 20),
-                                                          Heading3('Reps'),
-                                                          SizedBox(width: 100),
-                                                          Heading3('Weight'),
-                                                        ],
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                        children: [
-                                                          Column(
-                                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            onPressed: () {
+                                              showModalBottomSheet(
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return Container(
+                                                      height: 450,
+                                                      color: Colors.black12,
+                                                      child: Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: <Widget>[
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 16.0,
+                                                                    right: 16.0,
+                                                                    bottom:
+                                                                        12.0),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Heading2(
+                                                                    exerciseScreenProvider
+                                                                        .currentExercise),
+                                                                Heading3('Set ' +
+                                                                    (1 + exerciseScreenProvider.setCountPerExerciseList[exerciseScreenProvider.exercises.indexOf(exerciseScreenProvider.currentExercise)])
+                                                                        .toString()),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          Divider(
+                                                            thickness: 1.0,
+                                                          ),
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
                                                             children: [
-                                                              Container(
-                                                                width: 100,
-                                                                child: SpinBox(
-                                                                  min: 0,
-                                                                  max: 20,
-                                                                  value: exerciseScreenProvider.repsStartingValue,
-                                                                  spacing: 24,
-                                                                  direction: Axis.vertical,
-                                                                  textStyle: TextStyle(fontSize: 24),
-                                                                  incrementIcon: Icon(Icons.keyboard_arrow_up, size: 32),
-                                                                  decrementIcon: Icon(Icons.keyboard_arrow_down, size: 32),
-                                                                  decoration: InputDecoration(
-                                                                    border: OutlineInputBorder(),
-                                                                    contentPadding: const EdgeInsets.all(24),
+                                                              SizedBox(
+                                                                  width: 20),
+                                                              Heading3('Reps'),
+                                                              SizedBox(
+                                                                  width: 100),
+                                                              Heading3(
+                                                                  'Weight'),
+                                                            ],
+                                                          ),
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceEvenly,
+                                                            children: [
+                                                              Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Container(
+                                                                    width: 100,
+                                                                    child:
+                                                                        SpinBox(
+                                                                      min: 0,
+                                                                      max: 20,
+                                                                      value: exerciseScreenProvider
+                                                                          .repsStartingValue,
+                                                                      spacing:
+                                                                          24,
+                                                                      direction:
+                                                                          Axis.vertical,
+                                                                      textStyle:
+                                                                          TextStyle(
+                                                                              fontSize: 24),
+                                                                      incrementIcon: Icon(
+                                                                          Icons
+                                                                              .keyboard_arrow_up,
+                                                                          size:
+                                                                              32),
+                                                                      decrementIcon: Icon(
+                                                                          Icons
+                                                                              .keyboard_arrow_down,
+                                                                          size:
+                                                                              32),
+                                                                      decoration:
+                                                                          InputDecoration(
+                                                                        border:
+                                                                            OutlineInputBorder(),
+                                                                        contentPadding:
+                                                                            const EdgeInsets.all(24),
+                                                                      ),
+                                                                      onChanged:
+                                                                          (value) {
+                                                                        exerciseScreenProvider
+                                                                            .setRepsStartingValue(value);
+                                                                      },
+                                                                    ),
                                                                   ),
-                                                                  onChanged: (value){
-                                                                    exerciseScreenProvider.setRepsStartingValue(value);
-                                                                  },
-                                                                ),
+                                                                ],
+                                                              ),
+                                                              Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Container(
+                                                                    width: 100,
+                                                                    child:
+                                                                        SpinBox(
+                                                                      onChanged:
+                                                                          (value) {
+                                                                        exerciseScreenProvider
+                                                                            .setWeightStartingValue(value);
+                                                                      },
+                                                                      min: 0,
+                                                                      max: 300,
+                                                                      value: exerciseScreenProvider
+                                                                          .weightStartingValue,
+                                                                      spacing:
+                                                                          24,
+                                                                      direction:
+                                                                          Axis.vertical,
+                                                                      textStyle:
+                                                                          TextStyle(
+                                                                              fontSize: 24),
+                                                                      incrementIcon: Icon(
+                                                                          Icons
+                                                                              .keyboard_arrow_up,
+                                                                          size:
+                                                                              32),
+                                                                      decrementIcon: Icon(
+                                                                          Icons
+                                                                              .keyboard_arrow_down,
+                                                                          size:
+                                                                              32),
+                                                                      decoration:
+                                                                          InputDecoration(
+                                                                        border:
+                                                                            OutlineInputBorder(),
+                                                                        contentPadding:
+                                                                            const EdgeInsets.all(24),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
                                                               ),
                                                             ],
                                                           ),
-                                                          Column(
-                                                            mainAxisAlignment: MainAxisAlignment.start,
+                                                          Divider(
+                                                            thickness: 1.0,
+                                                          ),
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceEvenly,
                                                             children: [
-                                                              Container(
-                                                                width: 100,
-                                                                child: SpinBox(
-                                                                  onChanged: (value){
-                                                                    exerciseScreenProvider.setWeightStartingValue(value);
-                                                                  },
-                                                                  min: 0,
-                                                                  max: 300,
-                                                                  value: exerciseScreenProvider.weightStartingValue,
-                                                                  spacing: 24,
-                                                                  direction: Axis.vertical,
-                                                                  textStyle: TextStyle(fontSize: 24),
-                                                                  incrementIcon: Icon(Icons.keyboard_arrow_up, size: 32),
-                                                                  decrementIcon: Icon(Icons.keyboard_arrow_down, size: 32),
-                                                                  decoration: InputDecoration(
-                                                                    border: OutlineInputBorder(),
-                                                                    contentPadding: const EdgeInsets.all(24),
-                                                                  ),
-                                                                ),
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .all(
+                                                                        16.0),
+                                                                child:
+                                                                    FlatButton(
+                                                                        color: Colors.amber[
+                                                                            800],
+                                                                        onPressed:
+                                                                            () {
+                                                                          Navigator.of(context)
+                                                                              .pop();
+                                                                        },
+                                                                        child: Text(
+                                                                            'Close',
+                                                                            style:
+                                                                                GoogleFonts.montserrat(fontSize: 14))),
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .all(
+                                                                        16.0),
+                                                                child:
+                                                                    FlatButton(
+                                                                        color: Colors.amber[
+                                                                            800],
+                                                                        onPressed:
+                                                                            () {
+                                                                          Navigator.of(context)
+                                                                              .pop();
+                                                                          exerciseScreenProvider
+                                                                              .incrementSetCounter(exerciseScreenProvider.currentExercise);
+                                                                          exerciseScreenProvider.setSetRepsAndWeight(
+                                                                              exerciseScreenProvider.currentExercise,
+                                                                              exerciseScreenProvider.repsStartingValue.toString(),
+                                                                              exerciseScreenProvider.weightStartingValue.toInt());
+                                                                        },
+                                                                        child: Text(
+                                                                            'Save Entry',
+                                                                            style:
+                                                                                GoogleFonts.montserrat(fontSize: 14))),
                                                               ),
                                                             ],
                                                           ),
                                                         ],
                                                       ),
-                                                      Divider(thickness: 1.0,),
-                                                      Row(
-                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                        children: [
-                                                          Padding(
-                                                            padding: const EdgeInsets.all(16.0),
-                                                            child: FlatButton( color: Colors.amber[800], onPressed: (){
-                                                              Navigator.of(context).pop();
-                                                            }, child: Text('Close', style: GoogleFonts.montserrat(fontSize: 14))),
-                                                          ),
-                                                          Padding(
-                                                            padding: const EdgeInsets.all(16.0),
-                                                            child: FlatButton( color: Colors.amber[800], onPressed: (){
-                                                              Navigator.of(context).pop();
-                                                              exerciseScreenProvider.incrementSetCounter(exerciseScreenProvider.currentExercise);
-                                                              exerciseScreenProvider.setSetRepsAndWeight(exerciseScreenProvider.currentExercise, exerciseScreenProvider.setCountPerExerciseList[exerciseScreenProvider.exercises.indexOf(exerciseScreenProvider.currentExercise)], exerciseScreenProvider.repsStartingValue.toString(), exerciseScreenProvider.weightStartingValue.toInt());
-                                                            }, child: Text('Save Entry', style: GoogleFonts.montserrat(fontSize: 14))),
-                                                          ),
-
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                );
-                                              });
+                                                    );
+                                                  });
                                             },
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               children: [
                                                 Icon(Icons.add),
                                                 Text('Add Standard Set'),
@@ -237,86 +349,170 @@ class ExerciseCardScreen extends StatelessWidget {
                                             color: Colors.black45,
                                             textColor: Colors.white,
                                             shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(18.0),
-                                                side: BorderSide(color: Colors.amber[800])),
+                                                borderRadius:
+                                                    BorderRadius.circular(18.0),
+                                                side: BorderSide(
+                                                    color: Colors.amber[800])),
                                           ),
                                           RaisedButton(
                                             onPressed: () {
-                                              showModalBottomSheet(context: context, builder: (BuildContext context){
-                                                 return Container(
+                                              showModalBottomSheet(
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return Container(
                                                       height: 450,
                                                       color: Colors.black12,
                                                       child: Column(
-                                                      mainAxisAlignment: MainAxisAlignment.center,
-                                                      mainAxisSize: MainAxisSize.min,
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: <Widget>[
-                                              Padding(
-                                                padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 12.0),
-                                                child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  children: [
-                                                            Heading2(exerciseScreenProvider.currentExercise),
-                                                            Heading3('Set ' + (1 + exerciseScreenProvider.setCountPerExerciseList[exerciseScreenProvider.exercises.indexOf(exerciseScreenProvider.currentExercise)]).toString()),
-                                                           ],
-                                                         ),
-                                              ),
-                                                        Divider(thickness: 1.0,),
-                                              Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              children: [
-                                              SizedBox(width: 20),
-                                              Heading3('Please select your training principle'),
-                                              ],
-                                              ),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(left: 32.0, right: 32),
-                                                  child: Container(
-                                                    height: 200,
-                                                    child: ListView.builder(
-                                                      itemCount: trainingPrincipleList.length,
-                                                      itemBuilder: (BuildContext context, int index){
-                                                        return ListTile(
-                                                          leading: Text(trainingPrincipleList[index].name),
-                                                          subtitle: Text(trainingPrincipleList[index].description),
-                                                          trailing: Checkbox(
-                                                            value: exerciseScreenProvider.isChecked(trainingPrincipleList[index]),
-                                                            onChanged: (value){
-                                                              exerciseScreenProvider.changeTrainingPrinciple(trainingPrincipleList[index]);
-                                                            },
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: <Widget>[
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 16.0,
+                                                                    right: 16.0,
+                                                                    bottom:
+                                                                        12.0),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Heading2(
+                                                                    exerciseScreenProvider
+                                                                        .currentExercise),
+                                                                Heading3('Set ' +
+                                                                    (1 + exerciseScreenProvider.setCountPerExerciseList[exerciseScreenProvider.exercises.indexOf(exerciseScreenProvider.currentExercise)])
+                                                                        .toString()),
+                                                              ],
+                                                            ),
                                                           ),
-                                                        );
-                                                      },
-                                                    ),
-                                                  ),
-                                                ),
-                                                Divider(thickness: 1.0,),
-                                                Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                children: [
-                                                Padding(
-                                                padding: const EdgeInsets.all(16.0),
-                                                child: FlatButton( color: Colors.amber[800], onPressed: (){
-                                                Navigator.of(context).pop();
-                                                }, child: Text('Close', style: GoogleFonts.montserrat(fontSize: 14))),
-                                                ),
-                                                Padding(
-                                                padding: const EdgeInsets.all(16.0),
-                                                child: FlatButton( color: Colors.amber[800], onPressed: (){
-                                                Navigator.of(context).pop();
-                                                exerciseScreenProvider.incrementSetCounter(exerciseScreenProvider.currentExercise, );
-                                                }, child: Text('Save Entry', style: GoogleFonts.montserrat(fontSize: 14))),
-                                                ),
-
-                                                ],
-                                                ),
-                                                ],
-                                                ),
-                                                );
-                                              });
+                                                          Divider(
+                                                            thickness: 1.0,
+                                                          ),
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              SizedBox(
+                                                                  width: 20),
+                                                              Heading3(
+                                                                  'Please select your training principle'),
+                                                            ],
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 32.0,
+                                                                    right: 32),
+                                                            child: Container(
+                                                              height: 200,
+                                                              child: ListView
+                                                                  .builder(
+                                                                itemCount:
+                                                                    trainingPrincipleList
+                                                                        .length,
+                                                                itemBuilder:
+                                                                    (BuildContext
+                                                                            context,
+                                                                        int index) {
+                                                                  return ListTile(
+                                                                    leading: Text(
+                                                                        trainingPrincipleList[index]
+                                                                            .name),
+                                                                    subtitle: Text(
+                                                                        trainingPrincipleList[index]
+                                                                            .description),
+                                                                    trailing:
+                                                                        Checkbox(
+                                                                      value: exerciseScreenProvider
+                                                                          .isChecked(
+                                                                              trainingPrincipleList[index]),
+                                                                      onChanged:
+                                                                          (value) {
+                                                                        exerciseScreenProvider
+                                                                            .changeTrainingPrinciple(trainingPrincipleList[index]);
+                                                                      },
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Divider(
+                                                            thickness: 1.0,
+                                                          ),
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceEvenly,
+                                                            children: [
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .all(
+                                                                        16.0),
+                                                                child:
+                                                                    FlatButton(
+                                                                        color: Colors.amber[
+                                                                            800],
+                                                                        onPressed:
+                                                                            () {
+                                                                          Navigator.of(context)
+                                                                              .pop();
+                                                                        },
+                                                                        child: Text(
+                                                                            'Close',
+                                                                            style:
+                                                                                GoogleFonts.montserrat(fontSize: 14))),
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .all(
+                                                                        16.0),
+                                                                child:
+                                                                    FlatButton(
+                                                                        color: Colors.amber[
+                                                                            800],
+                                                                        onPressed:
+                                                                            () {
+                                                                          Navigator.of(context)
+                                                                              .pop();
+                                                                          exerciseScreenProvider
+                                                                              .incrementSetCounter(
+                                                                            exerciseScreenProvider.currentExercise,
+                                                                          );
+                                                                          exerciseScreenProvider.setSetRepsAndWeight(
+                                                                              exerciseScreenProvider.currentExercise,
+                                                                              exerciseScreenProvider.selectedPrinciple.name,
+                                                                              exerciseScreenProvider.weightStartingValue.toInt());
+                                                                        },
+                                                                        child: Text(
+                                                                            'Save Entry',
+                                                                            style:
+                                                                                GoogleFonts.montserrat(fontSize: 14))),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  });
                                             },
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               children: [
                                                 Icon(Icons.add),
                                                 Text('Add Advanced Set'),
@@ -325,31 +521,38 @@ class ExerciseCardScreen extends StatelessWidget {
                                             color: Colors.black45,
                                             textColor: Colors.white,
                                             shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(18.0),
-                                                side: BorderSide(color: Colors.amber[800])),
+                                                borderRadius:
+                                                    BorderRadius.circular(18.0),
+                                                side: BorderSide(
+                                                    color: Colors.amber[800])),
                                           ),
                                         ],
                                       );
                                     }
 
                                     return RaisedButton(
-                                      onPressed: (){
+                                      onPressed: () {
                                         //exerciseScreenProvider.addSet(exerciseScreenProvider.currentExercise);
                                       },
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(index.toString()),
+                                          Text('Set #: ' + index.toString()),
+                                          Text('Reps: ' + exerciseScreenProvider.workoutSetList[exerciseScreenProvider.currentExercise][index - 1][0].toString()),
+                                          Text('Weight: ' + exerciseScreenProvider.workoutSetList[exerciseScreenProvider.currentExercise][index - 1][1].toString()),
+
                                         ],
                                       ),
                                       color: Colors.amber[800],
                                       textColor: Colors.white,
                                       shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(18.0),
-                                          side: BorderSide(color: Colors.amber[800])),
+                                          borderRadius:
+                                              BorderRadius.circular(18.0),
+                                          side: BorderSide(
+                                              color: Colors.amber[800])),
                                     );
-                                  }
-                              ),
+                                  }),
                             ),
                           ),
                         ],
@@ -357,9 +560,8 @@ class ExerciseCardScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 Container(
-                  height: height*.06,
+                  height: height * .06,
                   decoration: new BoxDecoration(
                     color: Colors.black12,
                   ),
@@ -374,11 +576,16 @@ class ExerciseCardScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(18.0),
                               side: BorderSide(color: Colors.amber[800])),
                           onPressed: () {
-                            exerciseScreenProvider.setCurrentExercise(this.workoutExercises[index].name);
+                            exerciseScreenProvider.setCurrentExercise(
+                                this.workoutExercises[index].name);
                           },
-                          color: exerciseScreenProvider.currentExercise != this.workoutExercises[index].name ? Colors.black26 : Colors.amber[800],
+                          color: exerciseScreenProvider.currentExercise !=
+                                  this.workoutExercises[index].name
+                              ? Colors.black26
+                              : Colors.amber[800],
                           textColor: Colors.white,
-                          child: Text(this.workoutExercises[index].name.toUpperCase(),
+                          child: Text(
+                              this.workoutExercises[index].name.toUpperCase(),
                               style: GoogleFonts.montserrat(fontSize: 12)),
                         ),
                       );
@@ -394,14 +601,16 @@ class ExerciseCardScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   FlatButton(
-                    child: Text('SAVE WORKOUT', style: TextStyle(color: Colors.amber[800]),),
+                    child: Text(
+                      'SAVE WORKOUT',
+                      style: TextStyle(color: Colors.amber[800]),
+                    ),
                     onPressed: () {},
                   ),
                   FlatButton(
-                    child: Text('START', style: TextStyle(color: Colors.amber[800])),
-                    onPressed: () {
-
-                    },
+                    child: Text('START',
+                        style: TextStyle(color: Colors.amber[800])),
+                    onPressed: () {},
                   )
                 ],
               ),
@@ -410,8 +619,5 @@ class ExerciseCardScreen extends StatelessWidget {
         },
       ),
     );
-
   }
-
-
 }
