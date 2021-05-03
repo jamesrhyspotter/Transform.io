@@ -129,7 +129,7 @@ class ExerciseCardScreen extends StatelessWidget {
                                                   builder:
                                                       (BuildContext context) {
                                                     return Container(
-                                                      height: 450,
+                                                      height: 500,
                                                       color: Colors.black12,
                                                       child: Column(
                                                         mainAxisAlignment:
@@ -169,20 +169,6 @@ class ExerciseCardScreen extends StatelessWidget {
                                                           Row(
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              SizedBox(
-                                                                  width: 20),
-                                                              Heading3('Reps'),
-                                                              SizedBox(
-                                                                  width: 100),
-                                                              Heading3(
-                                                                  'Weight'),
-                                                            ],
-                                                          ),
-                                                          Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
                                                                     .spaceEvenly,
                                                             children: [
                                                               Column(
@@ -190,6 +176,7 @@ class ExerciseCardScreen extends StatelessWidget {
                                                                     MainAxisAlignment
                                                                         .start,
                                                                 children: [
+                                                                  Text('Reps', style: GoogleFonts.montserrat()),
                                                                   Container(
                                                                     width: 100,
                                                                     child:
@@ -236,6 +223,7 @@ class ExerciseCardScreen extends StatelessWidget {
                                                                     MainAxisAlignment
                                                                         .start,
                                                                 children: [
+                                                                  Text('Sets', style: GoogleFonts.montserrat()),
                                                                   Container(
                                                                     width: 100,
                                                                     child:
@@ -282,6 +270,26 @@ class ExerciseCardScreen extends StatelessWidget {
                                                           Divider(
                                                             thickness: 1.0,
                                                           ),
+                                                          Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                            children: [
+                                                              Text('RPE: ', style: GoogleFonts.montserrat()),
+                                                              Container(
+                                                                width: 250,
+                                                                child: Slider(
+                                                                  value: exerciseScreenProvider.rpeStartingValue,
+                                                                  activeColor: Colors.amber[800],
+                                                                  divisions: 10,
+                                                                  min: 0,
+                                                                  max: 10,
+                                                                  onChanged: (value){
+                                                                      exerciseScreenProvider.setRPE(value);
+                                                                  },
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Divider(thickness:  1.0,),
                                                           Row(
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
@@ -343,7 +351,7 @@ class ExerciseCardScreen extends StatelessWidget {
                                                   MainAxisAlignment.start,
                                               children: [
                                                 Icon(Icons.add),
-                                                Text('Add Standard Set'),
+                                                Text('Add Standard Set', style: GoogleFonts.montserrat()),
                                               ],
                                             ),
                                             color: Colors.black45,
@@ -515,7 +523,7 @@ class ExerciseCardScreen extends StatelessWidget {
                                                   MainAxisAlignment.start,
                                               children: [
                                                 Icon(Icons.add),
-                                                Text('Add Advanced Set'),
+                                                Text('Add Advanced Set', style: GoogleFonts.montserrat()),
                                               ],
                                             ),
                                             color: Colors.black45,
@@ -538,9 +546,11 @@ class ExerciseCardScreen extends StatelessWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text('Set #: ' + index.toString()),
-                                          Text('Reps: ' + exerciseScreenProvider.workoutSetList[exerciseScreenProvider.currentExercise][index - 1][0].toString()),
-                                          Text('Weight: ' + exerciseScreenProvider.workoutSetList[exerciseScreenProvider.currentExercise][index - 1][1].toString()),
+                                          Text('Set ' + index.toString(), style: GoogleFonts.montserrat()),
+                                          Text('Reps: ' + exerciseScreenProvider.workoutSetList[exerciseScreenProvider.currentExercise][index - 1][0].substring(0, exerciseScreenProvider.workoutSetList[exerciseScreenProvider.currentExercise][index - 1][0].length - 2), style: GoogleFonts.montserrat()),
+                                          Text('Weight: ' + exerciseScreenProvider.workoutSetList[exerciseScreenProvider.currentExercise][index - 1][1].toString() + ' kg', style: GoogleFonts.montserrat()),
+                                          Text('RPE: ' + ' / 10', style: GoogleFonts.montserrat()),
+
 
                                         ],
                                       ),

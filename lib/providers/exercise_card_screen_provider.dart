@@ -21,6 +21,7 @@ class ExerciseCardScreenProvider with ChangeNotifier {
   TrainingPrinciple selectedPrinciple;
   double repsStartingValue = 8;
   double weightStartingValue = 50;
+  double rpeStartingValue = 5;
 
 
   ExerciseCardScreenProvider(this.exercises){
@@ -70,7 +71,11 @@ class ExerciseCardScreenProvider with ChangeNotifier {
 
     print(this.workoutSetList[exerciseName]);
 
+  }
 
+  void setRPE(double inputRPE){
+    rpeStartingValue = inputRPE;
+    notifyListeners();
   }
 
   isChecked(TrainingPrinciple inputPrinciple){
