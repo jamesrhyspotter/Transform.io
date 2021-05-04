@@ -47,7 +47,7 @@ class ExerciseCardScreen extends StatelessWidget {
         builder: (context, exerciseScreenProvider, child) {
           return Scaffold(
             appBar: AppBar(
-              title: Text('Workout Time: 00:00    Rest: 00:00',
+              title: Text('Workout Time: ' + (exerciseScreenProvider.counter/60).round().toString() + 'm ' + (exerciseScreenProvider.counter%60).toString() + 's ',
                   style: GoogleFonts.montserrat(fontSize: 14)),
               actions: [
                 FlatButton(child: Icon(Icons.timer), onPressed: () {}),
@@ -223,7 +223,7 @@ class ExerciseCardScreen extends StatelessWidget {
                                                                     MainAxisAlignment
                                                                         .start,
                                                                 children: [
-                                                                  Text('Sets', style: GoogleFonts.montserrat()),
+                                                                  Text('Weight', style: GoogleFonts.montserrat()),
                                                                   Container(
                                                                     width: 100,
                                                                     child:
@@ -270,26 +270,6 @@ class ExerciseCardScreen extends StatelessWidget {
                                                           Divider(
                                                             thickness: 1.0,
                                                           ),
-                                                          Row(
-                                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                            children: [
-                                                              Text('RPE: ', style: GoogleFonts.montserrat()),
-                                                              Container(
-                                                                width: 250,
-                                                                child: Slider(
-                                                                  value: exerciseScreenProvider.rpeStartingValue,
-                                                                  activeColor: Colors.amber[800],
-                                                                  divisions: 10,
-                                                                  min: 0,
-                                                                  max: 10,
-                                                                  onChanged: (value){
-                                                                      exerciseScreenProvider.setRPE(value);
-                                                                  },
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          Divider(thickness:  1.0,),
                                                           Row(
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
@@ -615,12 +595,20 @@ class ExerciseCardScreen extends StatelessWidget {
                       'SAVE WORKOUT',
                       style: TextStyle(color: Colors.amber[800]),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+
+                    },
                   ),
                   FlatButton(
-                    child: Text('START',
-                        style: TextStyle(color: Colors.amber[800])),
-                    onPressed: () {},
+                    child: (!exerciseScreenProvider.timer.isActive) ? Text('START',
+                        style: TextStyle(color: Colors.amber[800])) : Text('PAUSE',  style: TextStyle(color: Colors.amber[800])),
+                    onPressed: () {
+                      if(!exerciseScreenProvider.timer.isActive){
+                        exerciseScreenProvider.startTimer();
+                      }else{
+                        exerciseScreenProvider.pauseTimer();
+                      }
+                    },
                   )
                 ],
               ),

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:transform_dot_io/apis/training_principle_db.dart';
@@ -23,6 +25,10 @@ class ExerciseCardScreenProvider with ChangeNotifier {
   double weightStartingValue = 50;
   double rpeStartingValue = 5;
 
+  int counter = 0;
+  Timer timer;
+  bool timerOn = false;
+
 
   ExerciseCardScreenProvider(this.exercises){
     this.currentExercise = exercises[0];
@@ -35,6 +41,23 @@ class ExerciseCardScreenProvider with ChangeNotifier {
       workoutSetList[this.exercises[i]] = [];
     }
 
+  }
+
+  //TIMER METHODS --------------------------------------------------------------
+
+  void startTimer() {
+    if (timer != null) {
+      timer.cancel();
+    }
+    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+        counter++;
+        notifyListeners();
+    });
+  }
+
+  void pauseTimer(){
+    timer.cancel();
+    notifyListeners();
   }
 
 
