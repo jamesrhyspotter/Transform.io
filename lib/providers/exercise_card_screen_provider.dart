@@ -50,12 +50,14 @@ class ExerciseCardScreenProvider with ChangeNotifier {
       timer.cancel();
     }
     timer = Timer.periodic(Duration(seconds: 1), (timer) {
+        timerOn = true;
         counter++;
         notifyListeners();
     });
   }
 
   void pauseTimer(){
+    timerOn = false;
     timer.cancel();
     notifyListeners();
   }

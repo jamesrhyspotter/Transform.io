@@ -616,10 +616,10 @@ class ExerciseCardScreen extends StatelessWidget {
                     },
                   ),
                   FlatButton(
-                    child: (!exerciseScreenProvider.timer.isActive) ? Text('START',
+                    child: (!exerciseScreenProvider.timerOn) ? Text('START',
                         style: TextStyle(color: Colors.amber[800])) : Text('PAUSE',  style: TextStyle(color: Colors.amber[800])),
                     onPressed: () {
-                      if(!exerciseScreenProvider.timer.isActive){
+                      if(!exerciseScreenProvider.timerOn){
                         exerciseScreenProvider.startTimer();
                       }else{
                         exerciseScreenProvider.pauseTimer();
