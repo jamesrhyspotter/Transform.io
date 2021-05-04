@@ -47,7 +47,7 @@ class ExerciseCardScreen extends StatelessWidget {
         builder: (context, exerciseScreenProvider, child) {
           return Scaffold(
             appBar: AppBar(
-              title: Text('Workout Time: ' + (exerciseScreenProvider.counter/60).round().toString() + 'm ' + (exerciseScreenProvider.counter%60).toString() + 's ',
+              title: Text('Workout Time: ' + (exerciseScreenProvider.counter/60).toString().substring(0, 1) + 'm ' + (exerciseScreenProvider.counter%60).toString() + 's ',
                   style: GoogleFonts.montserrat(fontSize: 14)),
               actions: [
                 FlatButton(child: Icon(Icons.timer), onPressed: () {}),
@@ -66,28 +66,44 @@ class ExerciseCardScreen extends StatelessWidget {
                           side: BorderSide(color: Colors.amber[800], width: 2)),
                       child: Column(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Text(
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
                                     exerciseScreenProvider.currentExercise,
                                     style:
                                         GoogleFonts.montserrat(fontSize: 32)),
-                              ),
-                            ],
+                                CircleAvatar(
+                                  backgroundColor: Colors.amber[800],
+                                  child: Icon(Icons.account_circle_sharp, color: Colors.white,),
+                                ),
+                              ],
+                            ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Text('Exercise Level: ',
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('Exercise Level: ',
                                     style:
-                                        GoogleFonts.montserrat(fontSize: 14)),
-                              ),
-                            ],
+                                        GoogleFonts.montserrat(fontSize: 18)),
+                                Row(
+                                  children: [
+                                    Icon(Icons.star_border, color: Colors.amber[800],),
+                                    Icon(Icons.star_border, color: Colors.amber[800],),
+                                    Icon(Icons.star_border, color: Colors.amber[800],),
+                                    Icon(Icons.star_border, color: Colors.amber[800],),
+                                    Icon(Icons.star_border, color: Colors.amber[800],),
+                                    Icon(Icons.star, color: Colors.amber[800],),
+                                    Icon(Icons.star, color: Colors.amber[800],),
+                                    Icon(Icons.star, color: Colors.amber[800],),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                           Divider(),
                           Padding(
