@@ -62,11 +62,14 @@ class ExerciseCardScreenProvider with ChangeNotifier {
     notifyListeners();
   }
 
-
+//TIMER METHODS --------------------------------------------------------------
   setCurrentExercise(String name){
     this.currentExercise = name;
     notifyListeners();
   }
+
+//WORKOUT METHODS --------------------------------------------------------------
+
 
   incrementSetCounter(String name){
     int index = this.exercises.indexOf(this.currentExercise);
@@ -86,13 +89,13 @@ class ExerciseCardScreenProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  setSetRepsAndWeight(String exerciseName, String reps, int weight){
+  setSetRepsWeightandRPE(String exerciseName, String reps, int weight, int rpe){
     print(exerciseName);
     print(this.exercises.indexOf(exerciseName));
     print(reps);
     print(weight.toString());
 
-    this.workoutSetList[exerciseName].add([reps, weight]);
+    this.workoutSetList[exerciseName].add([reps, weight, rpe]);
 
     print(this.workoutSetList[exerciseName]);
 
@@ -102,6 +105,9 @@ class ExerciseCardScreenProvider with ChangeNotifier {
     rpeStartingValue = inputRPE;
     notifyListeners();
   }
+
+
+  //ADVANCED TRAINING PRINCIPLE METHODS -----------------------------------------
 
   isChecked(TrainingPrinciple inputPrinciple){
     if(this.selectedPrinciple.name == inputPrinciple.name){

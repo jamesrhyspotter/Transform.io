@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinbox/flutter_spinbox.dart';
@@ -281,6 +282,53 @@ class ExerciseCardScreen extends StatelessWidget {
                                                                   ),
                                                                 ],
                                                               ),
+                                                              Column(
+                                                                mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                                children: [
+                                                                  Text('RPE', style: GoogleFonts.montserrat()),
+                                                                  Container(
+                                                                    width: 100,
+                                                                    child:
+                                                                    SpinBox(
+                                                                      onChanged:
+                                                                          (value) {
+                                                                        exerciseScreenProvider
+                                                                            .setRPE(value);
+                                                                      },
+                                                                      min: 1,
+                                                                      max: 10,
+                                                                      value: exerciseScreenProvider
+                                                                          .rpeStartingValue,
+                                                                      spacing:
+                                                                      24,
+                                                                      direction:
+                                                                      Axis.vertical,
+                                                                      textStyle:
+                                                                      TextStyle(
+                                                                          fontSize: 24),
+                                                                      incrementIcon: Icon(
+                                                                          Icons
+                                                                              .keyboard_arrow_up,
+                                                                          size:
+                                                                          32),
+                                                                      decrementIcon: Icon(
+                                                                          Icons
+                                                                              .keyboard_arrow_down,
+                                                                          size:
+                                                                          32),
+                                                                      decoration:
+                                                                      InputDecoration(
+                                                                        border:
+                                                                        OutlineInputBorder(),
+                                                                        contentPadding:
+                                                                        const EdgeInsets.all(24),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
                                                             ],
                                                           ),
                                                           Divider(
@@ -325,10 +373,11 @@ class ExerciseCardScreen extends StatelessWidget {
                                                                               .pop();
                                                                           exerciseScreenProvider
                                                                               .incrementSetCounter(exerciseScreenProvider.currentExercise);
-                                                                          exerciseScreenProvider.setSetRepsAndWeight(
+                                                                          exerciseScreenProvider.setSetRepsWeightandRPE(
                                                                               exerciseScreenProvider.currentExercise,
                                                                               exerciseScreenProvider.repsStartingValue.toString(),
-                                                                              exerciseScreenProvider.weightStartingValue.toInt());
+                                                                              exerciseScreenProvider.weightStartingValue.toInt(), exerciseScreenProvider.rpeStartingValue.toInt());
+
                                                                         },
                                                                         child: Text(
                                                                             'Save Entry',
@@ -497,10 +546,10 @@ class ExerciseCardScreen extends StatelessWidget {
                                                                               .incrementSetCounter(
                                                                             exerciseScreenProvider.currentExercise,
                                                                           );
-                                                                          exerciseScreenProvider.setSetRepsAndWeight(
+                                                                          exerciseScreenProvider.setSetRepsWeightandRPE(
                                                                               exerciseScreenProvider.currentExercise,
                                                                               exerciseScreenProvider.selectedPrinciple.name,
-                                                                              exerciseScreenProvider.weightStartingValue.toInt());
+                                                                              exerciseScreenProvider.weightStartingValue.toInt(), 0);
                                                                         },
                                                                         child: Text(
                                                                             'Save Entry',
@@ -545,7 +594,7 @@ class ExerciseCardScreen extends StatelessWidget {
                                           Text('Set ' + index.toString(), style: GoogleFonts.montserrat()),
                                           Text('Reps: ' + exerciseScreenProvider.workoutSetList[exerciseScreenProvider.currentExercise][index - 1][0].substring(0, exerciseScreenProvider.workoutSetList[exerciseScreenProvider.currentExercise][index - 1][0].length - 2), style: GoogleFonts.montserrat()),
                                           Text('Weight: ' + exerciseScreenProvider.workoutSetList[exerciseScreenProvider.currentExercise][index - 1][1].toString() + ' kg', style: GoogleFonts.montserrat()),
-                                          Text('RPE: ' + ' / 10', style: GoogleFonts.montserrat()),
+                                          Text('RPE: ' + exerciseScreenProvider.workoutSetList[exerciseScreenProvider.currentExercise][index - 1][2].toString() + ' / 10', style: GoogleFonts.montserrat()),
 
 
                                         ],
