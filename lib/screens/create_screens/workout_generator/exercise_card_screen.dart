@@ -75,7 +75,7 @@ class ExerciseCardScreen extends StatelessWidget {
                                 Text(
                                     exerciseScreenProvider.currentExercise,
                                     style:
-                                        GoogleFonts.montserrat(fontSize: 32)),
+                                    GoogleFonts.montserrat(fontSize: 18)),
                                 CircleAvatar(
                                   backgroundColor: Colors.amber[800],
                                   child: Icon(Icons.account_circle_sharp, color: Colors.white,),
