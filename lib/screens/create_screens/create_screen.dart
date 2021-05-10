@@ -30,7 +30,7 @@ class CreateScreen extends StatelessWidget {
         body: TabBarView(
           children: [
             PhysiqueScreen(),
-            SetWorkoutScreen(),
+            ActionButton('Generate A Meal', 'Use AI and your desired Macronutrients to \n generate a Meal instantly!'),
             ActionButton('Generate A Meal', 'Use AI and your desired Macronutrients to \n generate a Meal instantly!'),
             ActionButton('Generate A Meal Plan', 'Use AI and your own goals to \n generate a meal plan instantly!'),
 
