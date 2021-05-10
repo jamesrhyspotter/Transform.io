@@ -4,6 +4,7 @@ import 'package:transform_dot_io/components/action_button.dart';
 import 'package:transform_dot_io/screens/create_screens/workout_generator/set_workout_screen.dart';
 import 'package:transform_dot_io/screens/create_screens/workout_generator/workout_preference_screen.dart';
 import 'package:transform_dot_io/screens/create_screens/workout_generator/physique_screen.dart';
+import 'package:transform_dot_io/screens/individual_muscle_screen.dart';
 
 class CreateScreen extends StatelessWidget {
   String title = 'Create';
@@ -30,7 +31,7 @@ class CreateScreen extends StatelessWidget {
         body: TabBarView(
           children: [
             PhysiqueScreen(),
-            ActionButton('Generate A Meal', 'Use AI and your desired Macronutrients to \n generate a Meal instantly!'),
+            IndividualMuscleScreen(),
             ActionButton('Generate A Meal', 'Use AI and your desired Macronutrients to \n generate a Meal instantly!'),
             ActionButton('Generate A Meal Plan', 'Use AI and your own goals to \n generate a meal plan instantly!'),
 
