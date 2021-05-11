@@ -1,7 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:transform_dot_io/assets/muscle_icons.dart';
 import 'package:transform_dot_io/models/ExerciseModel.dart';
 import 'dart:math';
 
 class ExerciseDataBase {
+
+
 
   List<Exercise> chestExerciseList=[
 

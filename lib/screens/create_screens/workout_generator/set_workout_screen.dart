@@ -241,10 +241,10 @@ class SetWorkoutScreen extends StatelessWidget {
                     },
                   ),
                   FlatButton(onPressed: (){
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => ExerciseCardScreen(screenProvider.generatedWorkout)));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ExerciseCardScreen(this.workout)));
                   }, child: Text('Go', style: GoogleFonts.montserrat()), color: Colors.amber[800]),
 
                 ],

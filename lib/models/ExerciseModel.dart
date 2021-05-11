@@ -1,5 +1,6 @@
 
 
+import 'package:flutter/material.dart';
 import 'package:transform_dot_io/apis/training_principle_db.dart';
 
 class Exercise {
@@ -12,6 +13,7 @@ class Exercise {
   int level = 0;
   double exerciseExperiencePoints;
   TrainingPrinciple _advancedTrainingPrinciple;
+  Widget icon;
 
 
   TrainingPrinciple get advancedTrainingPrinciple => _advancedTrainingPrinciple;

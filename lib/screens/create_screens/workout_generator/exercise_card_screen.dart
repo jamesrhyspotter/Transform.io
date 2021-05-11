@@ -125,6 +125,7 @@ class ExerciseCardScreen extends StatelessWidget {
                                 left: 16.0, right: 16.0, top: 16.0),
                             child: Container(
                               height: height * .23,
+                              //TODO: should have card that allows user to mark workout as complete
                               child: ListView.builder(
                                   itemCount: exerciseScreenProvider
                                               .setCountPerExerciseList[
@@ -665,6 +666,7 @@ class ExerciseCardScreen extends StatelessWidget {
                     },
                   ),
                   FlatButton(
+                    //TODO save workout should push workout to library, asks if want to mark as complete
                     child: (!exerciseScreenProvider.timerOn) ? Text('START',
                         style: TextStyle(color: Colors.amber[800])) : Text('PAUSE',  style: TextStyle(color: Colors.amber[800])),
                     onPressed: () {
