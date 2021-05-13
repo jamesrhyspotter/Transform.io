@@ -5,14 +5,14 @@ class PosteriorChainDiagram extends CustomPainter {
 
   List<String> selectedMuscleList = [];
 
-  Color trapsColor = Colors.black;
-  Color tricepsColor = Colors.black;
-  Color lowerBackColor = Colors.black;
-  Color latsColor = Colors.black;
-  Color rearDeltColor = Colors.black;
-  Color glutesColor = Colors.black;
-  Color hamstringsColor = Colors.black;
-  Color calvesColor = Colors.black;
+  Color trapsColor = Colors.white;
+  Color tricepsColor = Colors.white;
+  Color lowerBackColor = Colors.white;
+  Color latsColor = Colors.white;
+  Color rearDeltColor = Colors.white;
+  Color glutesColor = Colors.white;
+  Color hamstringsColor = Colors.white;
+  Color calvesColor = Colors.white;
 
   PosteriorChainDiagram({List<String> highlightedMuscles}){
 

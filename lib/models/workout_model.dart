@@ -1,7 +1,7 @@
 import 'package:transform_dot_io/apis/exercise_db.dart';
 import 'package:transform_dot_io/apis/training_principle_db.dart';
 import 'dart:math';
-import 'ExerciseModel.dart';
+import 'exercise_model.dart';
 
 class Workout {
 

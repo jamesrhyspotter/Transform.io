@@ -2,62 +2,60 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:transform_dot_io/providers/my_physique_provider.dart';
 
 class MyPhysiqueScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
     double height = MediaQuery.of(context).size.height;
-    List<String> imagePaths = [
-      // 'lib/assets/muscle_images/posterior_chain_white.png',
-      // 'lib/assets/muscle_images/anterior_chain_white.png',
-      'lib/assets/prometheus_white_orange/chest.png',
-      'lib/assets/prometheus_white_orange/front_delts.png',
-      'lib/assets/prometheus_white_orange/side_delts.png',
-      'lib/assets/prometheus_white_orange/abs.png',
-      'lib/assets/prometheus_white_orange/obliques.png',
-      'lib/assets/prometheus_white_orange/quads.png',
-      'lib/assets/prometheus_white_orange/biceps.png',
-      'lib/assets/prometheus_white_orange/forearms.png',
 
+    return ChangeNotifierProvider<MyPhysiqueProvider>(
+      create: (_) => MyPhysiqueProvider(),
+      child: Consumer<MyPhysiqueProvider>(
+        builder: (context, myPhysiqueProvider, child){
+          return Scaffold(
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  height: height*0.63,
+                  color: Colors.black38,
+                  child: Image(image: (myPhysiqueProvider.currentImagePath != null) ?  AssetImage(myPhysiqueProvider.currentImagePath):AssetImage( 'lib/assets/prometheus_white_orange/full_body_white.png',)),
+                ),
+                Container(
+                  height: height*0.1,
+                  decoration: BoxDecoration(
+                    color: Colors.black26,
 
-      'lib/assets/prometheus_white_orange/traps.png',
-      'lib/assets/prometheus_white_orange/lats.png',
-      'lib/assets/prometheus_white_orange/reardeltsandrhomboids.png',
-      'lib/assets/prometheus_white_orange/triceps.png',
-      'lib/assets/prometheus_white_orange/lower_back.png',
-      'lib/assets/prometheus_white_orange/glutes.png',
-      'lib/assets/prometheus_white_orange/hamstrings.png',
-      'lib/assets/prometheus_white_orange/calves.png',
+                  ),
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: myPhysiqueProvider.imagePaths.length,
+                      itemBuilder: (BuildContext context, int index){
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CircleAvatar(
+                              backgroundColor: Colors.black38,
+                              minRadius: 20,
+                              maxRadius: 40,
+                              backgroundImage: AssetImage(myPhysiqueProvider.imagePaths[index]),
+                              child: InkWell(
+                                onTap: (){
+                                  myPhysiqueProvider.currentImagePath = myPhysiqueProvider.imagePaths[index];
+                                },
+                              ),
+                          ),
+                        );
+                      }
 
-      // 'lib/assets/prometheus_white_orange/full_body_posterior_white.png',
-      // 'lib/assets/prometheus_white_orange/full_body_white.png',
-
-    ];
-
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Container(
-            height: height*0.1,
-            decoration: BoxDecoration(
-              color: Colors.black26,
-
+                  ),
+                ),
+              ],
             ),
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: imagePaths.length,
-                itemBuilder: (BuildContext context, int index){
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CircleAvatar(backgroundColor: Colors.black38, minRadius: 20, maxRadius: 40,child: Image(image: AssetImage(imagePaths[index]))),
-                    );
-                }
-
-            ),
-          ),
-        ],
+          );
+        }
       ),
     );
   }

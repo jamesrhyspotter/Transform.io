@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:transform_dot_io/models/ExerciseModel.dart';
-import 'package:transform_dot_io/models/WorkoutModel.dart';
+import 'package:transform_dot_io/models/exercise_model.dart';
+import 'package:transform_dot_io/models/workout_model.dart';
 
 class InformationModal extends StatelessWidget {
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transform_dot_io/assets/muscle_icons.dart';
-import 'package:transform_dot_io/models/ExerciseModel.dart';
+import 'package:transform_dot_io/models/exercise_model.dart';
 import 'dart:math';
 
 class ExerciseDataBase {
@@ -14,6 +14,7 @@ class ExerciseDataBase {
     Exercise('Incline Bench Press', ['Chest', 'Shoulders', 'Triceps'], ['Barbell']),
     Exercise('Decline Bench Press', ['Chest', 'Shoulders', 'Triceps'], ['Barbell']),
     Exercise('Landmine Press', ['Chest', 'Shoulders', 'Triceps'], ['Barbell']),
+    Exercise('Barbell Floor Press', ['Chest', 'Shoulders', 'Triceps'], ['Barbell']),
 
     //Dumbbell
     Exercise('Dumbbell Bench Press', ['Chest', 'Shoulders', 'Triceps'], ['Dumbbell']),
@@ -34,6 +35,7 @@ class ExerciseDataBase {
     Exercise('Banded Flies', ['Chest'], ['Resistance Bands']),
     Exercise('Banded Chest Press', ['Chest', 'Triceps'],  ['Resistance Bands']),
     Exercise('Banded Cross Body Chest Press', ['Chest'],  ['Resistance Bands']),
+    Exercise('Resistance Band Single Arm Incline Flies', ['Chest'],  ['Resistance Bands']),
 
 
     //Machines
@@ -62,6 +64,7 @@ class ExerciseDataBase {
     Exercise('Chin Ups', ['Back', 'Biceps'], ['Bodyweight']),
     Exercise('Body Rows', ['Back', 'Biceps'], ['Bodyweight']),
     Exercise('Laying Elbow Pushes', ['Back'], ['Bodyweight']),
+    Exercise('Straight Arm Plank Leans', ['Back', 'Forearms', 'Abs'], ['Bodyweight']),
 
     //Resistance Bands
     Exercise('Banded Bent-Over Row', ['Back', 'Biceps'], ['Resistance Bands']),
@@ -121,11 +124,17 @@ class ExerciseDataBase {
     //Barbell
     Exercise('Barbell Shoulder Press', ['Anterior Deltoids', 'Triceps'], ['Barbell']),
     Exercise('Barbell Front Raises', ['Anterior Deltoids'], ['Barbell']),
+    Exercise('Military Shoulder Press', ['Anterior Deltoids', 'Triceps'], ['Barbell']),
+    Exercise('Deadstop Shoulder Press', ['Anterior Deltoids', 'Triceps'], ['Barbell']),
+    Exercise('Barbell Landmine Shoulder Press', ['Anterior Deltoids', 'Triceps'], ['Barbell']),
+
 
     //Dumbbell
     Exercise('Dumbbell Shoulder Press', ['Anterior Deltoids', 'Triceps'], ['Dumbbell']),
     Exercise('Arnold Press', ['Anterior Deltoids', 'Triceps'], ['Dumbbell']),
     Exercise('Dumbbell Front Raises', ['Anterior Deltoids'], ['Dumbbell']),
+    Exercise('Dumbbell Hammer Curls to Side Raises', ['Anterior Deltoids', 'Biceps'], ['Dumbbell']),
+    Exercise('Goblet Press', ['Anterior Deltoids', 'Triceps'], ['Dumbbell']),
 
     //Bodyweight
     Exercise('Pike Push Ups', ['Anterior Deltoids', 'Triceps', 'Chest'], ['Bodyweight']),
@@ -144,8 +153,9 @@ class ExerciseDataBase {
     //Machines
     Exercise('Shoulder Press Machine', ['Anterior Deltoids', 'Triceps'], ['Machines']),
     Exercise('Smith Machine Shoulder Press', ['Anterior Deltoids', 'Triceps'], ['Machines']),
-    Exercise('Shoulder Press Machine', ['Anterior Deltoids', 'Triceps'], ['Machines']),
     Exercise('Cable Front Raises', ['Anterior Deltoids'], ['Machines']),
+    Exercise('Seated Side Raise Machine', ['Anterior Deltoids'], ['Machines']),
+    Exercise('Shoulder Press Machine', ['Anterior Deltoids', 'Triceps'], ['Machines']),
   ];
 
   List<Exercise> sideDeltsExerciseList = [
@@ -153,26 +163,37 @@ class ExerciseDataBase {
     Exercise('Barbell Shoulder Cleans', ['Lateral Deltoids', 'Triceps'], ['Barbell']),
     Exercise('Barbell Upright Rows', ['Lateral Deltoids'], ['Barbell']),
     Exercise('Barbell Side Raises', ['Lateral Deltoids'], ['Barbell']),
+    Exercise('Leaning Barbell Side Raises', ['Lateral Deltoids'], ['Barbell']),
+    Exercise('Landmine Side Raises', ['Lateral Deltoids'], ['Barbell']),
+
 
     //Dumbbell
     Exercise('Dumbbell Side Raises', ['Lateral Deltoids'], ['Dumbbell']),
     Exercise('Dumbbell Hammer Curls to Side Raises', ['Lateral Deltoids', 'Biceps'], ['Dumbbell']),
     Exercise('Seated Side Raises', ['Lateral Deltoids'], ['Dumbbell']),
     Exercise('Laying Around the Worlds', ['Lateral Deltoids'], ['Dumbbell']),
+    Exercise('Inline W Raises', ['Lateral Deltoids'], ['Dumbbell']),
 
     //Bodyweight
     Exercise('Plank to Side Plank', ['Lateral Deltoids', 'Abs'], ['Bodyweight']),
     Exercise('Side Plank', ['Lateral Deltoids', 'Abs'], ['Bodyweight']),
-
+    Exercise('Side Straight Arm Plank', ['Lateral Deltoids', 'Abs'], ['Bodyweight']),
+    Exercise('Side Plank with Arm Raise', ['Lateral Deltoids', 'Abs'], ['Bodyweight']),
 
     //Resistance Bands
     Exercise('Banded Side Raises', ['Lateral Deltoids'], ['Resistance Bands']),
     Exercise('Banded Hammer Curls to Side Raises', ['Lateral Deltoids', 'Biceps'], ['Resistance Bands']),
+    Exercise('Resistance Band Upright Rows', ['Lateral Deltoids'], ['Resistance Bands']),
+    Exercise('Resistance Band Seated Side Raises', ['Lateral Deltoids'], ['Resistance Bands']),
+    Exercise('Cross Body Resistance Band Side Raises', ['Lateral Deltoids'], ['Resistance Bands']),
 
     //Machines
     Exercise('Cable Side Raises', ['Lateral Deltoids'], ['Machines']),
     Exercise('Single Cable Side Raises', ['Lateral Deltoids'], ['Machines']),
     Exercise('Single Cable Hammer Curl to Side Raise Negative', ['Lateral Deltoids'], ['Machines']),
+    Exercise('Behind the neck Cable Side Raises', ['Lateral Deltoids'], ['Machines']),
+    Exercise('Side Raise Machine', ['Lateral Deltoids'], ['Machines']),
+
   ];
 
   List<Exercise> rearDeltsExerciseList = [
@@ -370,18 +391,32 @@ class ExerciseDataBase {
   List<Exercise> forearmExerciseList=[
 
     //Barbell
-    Exercise('Barbell Wrist Flexions', ['Forearms'], ['Barbell']),
+    Exercise('Barbell Wrist Curl', ['Forearms'], ['Barbell']),
+    Exercise('Reverse Barbell Wrist Curl', ['Forearms'], ['Barbell']),
+    Exercise('Seated Barbell Wrist Curl', ['Forearms'], ['Barbell']),
+    Exercise('Seated Barbell Wrist Extension', ['Forearms'], ['Barbell']),
+
 
     //Dumbbell
-    Exercise('Dumbbell Wrist Flexions', ['Forearms'], ['Dumbbell']),
+    Exercise('Dumbbell Wrist Curl', ['Forearms'], ['Dumbbell']),
+    Exercise('Reverse Wrist Curl', ['Forearms'], ['Dumbbell']),
+    Exercise('Single Arm Seated Wrist Curl', ['Forearms'], ['Dumbbell']),
+    Exercise('Seated Dumbbell Wrist Curl', ['Forearms'], ['Dumbbell']),
+    Exercise('Goblet Wrist Curl', ['Forearms'], ['Dumbbell']),
+
+
     //Bodyweight
     Exercise('Bodyweight Hangs', ['Forearms'], ['Bodyweight']),
+    Exercise('Chaturanga', ['Forearms'], ['Bodyweight']),
+
 
     //Resistance Bands
-    Exercise('Resistance Wrist Flexions', ['Forearms'], ['Resistance Bands'],),
+    Exercise('Resistance Wrist Curls', ['Forearms'], ['Resistance Bands'],),
+    Exercise('Reverse Grip Resistance Band Wrist Curls', ['Forearms'], ['Resistance Bands'],),
 
     //Machines
-    Exercise('Cable Wrist Flexions', ['Forearms'], ['Machines'],),
+    Exercise('Cable Wrist Curl, Overhand Grip', ['Forearms'], ['Machines'],),
+    Exercise('Cable Wrist Curl, Underhand Grip', ['Forearms'], ['Machines'],),
 
   ];
   List<Exercise> absExerciseList=[

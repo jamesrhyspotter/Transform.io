@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:transform_dot_io/apis/training_principle_db.dart';
-import 'package:transform_dot_io/models/ExerciseModel.dart';
-import 'package:transform_dot_io/models/WorkoutModel.dart';
+import 'package:transform_dot_io/models/exercise_model.dart';
+import 'package:transform_dot_io/models/workout_model.dart';
 import 'package:tuple/tuple.dart';
 
 
@@ -29,8 +29,13 @@ class ExerciseCardScreenProvider with ChangeNotifier {
   Timer timer;
   bool timerOn = false;
 
+  //CONSTRUCTOR ----------------------------------------------------------------
 
   ExerciseCardScreenProvider(this.exercises){
+
+
+
+
     this.currentExercise = exercises[0];
     this.setCountPerExerciseList = List.filled(this.exercises.length, 0);
     TrainingPrincipleDB tpDb = new TrainingPrincipleDB();
@@ -62,9 +67,10 @@ class ExerciseCardScreenProvider with ChangeNotifier {
     notifyListeners();
   }
 
-//TIMER METHODS --------------------------------------------------------------
+// SET PAGE METHOD --------------------------------------------------------------
   setCurrentExercise(String name){
     this.currentExercise = name;
+
     notifyListeners();
   }
 
@@ -129,13 +135,5 @@ class ExerciseCardScreenProvider with ChangeNotifier {
   }
 
 
-  //WORKOUT
-  //CURRENT EXERCISE BEING VIEWED
-  //WORKOUT DURATION
-  //REST
-  //SETS PER EXERCISE
-  //WEIGHT PER EXERCISE
-  //ATPs
-  //NOTES PER EXERCISE
 
 }

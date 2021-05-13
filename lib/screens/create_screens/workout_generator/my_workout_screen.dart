@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:transform_dot_io/components/ScreenTitle.dart';
-import 'package:transform_dot_io/models/ExerciseModel.dart';
-import 'package:transform_dot_io/models/WorkoutModel.dart';
+import 'package:transform_dot_io/models/exercise_model.dart';
+import 'package:transform_dot_io/models/workout_model.dart';
 
 class MyWorkoutScreen extends StatelessWidget {
 

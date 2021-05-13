@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:transform_dot_io/assets/a_chain_diagram.dart';
 import 'package:transform_dot_io/assets/p_chain_diagram.dart';
-import 'package:transform_dot_io/models/WorkoutModel.dart';
+import 'package:transform_dot_io/models/workout_model.dart';
 
 
 class PhysiqueScreenProvider with ChangeNotifier {

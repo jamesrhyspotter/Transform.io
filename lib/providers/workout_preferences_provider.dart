@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:transform_dot_io/models/WorkoutModel.dart';
+import 'package:transform_dot_io/models/workout_model.dart';
 
 class WorkoutPreferencesProvider with ChangeNotifier {
 

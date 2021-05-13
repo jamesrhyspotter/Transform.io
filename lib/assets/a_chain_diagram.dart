@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 class AnteriorChainDiagram extends CustomPainter {
 
   List<String> selectedMuscleList = [];
-  Color currentColor = Colors.black;
-  Color calfColor = Colors.black;
-  Color quadsColor = Colors.black;
-  Color absColor = Colors.black;
-  Color obliquesColor = Colors.black;
-  Color chestColor = Colors.black;
-  Color sideDeltsColor = Colors.black;
-  Color frontDeltsColor = Colors.black;
-  Color trapsColor = Colors.black;
-  Color bicepsColor = Colors.black;
-  Color forearmsColor = Colors.black;
+  Color currentColor = Colors.white;
+  Color calfColor = Colors.white;
+  Color quadsColor = Colors.white;
+  Color absColor = Colors.white;
+  Color obliquesColor = Colors.white;
+  Color chestColor = Colors.white;
+  Color sideDeltsColor = Colors.white;
+  Color frontDeltsColor = Colors.white;
+  Color trapsColor = Colors.white;
+  Color bicepsColor = Colors.white;
+  Color forearmsColor = Colors.white;
 
   AnteriorChainDiagram({List<String> highlightedMuscles}) {
 
@@ -293,7 +293,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_6.close();
 
     Paint paint_6_fill = Paint()..style=PaintingStyle.fill;
-    paint_6_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_6_fill.color = Colors.white.withOpacity(1.0);
     canvas.drawPath(path_6,paint_6_fill);
 
     Path path_7 = Path();
@@ -357,7 +357,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_9.close();
 
     Paint paint_9_fill = Paint()..style=PaintingStyle.fill;
-    paint_9_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_9_fill.color = Colors.white.withOpacity(1.0);
     canvas.drawPath(path_9,paint_9_fill);
 
     Path path_10 = Path();
@@ -387,7 +387,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_10.close();
 
     Paint paint_10_fill = Paint()..style=PaintingStyle.fill;
-    paint_10_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_10_fill.color = Colors.white.withOpacity(1.0);
     canvas.drawPath(path_10,paint_10_fill);
 
     Path path_11 = Path();
@@ -403,7 +403,7 @@ class AnteriorChainDiagram extends CustomPainter {
     path_11.close();
 
     Paint paint_11_fill = Paint()..style=PaintingStyle.fill;
-    paint_11_fill.color = Color(0xff000000).withOpacity(1.0);
+    paint_11_fill.color = Colors.white.withOpacity(1.0);
     canvas.drawPath(path_11,paint_11_fill);
 
     Path path_12 = Path();

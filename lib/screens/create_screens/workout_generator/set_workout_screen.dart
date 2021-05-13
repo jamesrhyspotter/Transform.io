@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:transform_dot_io/models/ExerciseModel.dart';
-import 'package:transform_dot_io/models/WorkoutModel.dart';
+import 'package:transform_dot_io/apis/muscle_icons.dart';
+import 'package:transform_dot_io/models/exercise_model.dart';
+import 'package:transform_dot_io/models/workout_model.dart';
 
 import 'exercise_card_screen.dart';
 
@@ -24,6 +25,7 @@ class SetWorkoutScreen extends StatelessWidget {
     }
   }
 
+  MuscleIcons mIcons = new MuscleIcons();
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,7 @@ class SetWorkoutScreen extends StatelessWidget {
                        key: Key('$index'),
                        child: ListTile(
                         key: Key('$index'),
-                          leading: CircleAvatar(child: Icon(Icons.account_circle_sharp, color: Colors.white,), backgroundColor: Colors.amber[800],),
+                          leading: CircleAvatar(maxRadius: 25, child: Image(image: AssetImage('lib/assets/prometheus_white_orange/full_body_white.png')), backgroundColor: Colors.black12,),
                           title: Text((index + 1).toString() + '. ${_items[index]}', style: GoogleFonts.montserrat()),
                           subtitle: Row(
                             children: [

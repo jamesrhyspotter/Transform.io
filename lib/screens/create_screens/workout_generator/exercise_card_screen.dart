@@ -9,8 +9,8 @@ import 'package:transform_dot_io/components/ScreenTitle.dart';
 import 'package:transform_dot_io/components/heading2.dart';
 import 'package:transform_dot_io/components/heading3.dart';
 import 'package:transform_dot_io/components/information_modal.dart';
-import 'package:transform_dot_io/models/ExerciseModel.dart';
-import 'package:transform_dot_io/models/WorkoutModel.dart';
+import 'package:transform_dot_io/models/exercise_model.dart';
+import 'package:transform_dot_io/models/workout_model.dart';
 import 'package:transform_dot_io/providers/exercise_card_screen_provider.dart';
 import 'my_workout_screen.dart';
 
@@ -78,7 +78,7 @@ class ExerciseCardScreen extends StatelessWidget {
                                     GoogleFonts.montserrat(fontSize: 18)),
                                 CircleAvatar(
                                   backgroundColor: Colors.amber[800],
-                                  child: Icon(Icons.account_circle_sharp, color: Colors.white,),
+                                  // child: Image(image: AssetImage(exerciseScreenProvider.getIcon())),
                                 ),
                               ],
                             ),
@@ -106,20 +106,10 @@ class ExerciseCardScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Divider(),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(left: 16.0, right: 16.0),
-                            child: Container(
-                              height: height * .27,
-                              child: Center(
-                                child: Text(
-                                    exerciseScreenProvider.currentExercise +
-                                        ' Image'),
-                              ),
-                            ),
+                          Container(
+                            height: height * .3,
+                            child: Image(image: AssetImage('lib/assets/prometheus_white_orange/full_body_white.png')),
                           ),
-                          Divider(),
                           Padding(
                             padding: const EdgeInsets.only(
                                 left: 16.0, right: 16.0, top: 16.0),
@@ -667,8 +657,8 @@ class ExerciseCardScreen extends StatelessWidget {
                   ),
                   FlatButton(
                     //TODO save workout should push workout to library, asks if want to mark as complete
-                    child: (!exerciseScreenProvider.timerOn) ? Text('START',
-                        style: TextStyle(color: Colors.amber[800])) : Text('PAUSE',  style: TextStyle(color: Colors.amber[800])),
+                    child: (!exerciseScreenProvider.timerOn) ? Text('START TIMER',
+                        style: TextStyle(color: Colors.amber[800])) : Text('PAUSE TIMER',  style: TextStyle(color: Colors.amber[800])),
                     onPressed: () {
                       if(!exerciseScreenProvider.timerOn){
                         exerciseScreenProvider.startTimer();
