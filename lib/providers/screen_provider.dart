@@ -53,6 +53,7 @@ class ScreenProvider with ChangeNotifier{
 
   int currentPageIndex = 1;
 
+
   final List<Widget> _screens = [
     WorkoutLibraryScreen(),
     CreateScreen(),
@@ -65,7 +66,7 @@ class ScreenProvider with ChangeNotifier{
     'My Locker'
   ];
 
-  final List<BottomNavigationBarItem> bottomNaivgationBarItems = [
+  final List<BottomNavigationBarItem> bottomNavigationBarItems = [
   BottomNavigationBarItem(
   icon: Icon(Icons.add_to_home_screen),
   label: 'Explore Workouts',

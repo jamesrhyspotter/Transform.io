@@ -11,6 +11,8 @@ class SetWorkoutScreen extends StatelessWidget {
   Workout workout;
   List<Exercise> workoutExercises;
   List<String> exerciseNames;
+  List<String> buttonOptions;
+
 
   SetWorkoutScreen(Workout inputWorkout){
     this.workout = inputWorkout;
@@ -23,6 +25,8 @@ class SetWorkoutScreen extends StatelessWidget {
       this.exerciseNames[i] = this.workoutExercises[i].name;
       print(this.exerciseNames[i]);
     }
+
+    this.buttonOptions = this.workout.targetMuscles;
   }
 
   MuscleIcons mIcons = new MuscleIcons();
@@ -171,13 +175,13 @@ class SetWorkoutScreen extends StatelessWidget {
                                     height: height * 0.05,
                                     child: ListView.builder(
                                         scrollDirection: Axis.horizontal,
-                                        itemCount: exerciseNames.length,
+                                        itemCount: this.buttonOptions.length,
                                         itemBuilder: (BuildContext context, int index){
                                           return Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: RaisedButton(
                                               color: Colors.black12,
-                                              child: Text(index.toString()),
+                                              child: Text(this.buttonOptions[index]),
                                               shape: RoundedRectangleBorder(
                                                   borderRadius: BorderRadius.circular(18.0),
                                                   side: BorderSide(color: Colors.amber[800])),

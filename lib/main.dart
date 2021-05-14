@@ -41,7 +41,7 @@ class CurrentPage extends StatelessWidget {
           ),
           body: screenProvider.currentPage(),
           bottomNavigationBar: BottomNavigationBar(
-            items: screenProvider.bottomNaivgationBarItems,
+            items: screenProvider.bottomNavigationBarItems,
             currentIndex: screenProvider.currentPageIndex,
             selectedItemColor: Colors.amber[800],
             onTap: screenProvider.changePage,

@@ -4,60 +4,74 @@ import 'package:flutter/material.dart';
 class AnteriorChainDiagram extends CustomPainter {
 
   List<String> selectedMuscleList = [];
-  Color currentColor = Colors.white;
-  Color calfColor = Colors.white;
-  Color quadsColor = Colors.white;
-  Color absColor = Colors.white;
-  Color obliquesColor = Colors.white;
-  Color chestColor = Colors.white;
-  Color sideDeltsColor = Colors.white;
-  Color frontDeltsColor = Colors.white;
-  Color trapsColor = Colors.white;
-  Color bicepsColor = Colors.white;
-  Color forearmsColor = Colors.white;
+  Color currentColor;
+  Color calfColor;
+  Color quadsColor;
+  Color absColor;
+  Color obliquesColor;
+  Color chestColor;
+  Color sideDeltsColor;
+  Color frontDeltsColor;
+  Color trapsColor;
+  Color bicepsColor;
+  Color forearmsColor;
+  Color color;
+  Color selectedColor;
 
-  AnteriorChainDiagram({List<String> highlightedMuscles}) {
+  AnteriorChainDiagram({List<String> highlightedMuscles, this.color, this.selectedColor}) {
 
     selectedMuscleList = highlightedMuscles;
 
+    currentColor = color;
+    calfColor = color;
+    quadsColor = color;
+    absColor = color;
+    obliquesColor = color;
+    chestColor = color;
+    sideDeltsColor = color;
+    frontDeltsColor = color;
+    trapsColor = color;
+    bicepsColor = color;
+    forearmsColor = color;
+
     if(selectedMuscleList.contains('Calves')){
-      calfColor = Colors.amber[800];
+      calfColor = selectedColor;
     }
 
     if(selectedMuscleList.contains('Quads')){
-      quadsColor = Colors.amber[800];
+      quadsColor = selectedColor;
     }
 
     if(selectedMuscleList.contains('Abs')){
-      absColor = Colors.amber[800];
+      absColor = selectedColor;
     }
 
     if(selectedMuscleList.contains('Obliques')){
-      obliquesColor = Colors.amber[800];
+      obliquesColor = selectedColor;
     }
 
     if(selectedMuscleList.contains('Chest')){
-      chestColor = Colors.amber[800];
+      chestColor = selectedColor;
     }
 
     if(selectedMuscleList.contains('Side Delts')){
-      sideDeltsColor = Colors.amber[800];
+      sideDeltsColor = selectedColor;
     }
 
     if(selectedMuscleList.contains('Front Delts')){
-      frontDeltsColor = Colors.amber[800];
+      frontDeltsColor = selectedColor;
     }
 
     if(selectedMuscleList.contains('Traps')){
-      trapsColor = Colors.amber[800];
+      trapsColor = selectedColor;
     }
 
     if(selectedMuscleList.contains('Biceps')){
-      bicepsColor = Colors.amber[800];
+      bicepsColor = selectedColor;
     }
 
     if(selectedMuscleList.contains('Forearms')){
-      forearmsColor = Colors.amber[800];
+      forearmsColor = selectedColor;
     }
 
   }

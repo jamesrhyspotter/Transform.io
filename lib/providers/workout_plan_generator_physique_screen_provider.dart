@@ -5,17 +5,18 @@ import 'package:transform_dot_io/assets/p_chain_diagram.dart';
 import 'package:transform_dot_io/models/workout_model.dart';
 
 
-class PhysiqueScreenProvider with ChangeNotifier {
+class WorkoutPlanProvider with ChangeNotifier {
+
 
   //FEATURES -------------------------------------------------------------------
 
   //Variables for Physique Screen
   List<String> _selectedMuscleList = [];
   Color physiqueColor = Colors.white;
-  Color selectedColor = Colors.amber[800];
+  Color selectedColor = Colors.blue;
   CustomPainter pChainDiagram = PosteriorChainDiagram(highlightedMuscles: []);
-  CustomPainter aChainDiagram = AnteriorChainDiagram(highlightedMuscles: [], color: Colors.white, selectedColor: Colors.amber[800]);
-  CustomPainter currentView = AnteriorChainDiagram(highlightedMuscles: [], color: Colors.white, selectedColor: Colors.amber[800]);
+  CustomPainter aChainDiagram = AnteriorChainDiagram(highlightedMuscles: [], color: Colors.white, selectedColor: Colors.blue);
+  CustomPainter currentView = AnteriorChainDiagram(highlightedMuscles: [], color: Colors.white, selectedColor: Colors.blue);
   double _xDimension = 270;
   double _yDimension = 460;
   double sizedBoxedHeight = 50;
@@ -52,7 +53,7 @@ class PhysiqueScreenProvider with ChangeNotifier {
     Colors.white10
   ];
   List<Color> selectedButtonColors = [
-    Colors.amber[800],
+    Colors.blue,
     Colors.black12,
     Colors.white
   ];
@@ -236,10 +237,11 @@ class PhysiqueScreenProvider with ChangeNotifier {
     print('Equipment: ');
     print(bufferEquipmentList);
 
-      generatedWorkout = new Workout(muscleList, bufferDisciplineList, bufferEquipmentList, sliderValue);
+    generatedWorkout = new Workout(muscleList, bufferDisciplineList, bufferEquipmentList, sliderValue);
 
 
   }
+
 
 
 }

@@ -27,6 +27,7 @@ dependencies:
   speed_dial: ^0.0.1
   flutter_spinbox: ^0.4.1
   tuple: ^2.0.0
+  percent_indicator: ^3.0.1
 
 dev_dependencies:
   flutter_test:

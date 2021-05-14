@@ -1,40 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:transform_dot_io/assets/p_chain_diagram.dart';
-import 'package:transform_dot_io/assets/a_chain_diagram.dart';
-import 'package:transform_dot_io/components/heading2.dart';
-import 'package:transform_dot_io/components/heading3.dart';
-import 'package:transform_dot_io/components/pillButtonRow.dart';
 import 'package:transform_dot_io/providers/physique_screen_provider.dart';
-import 'package:speed_dial/speed_dial.dart';
 import 'package:transform_dot_io/screens/create_screens/workout_generator/workout_preference_screen.dart';
 
 class PhysiqueScreen extends StatelessWidget {
 
   List<double> coordsXList = [];
   List<double> coordsYList = [];
-
-  Future<void> showInformationDialog(BuildContext context) async{
-    return await showDialog(
-        context: context,
-        builder: (context){
-          return AlertDialog(
-            title: Text('Hold your horses!', style: GoogleFonts.montserrat()),
-            content: Text('What do you want to train?', style: GoogleFonts.montserrat()),
-            actions: [
-              TextButton(
-                child: Text('Choose now!', style: TextStyle(color: Colors.amber[800])),
-                onPressed: (){
-                  Navigator.of(context).pop();
-                },
-              )
-            ],
-
-          );
-        });
-  }
-
 
 
   @override
