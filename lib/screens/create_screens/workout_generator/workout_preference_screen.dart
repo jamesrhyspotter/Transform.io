@@ -74,10 +74,13 @@ class WorkoutPreferenceScreen extends StatelessWidget {
                             onPressed: (){
                               screenProvider.generateWorkout(this.muscleList);
                               print(screenProvider.generatedWorkout.outputExerciseList);
+                              Navigator.of(context).pop();
+
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => /*ExerciseCardScreen(screenProvider.generatedWorkout)*/ SetWorkoutScreen(screenProvider.generatedWorkout)));
+
                             },
                           ),
                         ),

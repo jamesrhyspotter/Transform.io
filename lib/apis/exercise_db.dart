@@ -704,6 +704,44 @@ class ExerciseDataBase {
     return outputList;
   }
 
+  List<Exercise> getAllExercises(String ex){
+    List<Exercise> selectedExerciseList;
+
+    ex = ex.toLowerCase();
+
+    if (ex == 'chest') {
+      selectedExerciseList = chestExerciseList;
+    } else if (ex == 'lats') {
+      selectedExerciseList = backExerciseList;
+    } else if (ex == 'front delts') {
+      selectedExerciseList = frontDeltsExerciseList;
+    } else if (ex == 'side delts') {
+      selectedExerciseList = sideDeltsExerciseList;
+    } else if (ex == 'rear delts and rhomboids') {
+      selectedExerciseList = rearDeltsExerciseList;
+    } else if (ex == 'biceps') {
+      selectedExerciseList = bicepExerciseList;
+    } else if (ex == 'triceps') {
+      selectedExerciseList = tricepsExerciseList;
+    } else if (ex == 'forearms') {
+      selectedExerciseList = forearmExerciseList;
+    } else if (ex == 'abs') {
+      selectedExerciseList = absExerciseList;
+    } else if (ex == 'quads') {
+      selectedExerciseList = quadsExerciseList;
+    } else if (ex == 'hamstrings') {
+      selectedExerciseList = hamstringsExerciseList;
+    } else if (ex == 'glutes') {
+      selectedExerciseList = glutesExerciseList;
+    } else if (ex == 'calves') {
+      selectedExerciseList = calvesExerciseList;
+    } else if (ex == 'traps'){
+      selectedExerciseList = trapsExerciseList;
+    }
+
+    return selectedExerciseList;
+  }
+
 
 
 }
