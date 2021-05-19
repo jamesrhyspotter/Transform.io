@@ -15,8 +15,8 @@ class ExerciseCardScreenProvider with ChangeNotifier {
 
   var workoutSetList = new Map();
   Workout workout;
-  List<String> exercises = [];
-  String currentExercise;
+  List<Exercise> exercises = [];
+  Exercise currentExercise;
   List<int> setCountPerExerciseList;
 
   List<TrainingPrinciple> trainingPrincipleList;
@@ -31,10 +31,9 @@ class ExerciseCardScreenProvider with ChangeNotifier {
 
   //CONSTRUCTOR ----------------------------------------------------------------
 
-  ExerciseCardScreenProvider(this.exercises){
+  ExerciseCardScreenProvider(this.workout){
 
-
-
+    exercises = this.workout.outputExerciseList;
 
     this.currentExercise = exercises[0];
     this.setCountPerExerciseList = List.filled(this.exercises.length, 0);
@@ -68,7 +67,7 @@ class ExerciseCardScreenProvider with ChangeNotifier {
   }
 
 // SET PAGE METHOD --------------------------------------------------------------
-  setCurrentExercise(String name){
+  setCurrentExercise(Exercise name){
     this.currentExercise = name;
 
     notifyListeners();
@@ -77,7 +76,7 @@ class ExerciseCardScreenProvider with ChangeNotifier {
 //WORKOUT METHODS --------------------------------------------------------------
 
 
-  incrementSetCounter(String name){
+  incrementSetCounter(Exercise name){
     int index = this.exercises.indexOf(this.currentExercise);
     setCountPerExerciseList[index]++;
 
@@ -95,7 +94,7 @@ class ExerciseCardScreenProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  setSetRepsWeightandRPE(String exerciseName, String reps, int weight, int rpe){
+  setSetRepsWeightandRPE(Exercise exerciseName, String reps, int weight, int rpe){
     print(exerciseName);
     print(this.exercises.indexOf(exerciseName));
     print(reps);

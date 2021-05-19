@@ -37,4 +37,15 @@ class SetWorkoutProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+
+  void reorderWorkout(int oldIndex, int newIndex){
+    if (oldIndex < newIndex) {
+          newIndex -= 1;
+        }
+        final Exercise item = this.workout.outputExerciseList.removeAt(oldIndex);
+        this.workout.outputExerciseList.insert(newIndex, item);
+
+        notifyListeners();
+  }
+
 }

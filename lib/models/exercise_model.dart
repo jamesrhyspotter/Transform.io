@@ -14,6 +14,7 @@ class Exercise {
   double exerciseExperiencePoints;
   TrainingPrinciple _advancedTrainingPrinciple;
   Widget icon;
+  Image image;
 
 
   TrainingPrinciple get advancedTrainingPrinciple => _advancedTrainingPrinciple;
@@ -28,6 +29,10 @@ class Exercise {
     this.name = name;
     this.targetMuscles = targetMuscles;
     this.equipment = equipment;
+  }
+
+  setImage(String path){
+    this.image =  Image(image: AssetImage(path));
   }
 
 

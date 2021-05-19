@@ -42,7 +42,7 @@ class ExerciseCardScreen extends StatelessWidget {
 
     return ChangeNotifierProvider<ExerciseCardScreenProvider>(
       create: (_) {
-        return ExerciseCardScreenProvider(this.exerciseNames);
+        return ExerciseCardScreenProvider(this.workout);
       },
       child: Consumer<ExerciseCardScreenProvider>(
         builder: (context, exerciseScreenProvider, child) {
@@ -73,11 +73,13 @@ class ExerciseCardScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                    exerciseScreenProvider.currentExercise,
+                                    exerciseScreenProvider.currentExercise.name,
                                     style:
                                     GoogleFonts.montserrat(fontSize: 18)),
                                 CircleAvatar(
-                                  backgroundColor: Colors.amber[800],
+                                  backgroundColor: Colors.black54,
+                                  child: exerciseScreenProvider.currentExercise.image,
+
                                   // child: Image(image: AssetImage(exerciseScreenProvider.getIcon())),
                                 ),
                               ],
@@ -108,7 +110,7 @@ class ExerciseCardScreen extends StatelessWidget {
                           ),
                           Container(
                             height: height * .3,
-                            child: Image(image: AssetImage('lib/assets/prometheus_white_orange/full_body_white.png')),
+                            child: exerciseScreenProvider.currentExercise.image,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(
@@ -164,7 +166,7 @@ class ExerciseCardScreen extends StatelessWidget {
                                                               children: [
                                                                 Heading2(
                                                                     exerciseScreenProvider
-                                                                        .currentExercise),
+                                                                        .currentExercise.name),
                                                                 Heading3('Set ' +
                                                                     (1 + exerciseScreenProvider.setCountPerExerciseList[exerciseScreenProvider.exercises.indexOf(exerciseScreenProvider.currentExercise)])
                                                                         .toString()),
@@ -432,7 +434,7 @@ class ExerciseCardScreen extends StatelessWidget {
                                                               children: [
                                                                 Heading2(
                                                                     exerciseScreenProvider
-                                                                        .currentExercise),
+                                                                        .currentExercise.name),
                                                                 Heading3('Set ' +
                                                                     (1 + exerciseScreenProvider.setCountPerExerciseList[exerciseScreenProvider.exercises.indexOf(exerciseScreenProvider.currentExercise)])
                                                                         .toString()),
@@ -623,7 +625,7 @@ class ExerciseCardScreen extends StatelessWidget {
                               side: BorderSide(color: Colors.amber[800])),
                           onPressed: () {
                             exerciseScreenProvider.setCurrentExercise(
-                                this.workoutExercises[index].name);
+                                this.workoutExercises[index]);
                           },
                           color: exerciseScreenProvider.currentExercise !=
                                   this.workoutExercises[index].name

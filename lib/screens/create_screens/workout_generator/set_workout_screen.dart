@@ -71,7 +71,7 @@ class SetWorkoutScreen extends StatelessWidget {
                             key: Key('$index'),
                             child: ListTile(
                                 key: Key('$index'),
-                                leading: CircleAvatar(maxRadius: 25, child: Image(image: AssetImage('lib/assets/prometheus_white_orange/full_body_white.png')), backgroundColor: Colors.black12,),
+                                leading: CircleAvatar(maxRadius: 25, child: _items[index].image, backgroundColor: Colors.black12,),
                                 title: Text((index + 1).toString() + '. ${_items[index].name}', style: GoogleFonts.montserrat()),
                                 subtitle: Row(
                                   children: [
@@ -155,13 +155,7 @@ class SetWorkoutScreen extends StatelessWidget {
                         )
                     ],
                     onReorder: (int oldIndex, int newIndex) {
-                      // setState(() {
-                      //   if (oldIndex < newIndex) {
-                      //     newIndex -= 1;
-                      //   }
-                      //   final int item = _items.removeAt(oldIndex);
-                      //   _items.insert(newIndex, item);
-                      // });
+                      setWorkoutProvider.reorderWorkout(oldIndex, newIndex);
                     },
                   ),
                 ),
@@ -222,7 +216,7 @@ class SetWorkoutScreen extends StatelessWidget {
                                                 key: Key('$index2'),
                                                 child:  ListTile(
                                                   key: Key('$index2'),
-                                                  leading: CircleAvatar(child: Icon(Icons.account_circle_sharp, color: Colors.white,), backgroundColor: Colors.amber[800],),
+                                                  leading: CircleAvatar(child: optionExercises[index2].image, backgroundColor: Colors.black12,),
                                                   title: Text('${optionExercises[index2].name}', style: GoogleFonts.montserrat()),
                                                   subtitle: Row(
                                                     children: [
@@ -235,7 +229,7 @@ class SetWorkoutScreen extends StatelessWidget {
                                                     ],
                                                   ),
                                                   trailing: FlatButton(
-                                                    child: Icon(Icons.add, color: Colors.white),
+                                                    child: (!setWorkoutProvider.workout.outputExerciseList.contains(optionExercises[index2]) ? Icon(Icons.add, color: Colors.white) : Icon(Icons.check, color: Colors.white)),
                                                     onPressed: (){
                                                       Navigator.of(context).pop();
 

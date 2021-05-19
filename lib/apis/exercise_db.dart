@@ -7,10 +7,11 @@ class ExerciseDataBase {
 
 
 
+
   List<Exercise> chestExerciseList=[
 
     //Barbell
-    Exercise('Bench Press', ['Chest', 'Shoulders', 'Triceps'], ['Barbell']),
+    Exercise('Bench Press', ['Chest', 'Shoulders', 'Triceps'], ['Barbell'],),
     Exercise('Incline Bench Press', ['Chest', 'Shoulders', 'Triceps'], ['Barbell']),
     Exercise('Decline Bench Press', ['Chest', 'Shoulders', 'Triceps'], ['Barbell']),
     Exercise('Landmine Press', ['Chest', 'Shoulders', 'Triceps'], ['Barbell']),
@@ -701,6 +702,8 @@ class ExerciseDataBase {
       }
     }
 
+    setExerciseImage(outputList);
+
     return outputList;
   }
 
@@ -738,9 +741,58 @@ class ExerciseDataBase {
     } else if (ex == 'traps'){
       selectedExerciseList = trapsExerciseList;
     }
-
+    setExerciseImage(selectedExerciseList);
     return selectedExerciseList;
   }
+
+  setExerciseImage(List<Exercise> inputList){
+    String path = ' ';
+
+    for(int i = 0; i < inputList.length; i++){
+
+      String targetMuscle = inputList[i].targetMuscles[0].toLowerCase();
+
+      if(targetMuscle == 'chest'){
+        path =  'lib/assets/prometheus_white_orange/chest.png';
+      }else if(targetMuscle == 'anterior deltoids'){
+        path = 'lib/assets/prometheus_white_orange/front_delts.png';
+      }else if(targetMuscle == 'lateral deltoids'){
+        path = 'lib/assets/prometheus_white_orange/side_delts.png';
+      }else if(targetMuscle == 'rear deltoids'){
+        path = 'lib/assets/prometheus_white_orange/reardeltsandrhomboids.png';
+      }else if(targetMuscle == 'abs'){
+        path = 'lib/assets/prometheus_white_orange/abs.png';
+      }else if(targetMuscle == 'obliques'){
+        path = 'lib/assets/prometheus_white_orange/obliques.png';
+      }else if(targetMuscle == 'quads'){
+        path = 'lib/assets/prometheus_white_orange/quads.png';
+      }else if(targetMuscle == 'biceps'){
+        path = 'lib/assets/prometheus_white_orange/biceps.png';
+      }else if(targetMuscle == 'forearms'){
+        path = 'lib/assets/prometheus_white_orange/forearms.png';
+      }else if(targetMuscle == 'traps'){
+        path = 'lib/assets/prometheus_white_orange/traps.png';
+      }else if(targetMuscle == 'lats'){
+        path = 'lib/assets/prometheus_white_orange/lats.png';
+      }else if(targetMuscle == 'triceps'){
+        path = 'lib/assets/prometheus_white_orange/triceps.png';
+      }else if(targetMuscle == 'lower back'){
+        path = 'lib/assets/prometheus_white_orange/lower_back.png';
+      }else if(targetMuscle == 'glutes'){
+        path = 'lib/assets/prometheus_white_orange/glutes.png';
+      }else if(targetMuscle == 'hamstrings'){
+        path = 'lib/assets/prometheus_white_orange/hamstrings.png';
+      }else if(targetMuscle == 'calves'){
+        path = 'lib/assets/prometheus_white_orange/calves.png';
+      }
+
+
+      inputList[i].setImage(path);
+    }
+
+  }
+
+
 
 
 
