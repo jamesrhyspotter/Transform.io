@@ -18,6 +18,7 @@ class ExerciseCardScreenProvider with ChangeNotifier {
   List<Exercise> exercises = [];
   Exercise currentExercise;
   List<int> setCountPerExerciseList;
+  int index;
 
   List<TrainingPrinciple> trainingPrincipleList;
   TrainingPrinciple selectedPrinciple;
@@ -31,7 +32,7 @@ class ExerciseCardScreenProvider with ChangeNotifier {
 
   //CONSTRUCTOR ----------------------------------------------------------------
 
-  ExerciseCardScreenProvider(this.workout){
+  ExerciseCardScreenProvider(this.workout, this.index){
 
     exercises = this.workout.outputExerciseList;
 
@@ -45,7 +46,11 @@ class ExerciseCardScreenProvider with ChangeNotifier {
       workoutSetList[this.exercises[i]] = [];
     }
 
+    setCurrentExercise(exercises[index]);
+
   }
+
+
 
   //TIMER METHODS --------------------------------------------------------------
 

@@ -7,6 +7,7 @@ class SetWorkoutProvider extends ChangeNotifier {
 
   Workout workout;
   List<Exercise> optionExercises =[];
+  List<int> setsPerExercise;
 
   SetWorkoutProvider(Workout inputWorkout){
     this.workout = inputWorkout;
@@ -20,6 +21,8 @@ class SetWorkoutProvider extends ChangeNotifier {
         optionExercises.add(eDb.getAllExercises(this.workout.targetMuscles[j])[k]);
       }
     }
+
+    setsPerExercise = new List(this.workout.outputExerciseList.length);
 
   }
 

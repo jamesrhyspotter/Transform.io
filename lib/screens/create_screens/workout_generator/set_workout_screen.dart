@@ -5,6 +5,7 @@ import 'package:transform_dot_io/apis/exercise_db.dart';
 import 'package:transform_dot_io/apis/muscle_icons.dart';
 import 'package:transform_dot_io/models/exercise_model.dart';
 import 'package:transform_dot_io/models/workout_model.dart';
+import 'package:transform_dot_io/providers/exercise_card_screen_provider.dart';
 import 'package:transform_dot_io/providers/set_workout_provider.dart';
 
 import 'exercise_card_screen.dart';
@@ -54,7 +55,7 @@ class SetWorkoutScreen extends StatelessWidget {
         builder: (context, setWorkoutProvider, child){
           return Scaffold(
             appBar: AppBar(
-              title: Text('Set Your Workout', style: GoogleFonts.montserrat()),
+              title: Text('Your Workout', style: GoogleFonts.montserrat()),
             ),
             body: Column(
               children: [
@@ -71,16 +72,18 @@ class SetWorkoutScreen extends StatelessWidget {
                             key: Key('$index'),
                             child: ListTile(
                                 key: Key('$index'),
-                                leading: CircleAvatar(maxRadius: 25, child: _items[index].image, backgroundColor: Colors.black12,),
-                                title: Text((index + 1).toString() + '. ${_items[index].name}', style: GoogleFonts.montserrat()),
+                               // leading: CircleAvatar(maxRadius: 25, child: _items[index].image, backgroundColor: Colors.black12,),
+                                title: Text((index + 1).toString() + '. ${_items[index].name}', style: GoogleFonts.montserrat(fontSize: 16)),
+                                leading: _items[index].image,
                                 subtitle: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Icon(Icons.star_border, color: Colors.amber[800],),
-                                    Icon(Icons.star_border, color: Colors.amber[800]),
-                                    Icon(Icons.star_border, color: Colors.amber[800]),
-                                    Icon(Icons.star_border, color: Colors.amber[800]),
-                                    Icon(Icons.star_border, color: Colors.amber[800]),
-                                    Icon(Icons.star, color: Colors.amber[800]),
+                                    // Icon(Icons.looks_one_rounded, color: Colors.amber[500],),
+                                    // Icon(Icons.looks_two_rounded, color: Colors.amber[600],),
+                                    // Icon(Icons.looks_3_rounded, color: Colors.amber[700]),
+                                    // Icon(Icons.looks_4_rounded, color: Colors.amber[800]),
+                                    // Icon(Icons.looks_5_rounded, color: Colors.amber[900]),
+                                    Text(_items[index].targetMuscles.toString(), style: GoogleFonts.montserrat(fontSize: 12, color: Colors.grey)),
                                   ],
                                 ),
                                 trailing: FlatButton(
@@ -117,25 +120,71 @@ class SetWorkoutScreen extends StatelessWidget {
                                                   height: height*0.2,
                                                   child: Column(
                                                     children: [
-                                                    RaisedButton(
-                                                      shape: RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius.circular(18.0),
-                                                          side: BorderSide(color: Colors.amber[800])),
-                                                      onPressed: (){
+                                                      RaisedButton(
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius.circular(18.0),
+                                                            side: BorderSide(color: Colors.amber[800])),
+                                                        onPressed: (){
+                                                          //setWorkoutProvider.removeExerciseFromWorkout(_items[index]);
+                                                          //TODO - push exercise card screen just for this exercise
+                                                          Navigator.of(context).pop();
+                                                          Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder: (context) => ExerciseCardScreen(this.workout, index))
+                                                          );
+                                                        },
+                                                        child: Row(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                          children: [
+                                                            Text('Input Sets'),
+                                                            Icon(Icons.arrow_forward),
+                                                          ],
+                                                        ),
+                                                        color: Colors.black12,
+
+
+                                                      ),
+
+                                                      RaisedButton(
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius.circular(18.0),
+                                                            side: BorderSide(color: Colors.amber[800])),
+                                                        onPressed: (){
+                                                          //setWorkoutProvider.removeExerciseFromWorkout(_items[index]);
+                                                          Navigator.of(context).pop();
+
+                                                        },
+                                                        child: Row(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                          children: [
+                                                            Text(options[2]),
+                                                            iconList[2],
+                                                          ],
+                                                        ),
+                                                        color: Colors.black12,
+
+
+                                                      ),
+                                                      RaisedButton(
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius.circular(18.0),
+                                                            side: BorderSide(color: Colors.amber[800])),
+                                                        onPressed: (){
                                                           setWorkoutProvider.removeExerciseFromWorkout(_items[index]);
                                                           Navigator.of(context).pop();
                                                         },
-                                                              child: Row(
-                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                children: [
-                                                                  Text(options[1]),
-                                                                  iconList[0],
-                                                                ],
-                                                              ),
-                                                              color: Colors.black12,
+                                                        child: Row(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                          children: [
+                                                            Text(options[1]),
+                                                            iconList[0],
+                                                          ],
+                                                        ),
+                                                        color: Colors.black12,
 
 
-                                                            ),
+                                                      ),
                                                     ],
                                                   ),
                                                 ),
@@ -164,7 +213,7 @@ class SetWorkoutScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      FlatButton(onPressed: (){}, child: Text('Refresh All', style: GoogleFonts.montserrat()), color: Colors.amber[800],),
+                      FlatButton(onPressed: (){}, child: Text('Save & Exit', style: GoogleFonts.montserrat()), color: Colors.amber[800],),
                       FloatingActionButton(
                         child: Icon(Icons.add, color: Colors.white,),
                         backgroundColor: Colors.amber[800],
@@ -216,16 +265,11 @@ class SetWorkoutScreen extends StatelessWidget {
                                                 key: Key('$index2'),
                                                 child:  ListTile(
                                                   key: Key('$index2'),
-                                                  leading: CircleAvatar(child: optionExercises[index2].image, backgroundColor: Colors.black12,),
+                                                  leading: optionExercises[index2].image,
                                                   title: Text('${optionExercises[index2].name}', style: GoogleFonts.montserrat()),
                                                   subtitle: Row(
                                                     children: [
-                                                      Icon(Icons.star_border, color: Colors.amber[800],),
-                                                      Icon(Icons.star_border, color: Colors.amber[800]),
-                                                      Icon(Icons.star_border, color: Colors.amber[800]),
-                                                      Icon(Icons.star_border, color: Colors.amber[800]),
-                                                      Icon(Icons.star_border, color: Colors.amber[800]),
-                                                      Icon(Icons.star, color: Colors.amber[800]),
+                                                      Text(optionExercises[index2].targetMuscles.toString()),
                                                     ],
                                                   ),
                                                   trailing: FlatButton(
@@ -255,8 +299,8 @@ class SetWorkoutScreen extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ExerciseCardScreen(this.workout)));
-                      }, child: Text('Go', style: GoogleFonts.montserrat()), color: Colors.amber[800]),
+                                builder: (context) => ExerciseCardScreen(this.workout, 0)));
+                      }, child: Text('Card View', style: GoogleFonts.montserrat()), color: Colors.amber[800]),
 
                     ],
                   ),

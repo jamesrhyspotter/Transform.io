@@ -20,8 +20,9 @@ class ExerciseCardScreen extends StatelessWidget {
   List<Exercise> workoutExercises = [];
   List<String> exerciseNames;
   List<TrainingPrinciple> trainingPrincipleList;
+  int startIndex;
 
-  ExerciseCardScreen(this.workout) {
+  ExerciseCardScreen(this.workout, this.startIndex) {
     final List<Exercise> workoutExercises = this.workout.outputExerciseList;
     this.workoutExercises = workoutExercises;
 
@@ -34,6 +35,8 @@ class ExerciseCardScreen extends StatelessWidget {
 
     TrainingPrincipleDB tpDb = new TrainingPrincipleDB();
     trainingPrincipleList = tpDb.trainingPrincipleList;
+
+    this.startIndex = startIndex;
   }
 
   @override
@@ -42,7 +45,7 @@ class ExerciseCardScreen extends StatelessWidget {
 
     return ChangeNotifierProvider<ExerciseCardScreenProvider>(
       create: (_) {
-        return ExerciseCardScreenProvider(this.workout);
+        return ExerciseCardScreenProvider(this.workout, this.startIndex);
       },
       child: Consumer<ExerciseCardScreenProvider>(
         builder: (context, exerciseScreenProvider, child) {
@@ -85,28 +88,51 @@ class ExerciseCardScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text('Exercise Level: ',
-                                    style:
-                                        GoogleFonts.montserrat(fontSize: 18)),
-                                Row(
-                                  children: [
-                                    Icon(Icons.star_border, color: Colors.amber[800],),
-                                    Icon(Icons.star_border, color: Colors.amber[800],),
-                                    Icon(Icons.star_border, color: Colors.amber[800],),
-                                    Icon(Icons.star_border, color: Colors.amber[800],),
-                                    Icon(Icons.star_border, color: Colors.amber[800],),
-                                    Icon(Icons.star, color: Colors.amber[800],),
-                                    Icon(Icons.star, color: Colors.amber[800],),
-                                    Icon(Icons.star, color: Colors.amber[800],),
-                                  ],
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Container(
+                                height: 20,
+                                width: 155,
+                                child: ListView.builder(
+
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: exerciseScreenProvider
+                                        .setCountPerExerciseList[
+                                    exerciseScreenProvider.exercises
+                                        .indexOf(exerciseScreenProvider
+                                        .currentExercise)],
+                                    itemBuilder: (BuildContext context, int index){
+
+                                      List<Color> colorList = [
+                                        Colors.amber[400],
+                                        Colors.amber[500],
+                                        Colors.amber[600],
+                                        Colors.amber[700],
+                                        Colors.amber[800],
+                                        Colors.amber[900],
+                                      ];
+
+                                      int colorIndex = 0;
+
+                                      List<Icon> iconList = [
+                                        Icon(Icons.looks_one_rounded, color: colorList[colorIndex],),
+                                        Icon(Icons.looks_two_rounded, color: colorList[colorIndex + 1]),
+                                        Icon(Icons.looks_3_rounded, color: colorList[colorIndex + 2]),
+                                        Icon(Icons.looks_4_rounded, color: colorList[colorIndex + 3]),
+                                        Icon(Icons.looks_5_rounded, color: colorList[colorIndex + 4]),
+                                        Icon(Icons.looks_6_rounded, color: colorList[colorIndex + 5]),
+                                      ];
+
+
+
+
+
+                                      return iconList[index];
+                                    }
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                           Container(
                             height: height * .3,
@@ -627,7 +653,7 @@ class ExerciseCardScreen extends StatelessWidget {
                             exerciseScreenProvider.setCurrentExercise(
                                 this.workoutExercises[index]);
                           },
-                          color: exerciseScreenProvider.currentExercise !=
+                          color: exerciseScreenProvider.currentExercise.name !=
                                   this.workoutExercises[index].name
                               ? Colors.black26
                               : Colors.amber[800],

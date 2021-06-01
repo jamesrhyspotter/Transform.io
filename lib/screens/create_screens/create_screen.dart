@@ -9,6 +9,10 @@ import 'package:transform_dot_io/screens/individual_muscle_screen.dart';
 
 class CreateScreen extends StatelessWidget {
   String title = 'Create';
+
+
+  Color color1 = Colors.blue;
+  Color color2 = Colors.amber[800];
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -18,8 +22,8 @@ class CreateScreen extends StatelessWidget {
           preferredSize: Size(double.infinity, 60),
           child: AppBar(
             bottom: TabBar(
-              labelColor: Colors.amber[800],
-              indicatorColor: Colors.amber[800],
+              labelColor: color2,
+              indicatorColor: color2,
               tabs: [
                 Tab(child: Text('Workout', style: GoogleFonts.montserrat())),
                 Tab(child: Text('Plan', style: GoogleFonts.montserrat())),

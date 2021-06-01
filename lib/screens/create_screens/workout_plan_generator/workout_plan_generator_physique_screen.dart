@@ -21,73 +21,88 @@ class WorkoutPlanGeneratorPhysiqueScreen extends StatelessWidget {
       child: Consumer<WorkoutPlanProvider>(
         builder: (context, physiqueScreenProvider, child){
           return Scaffold(
-            body: Column(
-              children: [
-                Container(
-                    height: 50,
-                    child: physiqueScreenProvider.selectedMuscleList.length == 0 ? SizedBox(): Container(
-                      margin: EdgeInsets.symmetric(vertical: 10.0),
-                      height: height /20,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: physiqueScreenProvider.selectedMuscleList.length,
-                        itemBuilder: (context, index){
+            body: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
 
-                          String value = physiqueScreenProvider.selectedMuscleList[index];//workoutProvider.disciplinesList[index];
+                      Color(0xC32F27),
+                      Color(0x780116),
+                      Colors.blue,
+                    ],
+                  )
+              ),
+              child: Column(
+                children: [
+                  Container(
 
-                          if(value == null){
-                            return SizedBox();
-                          }
-                          return Padding(
-                            padding: const EdgeInsets.only(left:8.0, right: 8.0),
-                            child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                  side: BorderSide(color: Colors.blue)),
-                              onPressed: () {
+                      height: 50,
+                      child: physiqueScreenProvider.selectedMuscleList.length == 0 ? SizedBox(): Container(
+                        margin: EdgeInsets.symmetric(vertical: 10.0),
+                        height: height /20,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: physiqueScreenProvider.selectedMuscleList.length,
+                          itemBuilder: (context, index){
 
-                              },
-                              color: Colors.black26,
-                              textColor: Colors.white,
-                              child: Text(value.toUpperCase(),
-                                  style: TextStyle(fontSize: 12)),
-                            ),
-                          );
-                        },
+                            String value = physiqueScreenProvider.selectedMuscleList[index];//workoutProvider.disciplinesList[index];
+
+                            if(value == null){
+                              return SizedBox();
+                            }
+                            return Padding(
+                              padding: const EdgeInsets.only(left:8.0, right: 8.0),
+                              child: RaisedButton(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    side: BorderSide(color: Colors.blue)),
+                                onPressed: () {
+
+                                },
+                                color: Colors.black26,
+                                textColor: Colors.white,
+                                child: Text(value.toUpperCase(),
+                                    style: TextStyle(fontSize: 12)),
+                              ),
+                            );
+                          },
+                        ),
+                      )
+                  ),
+                  Column(
+                    children: [
+                      Container(
+                        height: physiqueScreenProvider.switched ? 50 : 0,
                       ),
-                    )
-                ),
-                Column(
-                  children: [
-                    Container(
-                      height: physiqueScreenProvider.switched ? 50 : 0,
-                    ),
-                    Container(
-                      child: Container(
-                        height: physiqueScreenProvider.yDimension,
-                        width: physiqueScreenProvider.xDimension,
+                      Container(
                         child: Container(
-                          child: GestureDetector(
-                            onTapDown: (details) {
-                              coordsXList.add(details.globalPosition.dx);
-                              coordsYList.add(details.globalPosition.dy);
-                              physiqueScreenProvider.selectMuscle(details.globalPosition.dx, details.globalPosition.dy);
-                            },
-                            child: CustomPaint(
-                              size: Size.square(50), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
-                              painter: physiqueScreenProvider.currentView,
+                          height: physiqueScreenProvider.yDimension,
+                          width: physiqueScreenProvider.xDimension,
+                          child: Container(
+                            child: GestureDetector(
+                              onTapDown: (details) {
+                                coordsXList.add(details.globalPosition.dx);
+                                coordsYList.add(details.globalPosition.dy);
+                                physiqueScreenProvider.selectMuscle(details.globalPosition.dx, details.globalPosition.dy);
+                              },
+                              child: CustomPaint(
+                                size: Size.square(50), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+                                painter: physiqueScreenProvider.currentView,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Container(
-                  height: 100,
+                    ],
+                  ),
+                  Container(
+                    height: 100,
 
-                )
-              ],
+                  )
+                ],
+              ),
             ),
             floatingActionButton: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

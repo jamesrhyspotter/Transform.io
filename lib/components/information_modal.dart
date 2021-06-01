@@ -68,7 +68,7 @@ class InformationModal extends StatelessWidget {
                             child: ListTile(
                               title: Text('Set ' + (index+1).toString(),  style: GoogleFonts.montserrat()),
                               subtitle: Text(this.workout.outputExerciseList[index].advancedTrainingPrinciple.toString(),  style: GoogleFonts.montserrat()),
-                              trailing: Checkbox(value: false),
+                              trailing: Checkbox(value: false, onChanged: (value) {},),
                             ),
                           );
                         }

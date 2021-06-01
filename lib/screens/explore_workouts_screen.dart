@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:transform_dot_io/components/action_button.dart';
+import 'package:transform_dot_io/screens/workout_library.dart';
 
-class WorkoutLibraryScreen extends StatelessWidget {
+class ExploreWorkoutsScreen extends StatelessWidget {
 
   String title = 'Workout Library';
   @override
@@ -26,7 +27,7 @@ class WorkoutLibraryScreen extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            ActionButton('Test', 'Test'),
+            WorkoutLibrary(),
             ActionButton('Test', 'Test'),
             ActionButton('Test', 'Test'),
           ],

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:transform_dot_io/screens/create_screens/create_screen.dart';
 import 'package:transform_dot_io/screens/locker_screens/my_locker_screen.dart';
-import 'package:transform_dot_io/screens/workout_library_screen.dart';
+import 'package:transform_dot_io/screens/explore_workouts_screen.dart';
 //
 //
 // class ScreenProvider with ChangeNotifier{
@@ -55,7 +55,7 @@ class ScreenProvider with ChangeNotifier{
 
 
   final List<Widget> _screens = [
-    WorkoutLibraryScreen(),
+    ExploreWorkoutsScreen(),
     CreateScreen(),
     MyLockerScreen(),
   ];
