@@ -43,10 +43,6 @@ class WorkoutPreferenceScreen extends StatelessWidget {
                 Divider(
                   thickness: 1.0,
                 ),
-                // Heading3('Select Muscle Groups'),
-                // PillButtonRow(workoutProvider.muscleGroupList),
-                Heading3('Select Discipline'),
-                PillButtonRow(screenProvider.disciplinesList),
                 Heading3('Select Equipment'),
                 PillButtonRow(screenProvider.equipmentList),
                 Heading3('Difficulty'),

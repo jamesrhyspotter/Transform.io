@@ -108,7 +108,7 @@ class WorkoutLibrary extends StatelessWidget {
                 children: [
                   Icon(Icons.cloud_queue_sharp),
                   SizedBox(width: width * 0.02,),
-                  Text('Suggested', style: GoogleFonts.montserrat()),
+                  Text('Pre-Made', style: GoogleFonts.montserrat()),
                 ],
               ),
             ),
