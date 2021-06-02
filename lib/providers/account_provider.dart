@@ -11,6 +11,8 @@ class AccountProvider with ChangeNotifier {
   List<Exercise> exerciseHistory;
   Color primaryColor;
   Workout currentWorkout;
+  String _email;
+  String _password;
 
 
 }

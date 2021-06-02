@@ -106,9 +106,9 @@ class WorkoutLibrary extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Icon(Icons.cloud_queue_sharp),
+                  Icon(Icons.history),
                   SizedBox(width: width * 0.02,),
-                  Text('Pre-Made', style: GoogleFonts.montserrat()),
+                  Text('History', style: GoogleFonts.montserrat()),
                 ],
               ),
             ),
