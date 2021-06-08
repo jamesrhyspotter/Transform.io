@@ -45,6 +45,8 @@ class WorkoutPreferenceScreen extends StatelessWidget {
                 ),
                 Heading3('Select Equipment'),
                 PillButtonRow(screenProvider.equipmentList),
+                Heading3('Select Discipline (s)'),
+                PillButtonRow(screenProvider.disciplinesList),
                 Heading3('Difficulty'),
                 Slider(
                   value: screenProvider.sliderValue,

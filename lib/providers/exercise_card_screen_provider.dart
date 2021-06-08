@@ -116,6 +116,11 @@ class ExerciseCardScreenProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  //SAVE WORKOUT
+  void logWorkout(Map workoutSetList){
+    print(workoutSetList);
+  }
+
 
   //ADVANCED TRAINING PRINCIPLE METHODS -----------------------------------------
 

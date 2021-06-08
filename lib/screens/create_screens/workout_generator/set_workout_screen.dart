@@ -120,31 +120,31 @@ class SetWorkoutScreen extends StatelessWidget {
                                                   height: height*0.2,
                                                   child: Column(
                                                     children: [
-                                                      RaisedButton(
-                                                        shape: RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.circular(18.0),
-                                                            side: BorderSide(color: Colors.amber[800])),
-                                                        onPressed: (){
-                                                          //setWorkoutProvider.removeExerciseFromWorkout(_items[index]);
-                                                          //TODO - push exercise card screen just for this exercise
-                                                          Navigator.of(context).pop();
-                                                          Navigator.push(
-                                                              context,
-                                                              MaterialPageRoute(
-                                                                  builder: (context) => ExerciseCardScreen(this.workout, index))
-                                                          );
-                                                        },
-                                                        child: Row(
-                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                          children: [
-                                                            Text('Input Sets'),
-                                                            Icon(Icons.arrow_forward),
-                                                          ],
-                                                        ),
-                                                        color: Colors.black12,
-
-
-                                                      ),
+                                                      // RaisedButton(
+                                                      //   shape: RoundedRectangleBorder(
+                                                      //       borderRadius: BorderRadius.circular(18.0),
+                                                      //       side: BorderSide(color: Colors.amber[800])),
+                                                      //   onPressed: (){
+                                                      //     //setWorkoutProvider.removeExerciseFromWorkout(_items[index]);
+                                                      //     //TODO - push exercise card screen just for this exercise
+                                                      //     Navigator.of(context).pop();
+                                                      //     Navigator.push(
+                                                      //         context,
+                                                      //         MaterialPageRoute(
+                                                      //             builder: (context) => ExerciseCardScreen(this.workout, index))
+                                                      //     );
+                                                      //   },
+                                                      //   child: Row(
+                                                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      //     children: [
+                                                      //       Text('Input Sets'),
+                                                      //       Icon(Icons.arrow_forward),
+                                                      //     ],
+                                                      //   ),
+                                                      //   color: Colors.black12,
+                                                      //
+                                                      //
+                                                      // ),
 
                                                       RaisedButton(
                                                         shape: RoundedRectangleBorder(
@@ -300,7 +300,7 @@ class SetWorkoutScreen extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => ExerciseCardScreen(this.workout, 0)));
-                      }, child: Text('Card View', style: GoogleFonts.montserrat()), color: Colors.amber[800]),
+                      }, child: Text('Start Workout', style: GoogleFonts.montserrat()), color: Colors.amber[800]),
 
                     ],
                   ),

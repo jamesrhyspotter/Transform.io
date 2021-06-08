@@ -14,5 +14,11 @@ class AccountProvider with ChangeNotifier {
   String _email;
   String _password;
 
+  AccountProvider();
+
+  void logWorkout(Map workoutSetList){
+    print(workoutSetList);
+  }
+
 
 }
