@@ -129,7 +129,7 @@ class PhysiqueScreen extends StatelessWidget {
                 )),
                 SizedBox(width: 10,),
                 FlatButton(
-                    color: physiqueScreenProvider.selectedMuscleList.length > 0 ? Colors.white.withOpacity(0.8) : Colors.amber[800].withOpacity(0.1),
+                    color: physiqueScreenProvider.selectedMuscleList.length > 0 ? Colors.amber[800] : Colors.black12,
                     onPressed: () async {
 
                       if(physiqueScreenProvider.selectedMuscleList.length > 0){
@@ -142,7 +142,7 @@ class PhysiqueScreen extends StatelessWidget {
                         //await showInformationDialog(context);
                       }
 
-                    }, child: Text('Generate Workout', style: physiqueScreenProvider.selectedMuscleList.length > 0 ? GoogleFonts.montserrat(color: Colors.amber[800]) : GoogleFonts.montserrat(color: Colors.amber[800]),)
+                    }, child: Text('Generate Workout', style: physiqueScreenProvider.selectedMuscleList.length > 0 ? GoogleFonts.montserrat(color: Colors.white) : GoogleFonts.montserrat(color: Colors.amber[800]),)
                 ),
               ],
             ),

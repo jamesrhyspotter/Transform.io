@@ -18,6 +18,7 @@ class ExerciseCardScreen extends StatelessWidget {
   List<String> exerciseNames;
   List<TrainingPrinciple> trainingPrincipleList;
   int startIndex;
+  int buttonIndex = 0;
 
   ExerciseCardScreen(this.workout, this.startIndex) {
     final List<Exercise> workoutExercises = this.workout.outputExerciseList;
@@ -154,10 +155,11 @@ class ExerciseCardScreen extends StatelessWidget {
                                       1,
                                   itemBuilder:
                                       (BuildContext context, int index) {
-                                    if (index == 0) {
+
+                                    if (index == this.buttonIndex) {
                                       return Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.center,
                                         children: [
                                           RaisedButton(
                                             onPressed: () {
@@ -166,7 +168,7 @@ class ExerciseCardScreen extends StatelessWidget {
                                                   builder:
                                                       (BuildContext context) {
                                                     return Container(
-                                                      height: 500,
+                                                      height: height*0.48,
                                                       color: Colors.black12,
                                                       child: Column(
                                                         mainAxisAlignment:
@@ -604,6 +606,7 @@ class ExerciseCardScreen extends StatelessWidget {
                                     }
 
                                     return RaisedButton(
+
                                       onPressed: () {
                                         //exerciseScreenProvider.addSet(exerciseScreenProvider.currentExercise);
                                       },
@@ -678,7 +681,11 @@ class ExerciseCardScreen extends StatelessWidget {
 
                   Padding(
                     padding: const EdgeInsets.only(right: 8.0),
-                    child: FlatButton(
+                    child: RaisedButton(
+                      color: Colors.black26,
+                         shape: RoundedRectangleBorder(
+                             borderRadius: BorderRadius.circular(18.0),
+                             side: BorderSide(color: Colors.amber[800])),
                          //TODO save workout should push workout to library, asks if want to mark as complete
                          child: Text('Log Workout', style: GoogleFonts.montserrat(),),
                          onPressed: (){

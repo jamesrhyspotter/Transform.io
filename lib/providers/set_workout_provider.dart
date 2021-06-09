@@ -8,6 +8,7 @@ class SetWorkoutProvider extends ChangeNotifier {
   Workout workout;
   List<Exercise> optionExercises =[];
   List<int> setsPerExercise;
+  List<bool> isSuperset;
 
   SetWorkoutProvider(Workout inputWorkout){
     this.workout = inputWorkout;
@@ -24,11 +25,14 @@ class SetWorkoutProvider extends ChangeNotifier {
 
     setsPerExercise = new List(this.workout.outputExerciseList.length);
 
+    this.isSuperset = List.filled(this.workout.outputExerciseList.length, false);
+
   }
 
   void addExerciseToWorkout(Exercise inputExercise){
     if(!workout.outputExerciseList.contains(inputExercise)){
       this.workout.outputExerciseList.add(inputExercise);
+
     }
     notifyListeners();
   }
@@ -36,6 +40,7 @@ class SetWorkoutProvider extends ChangeNotifier {
   void removeExerciseFromWorkout(Exercise inputExercise){
     if(workout.outputExerciseList.contains(inputExercise)){
       this.workout.outputExerciseList.remove(inputExercise);
+      this.isSuperset.remove(this.workout.outputExerciseList.indexOf(inputExercise));
     }
     notifyListeners();
   }
@@ -49,6 +54,29 @@ class SetWorkoutProvider extends ChangeNotifier {
         this.workout.outputExerciseList.insert(newIndex, item);
 
         notifyListeners();
+  }
+
+  void setSuperSet(Exercise inputExercise){
+    int index = this.workout.outputExerciseList.indexOf(inputExercise);
+
+    if(index == this.workout.outputExerciseList.length - 1){
+      return null;
+    }
+
+    if(this.isSuperset[index] == true){
+      this.isSuperset[index] = false;
+      this.isSuperset[index + 1] = false;
+    }else{
+      this.isSuperset[index] = true;
+      this.isSuperset[index + 1] = true;
+    }
+
+    print(this.isSuperset);
+
+    notifyListeners();
+
+
+
   }
 
 }

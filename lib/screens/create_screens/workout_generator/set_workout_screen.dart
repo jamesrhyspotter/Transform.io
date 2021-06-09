@@ -75,16 +75,26 @@ class SetWorkoutScreen extends StatelessWidget {
                                // leading: CircleAvatar(maxRadius: 25, child: _items[index].image, backgroundColor: Colors.black12,),
                                 title: Text((index + 1).toString() + '. ${_items[index].name}', style: GoogleFonts.montserrat(fontSize: 16)),
                                 leading: _items[index].image,
-                                subtitle: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    // Icon(Icons.looks_one_rounded, color: Colors.amber[500],),
-                                    // Icon(Icons.looks_two_rounded, color: Colors.amber[600],),
-                                    // Icon(Icons.looks_3_rounded, color: Colors.amber[700]),
-                                    // Icon(Icons.looks_4_rounded, color: Colors.amber[800]),
-                                    // Icon(Icons.looks_5_rounded, color: Colors.amber[900]),
-                                    Text(_items[index].targetMuscles.toString(), style: GoogleFonts.montserrat(fontSize: 12, color: Colors.grey)),
-                                  ],
+                                 subtitle:// Row(
+                                //   mainAxisAlignment: MainAxisAlignment.end,
+                                //   children: [
+                                //     // Icon(Icons.looks_one_rounded, color: Colors.amber[500],),
+                                //     // Icon(Icons.looks_two_rounded, color: Colors.amber[600],),
+                                //     // Icon(Icons.looks_3_rounded, color: Colors.amber[700]),
+                                //     // Icon(Icons.looks_4_rounded, color: Colors.amber[800]),
+                                //     // Icon(Icons.looks_5_rounded, color: Colors.amber[900]),
+                                //     Text(_items[index].targetMuscles[0], style: GoogleFonts.montserrat(fontSize: 12, color: Colors.grey)),
+                                //   ],
+                                // ),
+                                Container(
+                                  height: height * 0.02,
+                                  child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: _items[index].targetMuscles.length,
+                                    itemBuilder: (BuildContext context, int i){
+                                      return Text(_items[index].targetMuscles[i] + ' ');
+                                    },
+                                  )
                                 ),
                                 trailing: FlatButton(
                                     child: Icon(Icons.more_horiz),
@@ -152,14 +162,15 @@ class SetWorkoutScreen extends StatelessWidget {
                                                             side: BorderSide(color: Colors.amber[800])),
                                                         onPressed: (){
                                                           //setWorkoutProvider.removeExerciseFromWorkout(_items[index]);
+                                                          setWorkoutProvider.setSuperSet(_items[index]);
                                                           Navigator.of(context).pop();
 
                                                         },
                                                         child: Row(
                                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                           children: [
-                                                            Text(options[2]),
-                                                            iconList[2],
+                                                            (setWorkoutProvider.isSuperset[index] == false) ? Text(options[2]) : Text('Set as individual exercise'),
+                                                            (setWorkoutProvider.isSuperset[index] == false) ? Icon(Icons.import_export_outlined): iconList[2],
                                                           ],
                                                         ),
                                                         color: Colors.black12,
