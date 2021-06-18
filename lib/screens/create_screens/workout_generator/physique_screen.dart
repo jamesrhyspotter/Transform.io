@@ -105,7 +105,30 @@ class PhysiqueScreen extends StatelessWidget {
                     ],
                   ),
                   Container(
-                      height: 100,
+                    height: 100,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: physiqueScreenProvider.imagePaths.length,
+                      itemBuilder: (BuildContext context, int index){
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CircleAvatar(
+
+                            backgroundColor: physiqueScreenProvider.getBackGroundColor(index),
+                            minRadius: 20,
+                            maxRadius: 35,
+                            backgroundImage: AssetImage(physiqueScreenProvider.imagePaths[index]),
+                            child: InkWell(
+
+
+                              onTap: (){
+                                physiqueScreenProvider.handleMusclePress(index);
+                              },
+                            ),
+                          ),
+                        );
+                      }
+                    ),
 
                   )
                 ],

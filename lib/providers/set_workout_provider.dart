@@ -40,6 +40,7 @@ class SetWorkoutProvider extends ChangeNotifier {
   void removeExerciseFromWorkout(Exercise inputExercise){
     if(workout.outputExerciseList.contains(inputExercise)){
       this.workout.outputExerciseList.remove(inputExercise);
+
       this.isSuperset.remove(this.workout.outputExerciseList.indexOf(inputExercise));
     }
     notifyListeners();

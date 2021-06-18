@@ -7,6 +7,48 @@ import 'package:transform_dot_io/models/workout_model.dart';
 
 class PhysiqueScreenProvider with ChangeNotifier {
 
+  //IMAGE PATHS  ---------------------------------------------------------------
+  List<String> imagePaths = [
+
+    'lib/assets/prometheus_white_orange/chest.png',
+    'lib/assets/prometheus_white_orange/front_delts.png',
+    'lib/assets/prometheus_white_orange/side_delts.png',
+    'lib/assets/prometheus_white_orange/abs.png',
+    'lib/assets/prometheus_white_orange/obliques.png',
+    'lib/assets/prometheus_white_orange/quads.png',
+    'lib/assets/prometheus_white_orange/biceps.png',
+    'lib/assets/prometheus_white_orange/forearms.png',
+    'lib/assets/prometheus_white_orange/traps.png',
+    'lib/assets/prometheus_white_orange/lats.png',
+    'lib/assets/prometheus_white_orange/reardeltsandrhomboids.png',
+    'lib/assets/prometheus_white_orange/triceps.png',
+    'lib/assets/prometheus_white_orange/lower_back.png',
+    'lib/assets/prometheus_white_orange/glutes.png',
+    'lib/assets/prometheus_white_orange/hamstrings.png',
+    'lib/assets/prometheus_white_orange/calves.png',
+    //
+  ];
+
+  //IMAGE LIST -----------------------------------------------------------------
+  List<String> muscles = [
+    'Chest',
+    'Front Delts',
+    'Side Delts',
+    'Abs',
+    'Obliques',
+    'Quads',
+    'Biceps',
+    'Forearms',
+    'Traps',
+    'Lats',
+    'Rear Delts and Rhomboids',
+    'Triceps',
+    'Lower Back',
+    'Glutes',
+    'Hamstrings',
+    'Calves',
+  ];
+
   //FEATURES -------------------------------------------------------------------
 
   //Variables for Physique Screen
@@ -176,7 +218,37 @@ class PhysiqueScreenProvider with ChangeNotifier {
     }
   }
 
-  //METHODS FOR PREFERENCES
+  //METHODS FOR BODY PART BUTTONS ----------------------------------------------
+  handleMusclePress(int index){
+
+    String selectedMuscle = ' ';
+
+
+
+    selectedMuscle = this.muscles[index];
+
+    if(selectedMuscleList.contains(selectedMuscle)){
+      selectedMuscleList.remove(selectedMuscle);
+    }else if(selectedMuscle != null){
+      selectedMuscleList.add(selectedMuscle);
+    }
+
+    currentView = drawDiagram(selectedMuscleList, frontFacing);
+
+    notifyListeners();
+  }
+
+  //GET COLOR
+
+  Color getBackGroundColor(int index){
+    if(selectedMuscleList.contains(this.muscles[index])){
+      return Colors.black38;
+    }
+    
+    return Colors.amber[800];
+  }
+
+  //METHODS FOR PREFERENCES ----------------------------------------------------
   void setSlider(double value) {
     sliderValue = value;
     notifyListeners();
