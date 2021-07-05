@@ -3,7 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:transform_dot_io/providers/screen_provider.dart';
 import 'package:transform_dot_io/screens/create_screens/create_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:transform_dot_io/screens/login_screen.dart';
+import 'package:transform_dot_io/screens/login_signup_screen/login_screen.dart';
+import 'package:transform_dot_io/screens/login_signup_screen/sign_up_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
 
       home: ChangeNotifierProvider(
           create: (_) => ScreenProvider() ,
-          child: loggedIn == true ? CurrentPage(): LoginScreen()),
+          child: loggedIn == true ? CurrentPage(): SignUpScreen()),
     );
   }
 }
