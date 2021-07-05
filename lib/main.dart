@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:transform_dot_io/providers/screen_provider.dart';
 import 'package:transform_dot_io/screens/create_screens/create_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:transform_dot_io/screens/login_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,6 +11,9 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
+  bool loggedIn = false;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,7 +23,7 @@ class MyApp extends StatelessWidget {
 
       home: ChangeNotifierProvider(
           create: (_) => ScreenProvider() ,
-          child: CurrentPage()),
+          child: loggedIn == true ? CurrentPage(): LoginScreen()),
     );
   }
 }
