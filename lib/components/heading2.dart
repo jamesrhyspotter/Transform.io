@@ -14,8 +14,8 @@ class Heading2 extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 20),
-      child: Text(value, style: GoogleFonts.montserrat(fontSize: 18)),
+      padding: const EdgeInsets.only(top: 4.0, bottom: 4.0, left: 20),
+      child: Text(value, style: GoogleFonts.montserrat(fontSize: 18, fontWeight: FontWeight.w200)),
     );
   }
 }

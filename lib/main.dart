@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
 
       home: ChangeNotifierProvider(
           create: (_) => ScreenProvider() ,
-          child: loggedIn == true ? CurrentPage(): SignUpScreen()),
+          child: loggedIn == false ? CurrentPage(): SignUpScreen()),
     );
   }
 }
@@ -38,12 +38,16 @@ class CurrentPage extends StatelessWidget {
     return Consumer<ScreenProvider>(
       builder: (context, screenProvider, child){
         return Scaffold(
-          appBar: AppBar(
-              title: Text(screenProvider.currentTitle(), style: GoogleFonts.montserrat(),),
-            actions: [
-              IconButton(icon: Icon(Icons.account_circle_sharp), onPressed: (){},),
-            ],
-          ),
+          // appBar: AppBar(
+          //   title: Text('Transform.io', style: GoogleFonts.montserrat(fontWeight: FontWeight.w200),),
+          // ),
+          // appBar: AppBar(
+          //     title: Text(screenProvider.currentTitle(), style: GoogleFonts.montserrat(),),
+          //   actions: [
+          //     IconButton(icon: Icon(Icons.account_circle_sharp), onPressed: (){},),
+          //   ],
+          // ),
+
           body: screenProvider.currentPage(),
           bottomNavigationBar: BottomNavigationBar(
             items: screenProvider.bottomNavigationBarItems,

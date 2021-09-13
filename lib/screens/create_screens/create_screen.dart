@@ -19,30 +19,30 @@ class CreateScreen extends StatelessWidget {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size(double.infinity, 60),
-          child: AppBar(
-            bottom: TabBar(
-              labelColor: color2,
-              indicatorColor: color2,
-              tabs: [
-                Tab(child: Text('Workout', style: GoogleFonts.montserrat())),
-                Tab(child: Text('Plan', style: GoogleFonts.montserrat())),
-                Tab(child: Text('Meal', style: GoogleFonts.montserrat())),
-                Tab(child: Text('Meal Plan', style: GoogleFonts.montserrat())),
-              ],
-            ),
-          ),
-        ),
-        body: TabBarView(
-          children: [
-            PhysiqueScreen(),
-            WorkoutPlanGeneratorPhysiqueScreen(),
-            LoginScreen(),
-            ActionButton('Generate A Meal Plan', 'Use AI and your own goals to \n generate a meal plan instantly!'),
-
-          ],
-        ),
+        // appBar: PreferredSize(
+        //   preferredSize: Size(double.infinity, 60),
+        //  // child:// AppBar(
+        //     // bottom: TabBar(
+        //     //   labelColor: color2,
+        //     //   indicatorColor: color2,
+        //     //   tabs: [
+        //     //     Tab(child: Text('Workout', style: GoogleFonts.montserrat())),
+        //     //     Tab(child: Text('Plan', style: GoogleFonts.montserrat())),
+        //     //     Tab(child: Text('Meal', style: GoogleFonts.montserrat())),
+        //     //     Tab(child: Text('Meal Plan', style: GoogleFonts.montserrat())),
+        //     //   ],
+        //     // ),
+        //  // ),
+        // ),
+         body: PhysiqueScreen(),// TabBarView(
+        //   children: [
+        //     PhysiqueScreen(),
+        //     WorkoutPlanGeneratorPhysiqueScreen(),
+        //     LoginScreen(),
+        //     ActionButton('Generate A Meal Plan', 'Use AI and your own goals to \n generate a meal plan instantly!'),
+        //
+        //   ],
+        // ),
       ),
     );
   }

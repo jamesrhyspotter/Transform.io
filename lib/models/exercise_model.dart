@@ -15,6 +15,7 @@ class Exercise {
   TrainingPrinciple _advancedTrainingPrinciple;
   Widget icon;
   Image image;
+  bool done = false;
 
 
   TrainingPrinciple get advancedTrainingPrinciple => _advancedTrainingPrinciple;
@@ -33,6 +34,10 @@ class Exercise {
 
   setImage(String path){
     this.image =  Image(image: AssetImage(path));
+  }
+
+  setDone(){
+    done = !done;
   }
 
 

@@ -47,6 +47,11 @@ class SignUpScreen extends StatelessWidget {
                     TextFormField(
                       decoration: InputDecoration(
                           border: UnderlineInputBorder(),
+                          labelText: 'Username'),
+                    ),
+                    TextFormField(
+                      decoration: InputDecoration(
+                          border: UnderlineInputBorder(),
                           labelText: 'Email'),
                     ),
                     TextFormField(

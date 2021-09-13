@@ -7,6 +7,36 @@ import 'package:transform_dot_io/models/workout_model.dart';
 
 class PhysiqueScreenProvider with ChangeNotifier {
 
+  //SCREEN STATES
+  static List<int> states = [0,1,2,3];
+  int currentStateIndex = 0;
+  int currentState;
+
+  // TITLES
+  static List titles = [
+    'Select Target Muscle(s)',
+    'Pull Down to Load workout',
+    'Pull Down to Start',
+    'Pull Down To End'
+  ];
+  String currentTitle = titles[0];
+
+  setState(){
+    print(states[currentStateIndex].toString());
+    if(currentStateIndex == states.length){
+      currentStateIndex = 0;
+    }
+
+    currentState = states[currentStateIndex];
+    currentTitle = titles[currentStateIndex];
+    currentStateIndex += 1;
+
+    notifyListeners();
+
+  }
+
+
+
   //IMAGE PATHS  ---------------------------------------------------------------
   List<String> imagePaths = [
 
@@ -65,6 +95,7 @@ class PhysiqueScreenProvider with ChangeNotifier {
   bool switched = false;
   List<String> preferences = [];
   Workout generatedWorkout;
+  bool loaded = false;
 
 
   //Variables for Preference Screen
@@ -98,6 +129,8 @@ class PhysiqueScreenProvider with ChangeNotifier {
     Colors.black12,
     Colors.white
   ];
+
+
 
 
   //GETTERS AND SETTERS -------------------------------------------------------
@@ -222,6 +255,7 @@ class PhysiqueScreenProvider with ChangeNotifier {
   handleMusclePress(int index){
 
     String selectedMuscle = ' ';
+    loaded = false;
 
 
 
@@ -242,10 +276,10 @@ class PhysiqueScreenProvider with ChangeNotifier {
 
   Color getBackGroundColor(int index){
     if(selectedMuscleList.contains(this.muscles[index])){
-      return Colors.black38;
+      return Colors.amber[800];
     }
     
-    return Colors.amber[800];
+    return Colors.black38;
   }
 
   //METHODS FOR PREFERENCES ----------------------------------------------------
@@ -312,6 +346,30 @@ class PhysiqueScreenProvider with ChangeNotifier {
 
 
   }
+
+
+  // GENERATING WORKOUT WITH REFRESH -----------------------------
+
+  Future loadWorkout() async {
+
+    setState();
+
+    if (selectedMuscleList.length > 0){
+      print(loaded);
+      await Future.delayed(Duration(seconds: 1));
+
+      List<String> bufferEquipmentList = ['Barbell', 'Dumbbells'];
+      List<String> bufferDisciplineList = ['Hypertrophy'];
+
+      generatedWorkout = new Workout(selectedMuscleList, bufferDisciplineList, bufferEquipmentList, sliderValue);
+      loaded = true;
+      notifyListeners();
+    }
+
+
+  }
+
+
 
 
 }

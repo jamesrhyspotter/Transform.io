@@ -791,11 +791,6 @@ class ExerciseDataBase {
     }
 
   }
-
-
-
-
-
 }
 
 
