@@ -34,59 +34,61 @@ class WorkoutPreferenceScreen extends StatelessWidget {
       ],
       child: Consumer<PhysiqueScreenProvider>(
         builder: (context, screenProvider, child){
-          return Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 16.0),
-                  child: Heading2('Workout Preferences'),
-                ),
-                Divider(
-                  thickness: 1.0,
-                ),
-                Heading3('Select Equipment'),
-                PillButtonRow(screenProvider.equipmentList),
-                Heading3('Select Discipline (s)'),
-                PillButtonRow(screenProvider.disciplinesList),
-                Heading3('Difficulty'),
-                Slider(
-                  value: screenProvider.sliderValue,
-                  activeColor: Colors.amber[800],
-                  divisions: 6,
-                  min: 1,
-                  max: 5,
-                  onChanged: (value){
-                    screenProvider.setSlider(value);
-                  },
-                ),
-                Divider(
-                  thickness: 1.0,
-                ),
-                Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16.0, bottom: 24),
-                          child: RaisedButton(
-                            child: Text('Go', style: GoogleFonts.montserrat(fontSize: 14)),
-                            color: Colors.amber[800],
-                            onPressed: (){
-                              screenProvider.generateWorkout(this.muscleList);
-                              print(screenProvider.generatedWorkout.outputExerciseList);
-                              Navigator.of(context).pop();
+          return Scaffold(
+            body: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16.0),
+                    child: Heading2('Workout Preferences'),
+                  ),
+                  Divider(
+                    thickness: 1.0,
+                  ),
+                  Heading3('Select Equipment'),
+                  PillButtonRow(screenProvider.equipmentList),
+                  Heading3('Select Discipline (s)'),
+                  PillButtonRow(screenProvider.disciplinesList),
+                  Heading3('Difficulty'),
+                  Slider(
+                    value: screenProvider.sliderValue,
+                    activeColor: Colors.amber[800],
+                    divisions: 6,
+                    min: 1,
+                    max: 5,
+                    onChanged: (value){
+                      screenProvider.setSlider(value);
+                    },
+                  ),
+                  Divider(
+                    thickness: 1.0,
+                  ),
+                  Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 16.0, bottom: 24),
+                            child: RaisedButton(
+                              child: Text('Go', style: GoogleFonts.montserrat(fontSize: 14)),
+                              color: Colors.amber[800],
+                              onPressed: (){
+                                screenProvider.generateWorkout(this.muscleList);
+                                print(screenProvider.generatedWorkout.outputExerciseList);
+                                Navigator.of(context).pop();
 
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => /*ExerciseCardScreen(screenProvider.generatedWorkout)*/ SetWorkoutScreen(screenProvider.generatedWorkout)));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => /*ExerciseCardScreen(screenProvider.generatedWorkout)*/ SetWorkoutScreen(screenProvider.generatedWorkout)));
 
-                            },
+                              },
+                            ),
                           ),
-                        ),
-                      ],
-                ),
-              ]
+                        ],
+                  ),
+                ]
+            ),
           );
         },
       ),

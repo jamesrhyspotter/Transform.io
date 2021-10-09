@@ -25,9 +25,10 @@ dependencies:
   slide_to_act: ^2.0.1
   flutter_svg: ^0.19.3
   speed_dial: ^0.0.1
-  flutter_spinbox: ^0.4.1
   tuple: ^2.0.0
   percent_indicator: ^3.0.1
+  flutter_spinbox: ^0.6.0
+
 
 
 dev_dependencies:

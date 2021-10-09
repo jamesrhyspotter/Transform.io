@@ -111,33 +111,7 @@ class PhysiqueScreen extends StatelessWidget {
                      ),
                     ],
                   ),
-                  // Container(
-                  //   height: height*0.125,
-                  //   child: ListView.builder(
-                  //     scrollDirection: Axis.horizontal,
-                  //     itemCount: physiqueScreenProvider.imagePaths.length,
-                  //     itemBuilder: (BuildContext context, int index){
-                  //       return Padding(
-                  //         padding: const EdgeInsets.all(8.0),
-                  //         child: CircleAvatar(
-                  //
-                  //           backgroundColor: physiqueScreenProvider.getBackGroundColor(index),
-                  //           minRadius: 20,
-                  //           maxRadius: 35,
-                  //           backgroundImage: AssetImage(physiqueScreenProvider.imagePaths[index]),
-                  //           child: InkWell(
-                  //
-                  //
-                  //             onTap: (){
-                  //               physiqueScreenProvider.handleMusclePress(index);
-                  //             },
-                  //           ),
-                  //         ),
-                  //       );
-                  //     }
-                  //   ),
-                  //
-                  // ),
+
                   //  RefreshIndicator(
                   //   onRefresh: physiqueScreenProvider.loadWorkout, //physiqueScreenProvider.refreshData,
                   //
@@ -243,38 +217,78 @@ class PhysiqueScreen extends StatelessWidget {
                 ],
               ),
             ),
-            floatingActionButton: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.end,
+            floatingActionButton: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-              SizedBox(width: 10,),
-                FlatButton(
-                    color: Colors.amber[800].withOpacity(0.8),
-                    minWidth: 100,
-                    onPressed: (){
-                      physiqueScreenProvider.toggleView();
-                    }, child: Row(
-                  children: [
-                    Text('Toggle View', style: GoogleFonts.montserrat(),),
-                    Icon(Icons.refresh),
-                  ],
-                )),
-                SizedBox(width: 10,),
-                FlatButton(
-                    color: physiqueScreenProvider.selectedMuscleList.length > 0 ? Colors.amber[800] : Colors.black12,
-                    onPressed: () async {
+                Container(
+                  height: height*0.125,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: physiqueScreenProvider.imagePaths.length,
+                      itemBuilder: (BuildContext context, int index){
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CircleAvatar(
 
-                      if(physiqueScreenProvider.selectedMuscleList.length > 0){
-                        showModalBottomSheet(isDismissible: true, context: context, builder: (BuildContext context){
-                            return WorkoutPreferenceScreen(physiqueScreenProvider.selectedMuscleList);
+                            backgroundColor: physiqueScreenProvider.getBackGroundColor(index),
+                            minRadius: 20,
+                            maxRadius: 35,
+                            backgroundImage: AssetImage(physiqueScreenProvider.imagePaths[index]),
+                            child: InkWell(
 
-                        }
+
+                              onTap: (){
+                                physiqueScreenProvider.handleMusclePress(index);
+                              },
+                            ),
+                          ),
                         );
-                      }else{
-                        //await showInformationDialog(context);
                       }
+                  ),
 
-                    }, child: Text('Generate Workout', style: physiqueScreenProvider.selectedMuscleList.length > 0 ? GoogleFonts.montserrat(color: Colors.white) : GoogleFonts.montserrat(color: Colors.amber[800]),)
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                  SizedBox(width: 10,),
+                    FlatButton(
+                        color: Colors.amber[800].withOpacity(0.8),
+                        minWidth: 100,
+                        onPressed: (){
+                          physiqueScreenProvider.toggleView();
+                        }, child: Row(
+                      children: [
+                        Text('Toggle View', style: GoogleFonts.montserrat(),),
+                        Icon(Icons.refresh),
+                      ],
+                    )),
+                    SizedBox(width: 10,),
+                    FlatButton(
+                        color: physiqueScreenProvider.selectedMuscleList.length > 0 ? Colors.amber[800] : Colors.black12,
+                        onPressed: () async {
+
+                          if(physiqueScreenProvider.selectedMuscleList.length > 0){
+
+                            // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => WorkoutPreferenceScreen(physiqueScreenProvider.selectedMuscleList)));
+
+
+                            showModalBottomSheet(isDismissible: true, context: context, builder: (BuildContext context){
+
+
+                                return WorkoutPreferenceScreen(physiqueScreenProvider.selectedMuscleList);
+
+                            }
+                            );
+                          }else{
+                            //await showInformationDialog(context);
+                          }
+
+
+
+                        }, child: Text('Generate Workout', style: physiqueScreenProvider.selectedMuscleList.length > 0 ? GoogleFonts.montserrat(color: Colors.white) : GoogleFonts.montserrat(color: Colors.amber[800]),)
+                    ),
+                  ],
                 ),
               ],
             ),

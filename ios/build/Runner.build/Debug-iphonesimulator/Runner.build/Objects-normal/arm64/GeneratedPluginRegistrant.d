@@ -1,0 +1,22 @@
+dependencies: \
+  /Users/jamespotter/AndroidStudioProjects/transform_dot_io/ios/Runner/GeneratedPluginRegistrant.m \
+  /Users/jamespotter/AndroidStudioProjects/transform_dot_io/ios/Runner/GeneratedPluginRegistrant.h \
+  /Users/jamespotter/AndroidStudioProjects/transform_dot_io/ios/build/Debug-iphonesimulator/Flutter.framework/Modules/module.modulemap \
+  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk/usr/include/mach-o/compact_unwind_encoding.modulemap \
+  /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk/usr/include/mach-o/dyld.modulemap \
+  /Users/jamespotter/AndroidStudioProjects/transform_dot_io/ios/build/Debug-iphonesimulator/Flutter.framework/Headers/FlutterViewController.h \
+  /Users/jamespotter/AndroidStudioProjects/transform_dot_io/ios/build/Debug-iphonesimulator/Flutter.framework/Headers/FlutterPluginAppLifeCycleDelegate.h \
+  /Users/jamespotter/AndroidStudioProjects/transform_dot_io/ios/build/Debug-iphonesimulator/Flutter.framework/Headers/FlutterHeadlessDartRunner.h \
+  /Users/jamespotter/AndroidStudioProjects/transform_dot_io/ios/build/Debug-iphonesimulator/Flutter.framework/Headers/FlutterEngineGroup.h \
+  /Users/jamespotter/AndroidStudioProjects/transform_dot_io/ios/build/Debug-iphonesimulator/Flutter.framework/Headers/FlutterEngine.h \
+  /Users/jamespotter/AndroidStudioProjects/transform_dot_io/ios/build/Debug-iphonesimulator/Flutter.framework/Headers/FlutterDartProject.h \
+  /Users/jamespotter/AndroidStudioProjects/transform_dot_io/ios/build/Debug-iphonesimulator/Flutter.framework/Headers/FlutterCallbackCache.h \
+  /Users/jamespotter/AndroidStudioProjects/transform_dot_io/ios/build/Debug-iphonesimulator/Flutter.framework/Headers/FlutterTexture.h \
+  /Users/jamespotter/AndroidStudioProjects/transform_dot_io/ios/build/Debug-iphonesimulator/Flutter.framework/Headers/FlutterPlatformViews.h \
+  /Users/jamespotter/AndroidStudioProjects/transform_dot_io/ios/build/Debug-iphonesimulator/Flutter.framework/Headers/FlutterCodecs.h \
+  /Users/jamespotter/AndroidStudioProjects/transform_dot_io/ios/build/Debug-iphonesimulator/Flutter.framework/Headers/FlutterChannels.h \
+  /Users/jamespotter/AndroidStudioProjects/transform_dot_io/ios/build/Debug-iphonesimulator/Flutter.framework/Headers/FlutterBinaryMessenger.h \
+  /Users/jamespotter/AndroidStudioProjects/transform_dot_io/ios/build/Debug-iphonesimulator/Flutter.framework/Headers/FlutterPlugin.h \
+  /Users/jamespotter/AndroidStudioProjects/transform_dot_io/ios/build/Debug-iphonesimulator/Flutter.framework/Headers/FlutterMacros.h \
+  /Users/jamespotter/AndroidStudioProjects/transform_dot_io/ios/build/Debug-iphonesimulator/Flutter.framework/Headers/FlutterAppDelegate.h \
+  /Users/jamespotter/AndroidStudioProjects/transform_dot_io/ios/build/Debug-iphonesimulator/Flutter.framework/Headers/Flutter.h

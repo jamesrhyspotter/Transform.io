@@ -10,6 +10,7 @@ import 'package:transform_dot_io/models/exercise_model.dart';
 import 'package:transform_dot_io/models/workout_model.dart';
 import 'package:transform_dot_io/providers/account_provider.dart';
 import 'package:transform_dot_io/providers/exercise_card_screen_provider.dart';
+import 'package:transform_dot_io/screens/create_screens/workout_generator/physique_screen.dart';
 
 // ignore: must_be_immutable
 class ExerciseCardScreen extends StatelessWidget {
@@ -47,6 +48,8 @@ class ExerciseCardScreen extends StatelessWidget {
         builder: (context, exerciseScreenProvider, child) {
           return Scaffold(
             appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
               title: Text('Workout Time: ' + (exerciseScreenProvider.counter/60).toString().substring(0, 1) + 'm ' + (exerciseScreenProvider.counter%60).toString() + 's ',
                   style: GoogleFonts.montserrat(fontSize: 14)),
               actions: [
@@ -689,7 +692,33 @@ class ExerciseCardScreen extends StatelessWidget {
                          //TODO save workout should push workout to library, asks if want to mark as complete
                          child: Text('Log Workout', style: GoogleFonts.montserrat(),),
                          onPressed: (){
-                            exerciseScreenProvider.logWorkout(exerciseScreenProvider.workoutSetList);
+                            // exerciseScreenProvider.logWorkout(exerciseScreenProvider.workoutSetList);
+                            //
+                            // Navigator.of(context).pop();
+                            // Navigator.of(context).pop();
+
+                           showDialog<String>(
+                             context: context,
+                             builder: (BuildContext context) => AlertDialog(
+                               title: const Text('Log and Exit'),
+                               content: const Text('Do you want to save your stats and exit?'),
+                               actions: <Widget>[
+                                 TextButton(
+                                   onPressed: () => Navigator.pop(context, 'Cancel'),
+                                   child: Text('Cancel', style: GoogleFonts.montserrat(color: Colors.amber.shade900),),
+                                 ),
+                                 TextButton(
+                                   onPressed: (){
+                                     exerciseScreenProvider.logWorkout(exerciseScreenProvider.workoutSetList);
+                                     Navigator.of(context).pop();
+                                     Navigator.of(context).pop();
+                                     Navigator.of(context).pop();
+                                   },
+                                   child: Text('Yes', style: GoogleFonts.montserrat(color: Colors.amber.shade900)),
+                                 ),
+                               ],
+                             ),
+                           );
                          },
                        ),
                   )

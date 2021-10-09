@@ -56,6 +56,8 @@ class SetWorkoutScreen extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               title: Text('Your Workout', style: GoogleFonts.montserrat()),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
             ),
             body: Column(
               children: [
@@ -280,7 +282,7 @@ class SetWorkoutScreen extends StatelessWidget {
                                                   title: Text('${optionExercises[index2].name}', style: GoogleFonts.montserrat()),
                                                   subtitle: Row(
                                                     children: [
-                                                      Text(optionExercises[index2].targetMuscles.toString()),
+                                                      Text(optionExercises[index2].targetMuscles[0].toString()),
                                                     ],
                                                   ),
                                                   trailing: FlatButton(

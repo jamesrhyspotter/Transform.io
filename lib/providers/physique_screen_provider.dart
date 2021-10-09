@@ -130,7 +130,12 @@ class PhysiqueScreenProvider with ChangeNotifier {
     Colors.white
   ];
 
+  //RESET
 
+  reset(){
+    _selectedButtons = [];
+    _selectedMuscleList = [];
+  }
 
 
   //GETTERS AND SETTERS -------------------------------------------------------
@@ -260,6 +265,7 @@ class PhysiqueScreenProvider with ChangeNotifier {
 
 
     selectedMuscle = this.muscles[index];
+    print(selectedMuscle);
 
     if(selectedMuscleList.contains(selectedMuscle)){
       selectedMuscleList.remove(selectedMuscle);

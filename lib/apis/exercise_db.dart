@@ -591,6 +591,52 @@ class ExerciseDataBase {
 
   ];
 
+  List<Exercise> obliqueExerciseList=[
+
+    //Barbell
+    Exercise('Barbell Oblique Twists', ['Obliques'], ['Barbell']),
+    Exercise('Landmine Oblique Twists', ['Obliques'], ['Barbell']),
+    Exercise('Seated Barbell Oblique Twists', ['Obliques'], ['Barbell']),
+    Exercise('Bent Arm Landmine Oblique Twists', ['Obliques'], ['Barbell']),
+    Exercise('Barbell Side-Side Leans', ['Obliques'], ['Barbell']),
+
+    //Dumbbell
+    Exercise('Dumbbell Russian Twists', ['Obliques'], ['Dumbbell']),
+    Exercise('Seated Dumbbell Oblique Twists', ['Obliques'], ['Dumbbell']),
+    Exercise('Alternating Dumbbell Russian Twists', ['Obliques'], ['Dumbbell']),
+    Exercise('Feet Up Dumbbell Russian Twists', ['Obliques'], ['Dumbbell']),
+    Exercise('Dumbbell Leans', ['Obliques'], ['Dumbbell']),
+
+    //Bodyweight
+    Exercise('Russian Twists', ['Obliques'], ['Bodyweight']),
+    Exercise('Sit Up with Twists', ['Obliques'], ['Bodyweight']),
+    Exercise('Heel Taps', ['Obliques'], ['Bodyweight']),
+    Exercise('Deadbug Twists', ['Obliques'], ['Bodyweight']),
+    Exercise('L Sit Side-to-Sides', ['Obliques'], ['Bodyweight']),
+    Exercise('Plank Twists', ['Obliques'], ['Bodyweight']),
+    Exercise('Side Plank', ['Obliques'], ['Bodyweight']),
+
+
+    //Resistance Bands
+    Exercise('Banded Woodchoppers', ['Obliques'], ['Resistance Bands']),
+    Exercise('Resistance Band Russian Twists', ['Obliques'], ['Resistance Bands']),
+    Exercise('Resistance Band Leans', ['Obliques'], ['Resistance Bands']),
+    Exercise('Standing Pallof Hold', ['Obliques'], ['Resistance Bands']),
+    Exercise('Single Knee Pallof Hold', ['Obliques'], ['Resistance Bands']),
+    Exercise('Kneeling Pallof Hold', ['Obliques'], ['Resistance Bands']),
+
+
+    //Machines
+    Exercise('Cable Twist Crunches', ['Obliques'], ['Machines']),
+    Exercise('Single Arm Twist Cable Crunches', ['Obliques'], ['Machines']),
+    Exercise('Reverse Cable Crunches', ['Obliques'], ['Machines']),
+    Exercise('Cable Wood Choppers', ['Obliques'], ['Machines']),
+    Exercise('Incline Cable Wood Choppers', ['Obliques'], ['Machines']),
+    Exercise('Decline Cable Wood Choppers', ['Obliques'], ['Machines']),
+
+
+  ];
+
 
   List<Exercise> trapsExerciseList = [
     //Barbell
@@ -677,6 +723,8 @@ class ExerciseDataBase {
         selectedExerciseList = calvesExerciseList;
       } else if (ex == 'traps'){
         selectedExerciseList = trapsExerciseList;
+      }else if (ex == 'obliques'){
+        selectedExerciseList = obliqueExerciseList;
       }
 
       //Filter through selected exercises by equipment
@@ -740,6 +788,8 @@ class ExerciseDataBase {
       selectedExerciseList = calvesExerciseList;
     } else if (ex == 'traps'){
       selectedExerciseList = trapsExerciseList;
+    }else if (ex == 'obliques'){
+      selectedExerciseList = obliqueExerciseList;
     }
     setExerciseImage(selectedExerciseList);
     return selectedExerciseList;
@@ -784,9 +834,9 @@ class ExerciseDataBase {
         path = 'lib/assets/prometheus_white_orange/hamstrings.png';
       }else if(targetMuscle == 'calves'){
         path = 'lib/assets/prometheus_white_orange/calves.png';
+      }else if(targetMuscle == 'obliques'){
+        path = 'lib/assets/prometheus_white_orange/obliques.png';
       }
-
-
       inputList[i].setImage(path);
     }
 
