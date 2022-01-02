@@ -112,7 +112,10 @@ class PhysiqueScreen extends StatelessWidget {
                                                 child: Image(
                                                   image: AssetImage(
                                                       physiqueScreenProvider
-                                                          .imagePaths[index]),
+                                                              .imagePaths[
+                                                          physiqueScreenProvider
+                                                              .muscles
+                                                              .indexOf(value)]),
                                                 )),
                                             Text(value.toUpperCase(),
                                                 style: TextStyle(fontSize: 12))
