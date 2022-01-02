@@ -1,10 +1,9 @@
-
 import 'dart:core';
-
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:transform_dot_io/components/rep_counter.dart';
 import 'package:transform_dot_io/screens/create_screens/create_screen.dart';
 import 'package:transform_dot_io/screens/locker_screens/my_locker_screen.dart';
 import 'package:transform_dot_io/screens/explore_workouts_screen.dart';
@@ -18,26 +17,26 @@ import 'package:transform_dot_io/screens/explore_workouts_screen.dart';
 
 //   ];
 //
-  //LIST OF SUBSCREENS ------------------------------------------------------------
+//LIST OF SUBSCREENS ------------------------------------------------------------
 
-  List<String> _workoutLibrarySubScreens = [
-    'Preset Workouts',
-    'Coach set Workouts',
-  ];
+List<String> _workoutLibrarySubScreens = [
+  'Preset Workouts',
+  'Coach set Workouts',
+];
 
-  List<String> _createSubScreens = [
-    'Workout',
-    'Workout Plan',
-    'Meal',
-    'Meal Plan',
-  ];
+List<String> _createSubScreens = [
+  'Workout',
+  'Workout Plan',
+  'Meal',
+  'Meal Plan',
+];
 
-  List<String> _myLockerSubScreens = [
-    'My Workouts',
-    'My Meals',
-    'My Progress',
-    'Achievements',
-  ];
+List<String> _myLockerSubScreens = [
+  'My Workouts',
+  'My Meals',
+  'My Progress',
+  'Achievements',
+];
 //
 // //LIST OF GETTERS ------------------------------------------------------------
 //
@@ -47,56 +46,46 @@ import 'package:transform_dot_io/screens/explore_workouts_screen.dart';
 //   List<String> get myLockerSubScreens => _myLockerSubScreens;
 //
 
-class ScreenProvider with ChangeNotifier{
-
+class ScreenProvider with ChangeNotifier {
   //FIELDS -------------------------------------------------------------------
 
   int currentPageIndex = 1;
 
-
   final List<Widget> _screens = [
-    ExploreWorkoutsScreen(),
+    RepCounter(),
     CreateScreen(),
     MyLockerScreen(),
   ];
 
-  final List<String> screenTitles = [
-    'Workout Library',
-    'Create',
-    'My Locker'
-  ];
+  final List<String> screenTitles = ['Workout Library', 'Create', 'My Locker'];
 
   final List<BottomNavigationBarItem> bottomNavigationBarItems = [
-  BottomNavigationBarItem(
-  icon: Icon(Icons.add_to_home_screen),
-  label: 'Explore Workouts',
-  ),
-  BottomNavigationBarItem(
-  icon: Icon(Icons.add_circle),
-  label: 'Create',
-  ),
-  BottomNavigationBarItem(
-  icon: Icon(Icons.book_outlined),
-  label: 'Locker',
-  ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.add_to_home_screen),
+      label: 'Rep Tracer',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.add_circle),
+      label: 'Create',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.book_outlined),
+      label: 'Locker',
+    ),
   ];
-
-
 
   //METHODS -------------------------------------------------------------------
 
-  void changePage(int page){
+  void changePage(int page) {
     currentPageIndex = page;
     notifyListeners();
   }
 
-  Widget currentPage(){
+  Widget currentPage() {
     return _screens[currentPageIndex];
   }
 
-  String currentTitle(){
+  String currentTitle() {
     return screenTitles[currentPageIndex];
   }
-
-
 }

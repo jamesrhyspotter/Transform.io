@@ -1,0 +1,19 @@
+// Add remove to physique screen upper buttons
+//make icons larger
+// fix body dimensions
+
+//make equipment, disicpline, intensity icons
+
+//Hero open of exercises
+//buttons full border
+
+
+//All buttons the same
+
+
+
+//DATA MODEL
+
+USER
+- username
+- age

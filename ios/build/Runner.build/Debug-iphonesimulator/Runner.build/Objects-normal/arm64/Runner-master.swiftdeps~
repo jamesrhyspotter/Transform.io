@@ -1,5 +1,5 @@
 version: "Apple Swift version 5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)"
 options: "f1ab55a8a538df66d47b0372291194c0"
-build_time: [1637524463, 641091000]
+build_time: [1637524662, 271189000]
 inputs:
   "/Users/jamespotter/AndroidStudioProjects/transform_dot_io/ios/Runner/AppDelegate.swift": [1615579368, 0]

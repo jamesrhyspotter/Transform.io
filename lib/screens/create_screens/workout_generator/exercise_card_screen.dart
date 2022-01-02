@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:transform_dot_io/apis/training_principle_db.dart';
 import 'package:transform_dot_io/components/heading2.dart';
 import 'package:transform_dot_io/components/heading3.dart';
+import 'package:transform_dot_io/components/rep_counter.dart';
 import 'package:transform_dot_io/models/exercise_model.dart';
 import 'package:transform_dot_io/models/workout_model.dart';
 import 'package:transform_dot_io/providers/account_provider.dart';
@@ -53,19 +54,57 @@ class ExerciseCardScreen extends StatelessWidget {
               title: Text('Workout Time: ' + (exerciseScreenProvider.counter/60).toString().substring(0, 1) + 'm ' + (exerciseScreenProvider.counter%60).toString() + 's ',
                   style: GoogleFonts.montserrat(fontSize: 14)),
               actions: [
-                FlatButton(child: Icon(Icons.timer), onPressed: () {
-                  if(!exerciseScreenProvider.timerOn){
-                    exerciseScreenProvider.startTimer();
-                  }else{
-                    exerciseScreenProvider.pauseTimer();
-                  }
-                }),
+                // FlatButton(child: Icon(Icons.timer), onPressed: () {
+                //   if(!exerciseScreenProvider.timerOn){
+                //     exerciseScreenProvider.startTimer();
+                //   }else{
+                //     exerciseScreenProvider.pauseTimer();
+                //   }
+                // }),
+                FlatButton(
+                  child:  Icon(Icons.timer),
+                  onPressed: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => RepCounter()));
+                  },
+                ),
               ],
             ),
             body: Column(
               children: [
                 Container(
-                  height: height * 0.728,
+                  height: height * .1,
+                  decoration: new BoxDecoration(
+                    color: Colors.black12,
+                  ),
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: this.workoutExercises.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                              side: BorderSide(color: Colors.amber[800])),
+                          onPressed: () {
+                            exerciseScreenProvider.setCurrentExercise(
+                                this.workoutExercises[index]);
+                          },
+                          color: exerciseScreenProvider.currentExercise.name !=
+                              this.workoutExercises[index].name
+                              ? Colors.black26
+                              : Colors.amber[800],
+                          textColor: Colors.white,
+                          child: Text(
+                              this.workoutExercises[index].name.toUpperCase(),
+                              style: GoogleFonts.montserrat(fontSize: 12)),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                Container(
+                  height: height * 0.65,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Card(
@@ -147,7 +186,7 @@ class ExerciseCardScreen extends StatelessWidget {
                             padding: const EdgeInsets.only(
                                 left: 16.0, right: 16.0, top: 16.0),
                             child: Container(
-                              height: height * .23,
+                              height: height * 0.2,
                               //TODO: should have card that allows user to mark workout as complete
                               child: ListView.builder(
                                   itemCount: exerciseScreenProvider
@@ -641,90 +680,302 @@ class ExerciseCardScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  height: height * .06,
-                  decoration: new BoxDecoration(
-                    color: Colors.black12,
-                  ),
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: this.workoutExercises.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                              side: BorderSide(color: Colors.amber[800])),
-                          onPressed: () {
-                            exerciseScreenProvider.setCurrentExercise(
-                                this.workoutExercises[index]);
-                          },
-                          color: exerciseScreenProvider.currentExercise.name !=
-                                  this.workoutExercises[index].name
-                              ? Colors.black26
-                              : Colors.amber[800],
-                          textColor: Colors.white,
-                          child: Text(
-                              this.workoutExercises[index].name.toUpperCase(),
-                              style: GoogleFonts.montserrat(fontSize: 12)),
-                        ),
-                      );
-                    },
-                  ),
-                ),
               ],
             ),
-            bottomNavigationBar: Container(
-              height: height * 0.10,
-              color: Colors.black12,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
+              floatingActionButton: FloatingActionButton(
+                onPressed: (){
+                  showModalBottomSheet(
+                      context: context,
+                      builder:
+                          (BuildContext context) {
+                        return Container(
+                          height: height*0.48,
+                          color: Colors.black12,
+                          child: Column(
+                            mainAxisAlignment:
+                            MainAxisAlignment
+                                .center,
+                            mainAxisSize:
+                            MainAxisSize.min,
+                            crossAxisAlignment:
+                            CrossAxisAlignment
+                                .start,
+                            children: <Widget>[
+                              Padding(
+                                padding:
+                                const EdgeInsets
+                                    .only(
+                                    left: 16.0,
+                                    right: 16.0,
+                                    bottom:
+                                    12.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment
+                                      .spaceBetween,
+                                  children: [
+                                    Heading2(
+                                        exerciseScreenProvider
+                                            .currentExercise.name),
+                                    Heading3('Set ' +
+                                        (1 + exerciseScreenProvider.setCountPerExerciseList[exerciseScreenProvider.exercises.indexOf(exerciseScreenProvider.currentExercise)])
+                                            .toString()),
+                                  ],
+                                ),
+                              ),
+                              Divider(
+                                thickness: 1.0,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment
+                                    .spaceEvenly,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment
+                                        .start,
+                                    children: [
+                                      Text('Reps', style: GoogleFonts.montserrat()),
+                                      Container(
+                                        width: 100,
+                                        child:
+                                        SpinBox(
+                                          min: 0,
+                                          max: 20,
+                                          value: exerciseScreenProvider
+                                              .repsStartingValue,
+                                          spacing:
+                                          24,
+                                          direction:
+                                          Axis.vertical,
+                                          textStyle:
+                                          TextStyle(
+                                              fontSize: 24),
+                                          incrementIcon: Icon(
+                                              Icons
+                                                  .keyboard_arrow_up,
+                                              size:
+                                              32),
+                                          decrementIcon: Icon(
+                                              Icons
+                                                  .keyboard_arrow_down,
+                                              size:
+                                              32),
+                                          decoration:
+                                          InputDecoration(
+                                            border:
+                                            OutlineInputBorder(),
+                                            contentPadding:
+                                            const EdgeInsets.all(24),
+                                          ),
+                                          onChanged:
+                                              (value) {
+                                            exerciseScreenProvider
+                                                .setRepsStartingValue(value);
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment
+                                        .start,
+                                    children: [
+                                      Text('Weight', style: GoogleFonts.montserrat()),
+                                      Container(
+                                        width: 100,
+                                        child:
+                                        SpinBox(
+                                          onChanged:
+                                              (value) {
+                                            exerciseScreenProvider
+                                                .setWeightStartingValue(value);
+                                          },
+                                          min: 0,
+                                          max: 300,
+                                          value: exerciseScreenProvider
+                                              .weightStartingValue,
+                                          spacing:
+                                          24,
+                                          direction:
+                                          Axis.vertical,
+                                          textStyle:
+                                          TextStyle(
+                                              fontSize: 24),
+                                          incrementIcon: Icon(
+                                              Icons
+                                                  .keyboard_arrow_up,
+                                              size:
+                                              32),
+                                          decrementIcon: Icon(
+                                              Icons
+                                                  .keyboard_arrow_down,
+                                              size:
+                                              32),
+                                          decoration:
+                                          InputDecoration(
+                                            border:
+                                            OutlineInputBorder(),
+                                            contentPadding:
+                                            const EdgeInsets.all(24),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment
+                                        .start,
+                                    children: [
+                                      Text('RPE', style: GoogleFonts.montserrat()),
+                                      Container(
+                                        width: 100,
+                                        child:
+                                        SpinBox(
+                                          onChanged:
+                                              (value) {
+                                            exerciseScreenProvider
+                                                .setRPE(value);
+                                          },
+                                          min: 1,
+                                          max: 10,
+                                          value: exerciseScreenProvider
+                                              .rpeStartingValue,
+                                          spacing:
+                                          24,
+                                          direction:
+                                          Axis.vertical,
+                                          textStyle:
+                                          TextStyle(
+                                              fontSize: 24),
+                                          incrementIcon: Icon(
+                                              Icons
+                                                  .keyboard_arrow_up,
+                                              size:
+                                              32),
+                                          decrementIcon: Icon(
+                                              Icons
+                                                  .keyboard_arrow_down,
+                                              size:
+                                              32),
+                                          decoration:
+                                          InputDecoration(
+                                            border:
+                                            OutlineInputBorder(),
+                                            contentPadding:
+                                            const EdgeInsets.all(24),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Divider(
+                                thickness: 1.0,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment
+                                    .spaceEvenly,
+                                children: [
+                                  Padding(
+                                    padding:
+                                    const EdgeInsets
+                                        .all(
+                                        16.0),
+                                    child:
+                                    FlatButton(
+                                        color: Colors.amber[
+                                        800],
+                                        onPressed:
+                                            () {
+                                          Navigator.of(context)
+                                              .pop();
+                                        },
+                                        child: Text(
+                                            'Close',
+                                            style:
+                                            GoogleFonts.montserrat(fontSize: 14))),
+                                  ),
+                                  Padding(
+                                    padding:
+                                    const EdgeInsets
+                                        .all(
+                                        16.0),
+                                    child:
+                                    FlatButton(
+                                        color: Colors.amber[
+                                        800],
+                                        onPressed:
+                                            () {
+                                          Navigator.of(context)
+                                              .pop();
+                                          exerciseScreenProvider
+                                              .incrementSetCounter(exerciseScreenProvider.currentExercise);
+                                          exerciseScreenProvider.setSetRepsWeightandRPE(
+                                              exerciseScreenProvider.currentExercise,
+                                              exerciseScreenProvider.repsStartingValue.toString(),
+                                              exerciseScreenProvider.weightStartingValue.toInt(), exerciseScreenProvider.rpeStartingValue.toInt());
 
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: RaisedButton(
-                      color: Colors.black26,
-                         shape: RoundedRectangleBorder(
-                             borderRadius: BorderRadius.circular(18.0),
-                             side: BorderSide(color: Colors.amber[800])),
-                         //TODO save workout should push workout to library, asks if want to mark as complete
-                         child: Text('Log Workout', style: GoogleFonts.montserrat(),),
-                         onPressed: (){
-                            // exerciseScreenProvider.logWorkout(exerciseScreenProvider.workoutSetList);
-                            //
-                            // Navigator.of(context).pop();
-                            // Navigator.of(context).pop();
-
-                           showDialog<String>(
-                             context: context,
-                             builder: (BuildContext context) => AlertDialog(
-                               title: const Text('Log and Exit'),
-                               content: const Text('Do you want to save your stats and exit?'),
-                               actions: <Widget>[
-                                 TextButton(
-                                   onPressed: () => Navigator.pop(context, 'Cancel'),
-                                   child: Text('Cancel', style: GoogleFonts.montserrat(color: Colors.amber.shade900),),
-                                 ),
-                                 TextButton(
-                                   onPressed: (){
-                                     exerciseScreenProvider.logWorkout(exerciseScreenProvider.workoutSetList);
-                                     Navigator.of(context).pop();
-                                     Navigator.of(context).pop();
-                                     Navigator.of(context).pop();
-                                   },
-                                   child: Text('Yes', style: GoogleFonts.montserrat(color: Colors.amber.shade900)),
-                                 ),
-                               ],
-                             ),
-                           );
-                         },
-                       ),
-                  )
-                ],
+                                        },
+                                        child: Text(
+                                            'Save Entry',
+                                            style:
+                                            GoogleFonts.montserrat(fontSize: 14))),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        );
+                      });
+                },
+                backgroundColor: Colors.amber.shade800,
+                child: Icon(Icons.add, color: Colors.white,),
               ),
-            ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+
+            // floatingActionButton: RaisedButton(
+            //   color: Colors.black26,
+            //   shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(18.0),
+            //       side: BorderSide(color: Colors.amber[800])),
+            //   //TODO save workout should push workout to library, asks if want to mark as complete
+            //   child: Text('Log Workout', style: GoogleFonts.montserrat(),),
+            //   onPressed: (){
+            //     // exerciseScreenProvider.logWorkout(exerciseScreenProvider.workoutSetList);
+            //     //
+            //     // Navigator.of(context).pop();
+            //     // Navigator.of(context).pop();
+            //
+            //     showDialog<String>(
+            //       context: context,
+            //       builder: (BuildContext context) => AlertDialog(
+            //         title: const Text('Log and Exit'),
+            //         content: const Text('Do you want to log and leave?'),
+            //         actions: <Widget>[
+            //           TextButton(
+            //             onPressed: () => Navigator.pop(context, 'Cancel'),
+            //             child: Text('Cancel', style: GoogleFonts.montserrat(color: Colors.amber.shade900),),
+            //           ),
+            //           TextButton(
+            //             onPressed: (){
+            //               exerciseScreenProvider.logWorkout(exerciseScreenProvider.workoutSetList);
+            //               Navigator.of(context).pop();
+            //               Navigator.of(context).pop();
+            //               Navigator.of(context).pop();
+            //             },
+            //             child: Text('Yes', style: GoogleFonts.montserrat(color: Colors.amber.shade900)),
+            //           ),
+            //         ],
+            //       ),
+            //     );
+            //   },
+            // ),
           );
         },
       ),
