@@ -12,7 +12,7 @@ class PhysiqueScreenProvider with ChangeNotifier {
 
   // TITLES
   static List titles = [
-    'Select Target Muscle(s)',
+    'Generate your workout: ',
     'Pull Down to Load workout',
     'Pull Down to Start',
     'Pull Down To End'
@@ -50,6 +50,7 @@ class PhysiqueScreenProvider with ChangeNotifier {
     'lib/assets/prometheus_white_orange/glutes.png',
     'lib/assets/prometheus_white_orange/hamstrings.png',
     'lib/assets/prometheus_white_orange/calves.png',
+    'lib/assets/prometheus_white_orange/full_body_white.png',
     //
   ];
 
@@ -71,6 +72,7 @@ class PhysiqueScreenProvider with ChangeNotifier {
     'Glutes',
     'Hamstrings',
     'Calves',
+    'FullBody'
   ];
 
   // ANTERIOR CHAIN ------------------------------------------------------------

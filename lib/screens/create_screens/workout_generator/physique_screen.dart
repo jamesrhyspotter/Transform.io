@@ -17,13 +17,20 @@ class PhysiqueScreen extends StatelessWidget {
       child: Consumer<PhysiqueScreenProvider>(
         builder: (context, physiqueScreenProvider, child) {
           return Scaffold(
-            appBar: AppBar(
-              title: Text(
-                physiqueScreenProvider.currentTitle,
-                style: GoogleFonts.montserrat(
-                    fontWeight: FontWeight.w200, fontSize: 12),
-              ),
-            ),
+            // appBar: AppBar(
+            //   elevation: 0,
+            //   backgroundColor: Colors.transparent,
+            //   title: Row(
+            //     mainAxisAlignment: MainAxisAlignment.start,
+            //     children: [
+            //       Text(
+            //         physiqueScreenProvider.currentTitle,
+            //         style: GoogleFonts.montserrat(
+            //             fontWeight: FontWeight.w200, fontSize: 12),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             body: Container(
               decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -58,10 +65,11 @@ class PhysiqueScreen extends StatelessWidget {
                                           .selectedMuscleList[
                                       index]; //workoutProvider.disciplinesList[index];
 
-                                  if (value == null) {
-                                    return Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 8.0, right: 8.0),
+                                  return Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 8.0, right: 8.0),
+                                    child: Container(
+                                      height: 30,
                                       child: Card(
                                           shape: RoundedRectangleBorder(
                                             side: BorderSide(
@@ -72,67 +80,35 @@ class PhysiqueScreen extends StatelessWidget {
                                           ),
                                           // minRadius: 20,
                                           // maxRadius: 35,
-                                          child: Icon(Icons.add)),
-                                      // child: RaisedButton(
-                                      //   shape: RoundedRectangleBorder(
-                                      //       borderRadius:
-                                      //           BorderRadius.circular(8.0),
-                                      //       side: BorderSide(
-                                      //           color: Colors.amber[800])),
-                                      //   onPressed: () {},
-                                      //   color: Colors.black26,
-                                      //   textColor: Colors.white,
-                                      //   child: Text(value.toUpperCase(),
-                                      //       style: TextStyle(fontSize: 12)),
-                                      // ),
-                                    );
-                                  }
-                                  return Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 8.0, right: 8.0),
-                                    child: Card(
-                                        shape: RoundedRectangleBorder(
-                                          side: BorderSide(
-                                              color: Colors.white70, width: 1),
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        // minRadius: 20,
-                                        // maxRadius: 35,
 
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.2,
-                                                child: Image(
-                                                  image: AssetImage(
-                                                      physiqueScreenProvider
-                                                              .imagePaths[
-                                                          physiqueScreenProvider
-                                                              .muscles
-                                                              .indexOf(value)]),
-                                                )),
-                                            Text(value.toUpperCase(),
-                                                style: TextStyle(fontSize: 12))
-                                          ],
-                                        )),
-                                    // child: RaisedButton(
-                                    //   shape: RoundedRectangleBorder(
-                                    //       borderRadius:
-                                    //           BorderRadius.circular(8.0),
-                                    //       side: BorderSide(
-                                    //           color: Colors.amber[800])),
-                                    //   onPressed: () {},
-                                    //   color: Colors.black26,
-                                    //   textColor: Colors.white,
-                                    //   child: Text(value.toUpperCase(),
-                                    //       style: TextStyle(fontSize: 12)),
-                                    // ),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Container(
+                                                  height: 60,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.2,
+                                                  child: Image(
+                                                    image: AssetImage(
+                                                        physiqueScreenProvider
+                                                                .imagePaths[
+                                                            physiqueScreenProvider
+                                                                .muscles
+                                                                .indexOf(
+                                                                    value)]),
+                                                  )),
+                                              Text(
+                                                  value
+                                                      .substring(0, 3)
+                                                      .toUpperCase(),
+                                                  style:
+                                                      TextStyle(fontSize: 12))
+                                            ],
+                                          )),
+                                    ),
                                   );
                                 },
                               ),
@@ -158,19 +134,10 @@ class PhysiqueScreen extends StatelessWidget {
                                   child: Card(
                                       color: physiqueScreenProvider
                                           .getBackGroundColor(index),
-                                      // minRadius: 20,
-                                      // maxRadius: 35,
-
                                       child: Image(
                                           image: AssetImage(
                                               physiqueScreenProvider
                                                   .imagePaths[index]))),
-                                  // child: InkWell(
-                                  //   onTap: () {
-                                  //     physiqueScreenProvider
-                                  //         .handleMusclePress(index);
-                                  //   },
-                                  // ),
                                 )),
                           );
                         }),
@@ -200,9 +167,12 @@ class PhysiqueScreen extends StatelessWidget {
                                   isDismissible: true,
                                   context: context,
                                   builder: (BuildContext context) {
-                                    return WorkoutPreferenceScreen(
-                                        physiqueScreenProvider
-                                            .selectedMuscleList);
+                                    return Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: WorkoutPreferenceScreen(
+                                          physiqueScreenProvider
+                                              .selectedMuscleList),
+                                    );
                                   });
                             } else {
                               //await showInformationDialog(context);
@@ -213,122 +183,10 @@ class PhysiqueScreen extends StatelessWidget {
                               style: GoogleFonts.montserrat(fontSize: 16)),
                         ),
                       ),
-                      // ElevatedButton(
-                      //     style: ButtonStyle(
-                      //       backgroundColor: physiqueScreenProvider
-                      //                   .selectedMuscleList.length >
-                      //               0
-                      //           ? MaterialStateProperty.all<Color>(
-                      //               Colors.amber[800])
-                      //           : MaterialStateProperty.all<Color>(
-                      //               Colors.black12),
-                      //     ),
-                      //     onPressed: () async {
-                      //       if (physiqueScreenProvider
-                      //               .selectedMuscleList.length >
-                      //           0) {
-                      //         // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => WorkoutPreferenceScreen(physiqueScreenProvider.selectedMuscleList)));
-
-                      //         showModalBottomSheet(
-                      //             isDismissible: true,
-                      //             context: context,
-                      //             builder: (BuildContext context) {
-                      //               return WorkoutPreferenceScreen(
-                      //                   physiqueScreenProvider
-                      //                       .selectedMuscleList);
-                      //             });
-                      //       } else {
-                      //         //await showInformationDialog(context);
-                      //       }
-                      //     },
-                      //     child: Text(
-                      //       'Generate Workout',
-                      //       style: physiqueScreenProvider
-                      //                   .selectedMuscleList.length >
-                      //               0
-                      //           ? GoogleFonts.montserrat(color: Colors.white)
-                      //           : GoogleFonts.montserrat(
-                      //               color: Colors.amber[800]),
-                      //     )),
                     ],
                   ),
                 ],
               ),
-
-              // child: Column(
-              //   children: [
-              //     Container(
-              //       height: height*0.075,
-              //       child: physiqueScreenProvider.selectedMuscleList.length == 0 ? SizedBox(): Container(
-              //         margin: EdgeInsets.symmetric(vertical: 10.0),
-              //         height: height*0.2,
-              //         child: ListView.builder(
-              //           scrollDirection: Axis.horizontal,
-              //           itemCount: physiqueScreenProvider.selectedMuscleList.length,
-              //           itemBuilder: (context, index){
-
-              //             String value = physiqueScreenProvider.selectedMuscleList[index];//workoutProvider.disciplinesList[index];
-
-              //             if(value == null){
-              //               return SizedBox();
-              //             }
-              //             return Padding(
-              //               padding: const EdgeInsets.only(left:8.0, right: 8.0),
-              //               child: RaisedButton(
-              //                 shape: RoundedRectangleBorder(
-              //                     borderRadius: BorderRadius.circular(32.0),
-              //                     side: BorderSide(color: Colors.amber[800])),
-              //                 onPressed: () {
-
-              //                 },
-              //                 color: Colors.black26,
-              //                 textColor: Colors.white,
-              //                 child: Text(value.toUpperCase(),
-              //                     style: TextStyle(fontSize: 12)),
-              //               ),
-              //             );
-              //           },
-              //         ),
-              //       )
-              //     ),
-              //     Column(
-              //       children: [
-              //         Container(
-              //           height: physiqueScreenProvider.switched ? 50 : 0,
-              //         ),
-              //         Container(
-              //           child: Container(
-
-              //             height: physiqueScreenProvider.yDimension,
-              //             width: physiqueScreenProvider.xDimension,
-              //             child: Container(
-              //               child: GestureDetector(
-              //                 onTapDown: (details) {
-              //                   coordsXList.add(details.globalPosition.dx);
-              //                   coordsYList.add(details.globalPosition.dy);
-              //                   // print(coordsXList.length);
-              //                   // if(coordsXList.length == 4){
-              //                   //   print(coordsXList);
-              //                   //   print(coordsYList);
-              //                   //
-              //                   //   coordsXList = [];
-              //                   //   coordsYList = [];
-              //                   // }
-              //                   physiqueScreenProvider.selectMuscle(details.globalPosition.dx, details.globalPosition.dy);
-              //                 },
-              //                 child: CustomPaint(
-              //                   size: Size.square(50), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
-              //                   painter: physiqueScreenProvider.currentView,
-              //                 ),
-              //               ),
-              //             ),
-              //           ),
-              //        ),
-              //       ],
-              //     ),
-
-              //   ],
-              // ),
             ),
           );
         },

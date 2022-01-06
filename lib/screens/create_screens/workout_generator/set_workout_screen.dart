@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -47,6 +49,10 @@ class SetWorkoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     final List<Exercise> _items = this.workout.outputExerciseList;
+
+    var rng = new Random();
+    var sets = new List.generate(_items.length, (_) => rng.nextInt(3) + 3);
+    var reps = new List.generate(_items.length, (_) => rng.nextInt(16) + 4);
 
     //CREATE PROVIDER TO SET WORKOUT CHANGES
     return ChangeNotifierProvider(
@@ -103,18 +109,22 @@ class SetWorkoutScreen extends StatelessWidget {
                                     // ),
                                     Container(
                                         height: height * 0.02,
-                                        child: ListView.builder(
-                                          scrollDirection: Axis.horizontal,
-                                          itemCount: _items[index]
-                                              .targetMuscles
-                                              .length,
-                                          itemBuilder:
-                                              (BuildContext context, int i) {
-                                            return Text(
-                                                _items[index].targetMuscles[i] +
-                                                    ' ');
-                                          },
-                                        )),
+                                        child: Text(sets[index].toString() +
+                                            ' x ' +
+                                            reps[index].toString())
+                                        // child: ListView.builder(
+                                        //   scrollDirection: Axis.horizontal,
+                                        //   itemCount: _items[index]
+                                        //       .targetMuscles
+                                        //       .length,
+                                        //   itemBuilder:
+                                        //       (BuildContext context, int i) {
+                                        //     return Text(
+                                        //         _items[index].targetMuscles[i] +
+                                        //             ' ');
+                                        //   },
+                                        // )
+                                        ),
                                 trailing: FlatButton(
                                     child: Icon(Icons.more_horiz),
                                     onPressed: () {
